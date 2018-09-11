@@ -1,0 +1,3 @@
+actions: simply an object with a TYPE and PAYLOAD.
+action creators: functions that create actions. The payload is passed to this function, in order to create & return the action.
+reducers: change the application's state.
