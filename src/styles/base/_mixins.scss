@@ -1,0 +1,46 @@
+/// Mixin for styling an element's box-shadow.
+///
+/// @param {} $shadow - The shadow to apply to the element.
+///
+/// @example scss - Usage
+///     .my-class {
+///         @include box-shadow(.5em .5em 0 1em rgba(0, 0, 0, .25));
+///     }
+@mixin box-shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -ms-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+/// Mixin for styling an element's border-radius.
+/// 
+/// @param {length} $radius - The radius of the border's corners.
+///
+/// @example scss - Usage
+///     #my-id {
+///         width: 10em;
+///         @include border-radius(2em);
+///     }
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+/// Mixin for styling specific screen sizes.
+/// 
+/// @param {length} $screen-size - The name of the media (see: base/_variables.scss)
+///
+/// @example scss - Usage
+///     #my-id {
+///         height: 100%;
+///         width: 500px;
+///         @include style-for($screen-size-small) { width: 50%; }
+///     }
+@mixin style-for($screen-size) {
+    @if $screen-size == $screen-size-small {
+        @media all and (max-width: 1024px) and (max-height: 768px) { @content; }
+    }
+}
