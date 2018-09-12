@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import Header from '../Header/Header';
-
-export class App extends Component {
+export class Header extends Component {
 	render() {
 		return (
-			<div className="App">
-				<Header />
+			<div className="Header">
+				Header ==============
 			</div>
 		);
 	}
@@ -28,4 +26,4 @@ function mapDispatchToProps(dispatch) {
     dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

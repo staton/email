@@ -1,18 +1,15 @@
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
-import { App } from './App';
+import { Header } from './Header';
 
-describe('<App />', () => {
+describe('<Header />', () => {
 
     Enzyme.configure({ adapter: new Adapter() });
 
     it('renders correctly', () => {
-        const wrapper = shallow(<App />);
+        const wrapper = shallow(<Header />);
         expect(wrapper).toMatchSnapshot();
-        wrapper.unmount();
     });
-
+    
 });
-
-
