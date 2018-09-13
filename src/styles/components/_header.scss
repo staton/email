@@ -1,0 +1,15 @@
+.Header {
+    align-items: center;
+    background-color: $color-header-background;
+    display: flex;
+    flex-direction: row;
+    height: $header-height;
+    margin: 0;
+    padding: 0 0 0 $header-padding;
+    width: 100%;
+
+    @include style-for($screen-size-small) { 
+        height: $header-height-small;
+        padding: 0 0 0 $header-padding-small;
+    }
+}

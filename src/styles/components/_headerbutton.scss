@@ -1,0 +1,21 @@
+.HeaderButton {
+    background: none;
+    border: none;
+    color: $color-header-item-foreground;
+    font-size: $header-button-font-size;
+    height: $header-item-length;
+    margin: $header-padding $header-padding $header-padding 0;
+    min-height: $header-item-length;
+    min-width: $header-item-length;
+    outline: none;
+    padding: 0;
+    width: $header-item-length;
+
+    @include style-for($screen-size-small) {
+        margin: $header-padding-small $header-padding-small $header-padding-small 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

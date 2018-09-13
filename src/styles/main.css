@@ -1,0 +1,84 @@
+html, body {
+  height: 100% !important;
+  margin: 0 !important;
+  min-width: 320px;
+  padding: 0 !important;
+  width: 100% !important; }
+
+#root .Header {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  height: 72px;
+  margin: 0;
+  padding: 0 0 0 18px;
+  width: 100%; }
+  @media all and (max-width: 1024px) and (max-height: 1024px) {
+    #root .Header {
+      height: 64px;
+      padding: 0 0 0 14px; } }
+
+#root .HeaderButton {
+  background: none;
+  border: none;
+  color: #5f6368;
+  font-size: 24px;
+  height: 36px;
+  margin: 18px 18px 18px 0;
+  min-height: 36px;
+  min-width: 36px;
+  outline: none;
+  padding: 0;
+  width: 36px; }
+  @media all and (max-width: 1024px) and (max-height: 1024px) {
+    #root .HeaderButton {
+      margin: 14px 14px 14px 0; } }
+  #root .HeaderButton:hover {
+    cursor: pointer; }
+
+#root .SearchBar {
+  align-items: center;
+  background-color: #f1f3f4;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: row;
+  height: 36px;
+  max-width: 600px;
+  min-width: 140px;
+  -webkit-transition: background-color 0.2s ease-in;
+  -moz-transition: background-color 0.2s ease-in;
+  -o-transition: background-color 0.2s ease-in;
+  transition: background-color 0.2s ease-in;
+  width: 600px; }
+  @media all and (max-width: 1024px) and (max-height: 1024px) {
+    #root .SearchBar {
+      display: none; } }
+  #root .SearchBar:hover {
+    background-color: #e8eced; }
+  #root .SearchBar .search-bar-button {
+    background: none;
+    border: none;
+    color: #5f6368;
+    font-size: 24px;
+    height: 100%;
+    margin: 0 8px 0 8px;
+    min-height: 100%;
+    min-width: 36px;
+    outline: none;
+    padding: 0;
+    width: 36px; }
+    #root .SearchBar .search-bar-button:hover {
+      cursor: pointer; }
+    #root .SearchBar .search-bar-button.search-bar-button-clear {
+      display: none; }
+  #root .SearchBar .search-bar-input {
+    background: none;
+    border: none;
+    font-size: 16px;
+    height: 100%;
+    outline: none;
+    width: 100%; }

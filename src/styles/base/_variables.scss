@@ -1,3 +1,27 @@
+/// The font/icon size of buttons in the header.
+/// @type {length}
+$header-button-font-size: 24px;
+
+/// The height of the header.
+/// @type {length}
+$header-height: 72px;
+
+/// The height of the header on small screens.
+/// @type {length}
+$header-height-small: 64px;
+
+/// The width and/or height of the elements in the header.
+/// @type {length}
+$header-item-length: 36px;
+
+/// The header padding.
+/// @type {length}
+$header-padding: ($header-height - $header-item-length) / 2;
+
+/// The header padding for small screens.
+/// @type {length}
+$header-padding-small: ($header-height-small - $header-item-length) / 2;
+
 /// Indicates small-screen devices. Used as a parameter the style-for mixin.
 /// @type {string}
 $screen-size-small: 'screen-size-small';
