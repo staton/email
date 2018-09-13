@@ -1,8 +1,13 @@
-import { ADD_EMAIL } from '../types';
 import Email from '../../models/email';
+import { 
+    ADD_EMAIL,
+    SET_SEARCH_TEXT
+} from '../types';
+
 
 const INITIAL_STATE = {
-    emails: []
+    emails: [],
+    searchText: ''
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -12,6 +17,13 @@ export default function(state = INITIAL_STATE, action) {
         case ADD_EMAIL:
 
             return addEmails(state, action.payload);
+
+        case SET_SEARCH_TEXT:
+
+            return { 
+                ...state,
+                searchText: action.payload.searchText
+            };
 
         default:
 

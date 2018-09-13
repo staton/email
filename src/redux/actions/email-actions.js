@@ -1,4 +1,7 @@
-import { ADD_EMAIL } from '../types';
+import { 
+    ADD_EMAIL,
+    SET_SEARCH_TEXT
+} from '../types';
 
 export const addEmails = (emails) => {
     return {
@@ -9,3 +12,11 @@ export const addEmails = (emails) => {
     };
 };
 
+export const setSearchText = (searchText) => {
+    return {
+        type: SET_SEARCH_TEXT,
+        payload: {
+            searchText: searchText
+        }
+    }
+};

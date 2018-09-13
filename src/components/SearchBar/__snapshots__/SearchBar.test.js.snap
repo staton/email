@@ -1,0 +1,244 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchBar /> renders correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SearchBar
+    searchText=""
+    setSearchText={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <button
+          className="search-bar-button search-bar-button-search"
+          onClick={[Function]}
+          title="Search"
+>
+          <Unknown />
+</button>,
+        <input
+          className="search-bar-input"
+          onChange={[Function]}
+          type="text"
+          value=""
+/>,
+        <button
+          className="search-bar-button search-bar-button-clear"
+          onClick={[Function]}
+          style={
+                    Object {
+                              "display": "none",
+                            }
+          }
+          title="Clear"
+>
+          <Unknown />
+</button>,
+      ],
+      "className": "SearchBar",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <Unknown />,
+          "className": "search-bar-button search-bar-button-search",
+          "onClick": [Function],
+          "title": "Search",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "className": "search-bar-input",
+          "onChange": [Function],
+          "type": "text",
+          "value": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "input",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <Unknown />,
+          "className": "search-bar-button search-bar-button-clear",
+          "onClick": [Function],
+          "style": Object {
+            "display": "none",
+          },
+          "title": "Clear",
+        },
+        "ref": Object {
+          "current": null,
+        },
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": "button",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <button
+            className="search-bar-button search-bar-button-search"
+            onClick={[Function]}
+            title="Search"
+>
+            <Unknown />
+</button>,
+          <input
+            className="search-bar-input"
+            onChange={[Function]}
+            type="text"
+            value=""
+/>,
+          <button
+            className="search-bar-button search-bar-button-clear"
+            onClick={[Function]}
+            style={
+                        Object {
+                                    "display": "none",
+                                  }
+            }
+            title="Clear"
+>
+            <Unknown />
+</button>,
+        ],
+        "className": "SearchBar",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <Unknown />,
+            "className": "search-bar-button search-bar-button-search",
+            "onClick": [Function],
+            "title": "Search",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "search-bar-input",
+            "onChange": [Function],
+            "type": "text",
+            "value": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "input",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <Unknown />,
+            "className": "search-bar-button search-bar-button-clear",
+            "onClick": [Function],
+            "style": Object {
+              "display": "none",
+            },
+            "title": "Clear",
+          },
+          "ref": Object {
+            "current": null,
+          },
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
