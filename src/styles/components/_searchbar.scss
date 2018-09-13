@@ -1,3 +1,5 @@
+$local-color-active-search-bar: darken($color-header-search-bar-background, 3);
+
 .SearchBar {
     align-items: center;
     background-color: $color-header-search-bar-background;
@@ -15,7 +17,7 @@
     }
 
     &:hover {
-        background-color: darken($color-header-search-bar-background, 3);
+        background-color: $local-color-active-search-bar;
     }
 
     & .search-bar-button {
@@ -47,5 +49,9 @@
         height: 100%;
         outline: none;
         width: 100%;
+
+        &:focus {
+            
+        }
     }
 }

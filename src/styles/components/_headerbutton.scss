@@ -18,4 +18,15 @@
     &:hover {
         cursor: pointer;
     }
+
+    /*
+     * The first button in the nav bar needs to include margin-left too:
+     */
+    &.first-header-button {
+        margin-left: $header-padding;
+
+        @include style-for($screen-size-small) {
+            margin-left: $header-padding-small;
+        }
+    }
 }

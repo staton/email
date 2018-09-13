@@ -18,7 +18,9 @@ export class Header extends Component {
 			<div className="Header">
                 <HeaderButton
                     content={<MdMenu />}
+                    needsLeftMargin={true}
                     onClick={this.handleDrawerButtonClicked} />
+                <div className="logo"></div>
                 <SearchBar />
 			</div>
 		);

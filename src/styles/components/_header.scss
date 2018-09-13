@@ -1,15 +1,27 @@
 .Header {
     align-items: center;
     background-color: $color-header-background;
+    @include box-shadow(0 0 1rem 0 rgba(0, 0, 0, .25));
     display: flex;
     flex-direction: row;
     height: $header-height;
     margin: 0;
-    padding: 0 0 0 $header-padding;
+    padding: 0;
     width: 100%;
 
     @include style-for($screen-size-small) { 
         height: $header-height-small;
-        padding: 0 0 0 $header-padding-small;
+    }
+
+    .logo {
+        height: $header-item-length + $header-padding;
+        padding: 0 $header-padding 0 0;
+        width: ($header-item-length + ($header-padding / 2)) * 3;
+        
+        @include style-for($screen-size-small) { 
+            height: $header-item-length + $header-padding-small;
+            padding: 0 $header-padding-small 0 0;
+            width: ($header-item-length + ($header-padding-small / 2)) * 3;
+        }
     }
 }
