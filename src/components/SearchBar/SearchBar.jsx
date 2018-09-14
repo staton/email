@@ -17,37 +17,70 @@ export class SearchBar extends Component {
     constructor() {
         super();
 
-        // create a reference for the clear search button DOM element.
-        this.clearSearchButton = React.createRef();
+        // the background color of the entire search bar.
+        this._backgroundColor = 'rgb(241, 243, 244)';
+        // the background color of the entire search bar, when hovered.
+        this._hoveredBackgroundColor = 'rgb(232, 234, 237)';
+        // the background color of the entire search bar, when focused.
+        this._focusedBackgroundColor = 'rgb(255, 255, 255)';
+        // the shadow of the entire search bar, when focused.
+        this._focusedBoxShadow = '0 0 .2rem 0 rgba(41, 182, 246, 1.0)';
 
-        this.clear = this.clear.bind(this);
+        // a reference to the entire search bar DOM element.
+        this._searchBar = React.createRef();
+        // a reference to the search input DOM element.
+        this._searchBarInput = React.createRef();
+
+        this.clearSearchText = this.clearSearchText.bind(this);
+        this.handleSearchBlurred = this.handleSearchBlurred.bind(this);
+        this.handleSearchFocused = this.handleSearchFocused.bind(this);
+        this.handleSearchMouseEnter = this.handleSearchMouseEnter.bind(this);
+        this.handleSearchMouseLeave = this.handleSearchMouseLeave.bind(this);
         this.handleSearchTextChanged = this.handleSearchTextChanged.bind(this);
         this.search = this.search.bind(this);
     }
 
 	render() {
 		return (
-            <div className="SearchBar">
+            <div 
+                className="SearchBar"
+                onClick={this.handleSearchFocused}
+                onMouseEnter={this.handleSearchMouseEnter}
+                onMouseLeave={this.handleSearchMouseLeave}
+                ref={this._searchBar}
+                style={{ backgroundColor: this._backgroundColor }}
+            >
                 <button 
-                    className="search-bar-button search-bar-button-search"
+                    className="search-bar-button"
                     onClick={this.search}
-                    title={STRINGS.Search}>
+                    onMouseDown={(e) => e.preventDefault()}
+                    title={STRINGS.Search}
+                >
                     <MdSearch />
                 </button>
                 <input 
                     className="search-bar-input" 
+                    onBlur={this.handleSearchBlurred}
                     onChange={this.handleSearchTextChanged}
+                    onKeyDown={}
+                    ref={this._searchBarInput}
                     type="text"
-                    value={this.props.searchText} />
-                <button 
-                    className="search-bar-button search-bar-button-clear"
-                    onClick={this.clear}
-                    ref={this.clearSearchButton}
-                    style={{ display: 'none' }}
-                    title={STRINGS.Clear}>
-                    <MdClear />
-                </button>
-			</div>
+                    value={this.props.searchText} 
+                />
+                    {
+                        // only display the clear-search button if the search bar contains text
+                        (this.props.searchText)
+                        ?   <button 
+                                className="search-bar-button"
+                                onClick={this.clearSearchText}
+                                onMouseDown={(e) => e.preventDefault()}
+                                title={STRINGS.Clear}
+                            >
+                                <MdClear />
+                            </button>
+                        :   null
+                    }
+            </div>
 		);
     }
     
@@ -55,29 +88,49 @@ export class SearchBar extends Component {
      * Clears the current search bar input text.
      * @param {object} e The event object.
      */
-    clear(e) {
-        console.log('clear clicked');
+    clearSearchText(e) {
         if (this.props.searchText) {
-            // hide the clear search button:
-            this.setClearSearchButtonDisplay(this.props.searchText, '');
-
-            // clear the search text:
             this.props.setSearchText('');
         }
     }
 
     /**
-     * Determines if the clear search button should be displayed or hidden.
-     * @param {string} oldText The 'old' text value in the search bar.
-     * @param {string} newText The new text value in the search bar.
+     * Called when the search input loses focus.
+     * @param {object} e The event object.
      */
-    setClearSearchButtonDisplay(oldText, newText) {
-        if (!oldText && newText) {
-            // the search bar was previously empty, but now contains text.
-            this.clearSearchButton.current.style.display = 'block';
-        } else if (oldText && !newText) {
-            // the search bar previously contained text, but is now empty.
-            this.clearSearchButton.current.style.display = 'none';
+    handleSearchBlurred(e) {
+        this._searchBar.current.style.backgroundColor = this._backgroundColor;
+        this._searchBar.current.style.boxShadow = 'none';
+    }
+
+    /**
+     * Called when the search input receives focus.
+     * @param {object} e The event object.
+     */
+    handleSearchFocused(e) {
+        this._searchBar.current.style.backgroundColor = this._focusedBackgroundColor;
+        this._searchBar.current.style.boxShadow = this._focusedBoxShadow;
+    }
+
+    /**
+     * Called when the user's mouse hovers over any part of the search bar.
+     * @param {object} e The event object.
+     */
+    handleSearchMouseEnter(e) {
+        // if the search input is already focused, then do not change the background color.
+        if (document.activeElement !== this._searchBarInput.current) {
+            this._searchBar.current.style.backgroundColor = this._hoveredBackgroundColor;
+        }
+    }
+
+    /**
+     * Called when the user's mouse exits from hovering over any part of the search bar.
+     * @param {object} e The event object.
+     */
+    handleSearchMouseLeave(e) {
+        // if the search input is already focused, then do not change the background color.
+        if (document.activeElement !== this._searchBarInput.current) {
+            this._searchBar.current.style.backgroundColor = this._backgroundColor;
         }
     }
 
@@ -86,17 +139,11 @@ export class SearchBar extends Component {
      * @param {object} e The event object.
      */
     handleSearchTextChanged(e) {
-
-        let newText = e.target.value;
-        console.log('search text changed from ' + this.props.searchText + ' to ' + newText);
-        if (this.props.searchText !== newText) {
-            // the search bar text changed.
-
-            // check to see if the clear search button's visibility needs to be updated:
-            this.setClearSearchButtonDisplay(this.props.searchText, newText);
-
-            // update the search text in the store:
-            this.props.setSearchText(newText);
+        if (e.which === 13) {
+            console.log('enter pressed!!!!!!');
+        } else if (this.props.searchText !== e.target.value) {
+            // the search bar text changed. Update the search text in the store:
+            this.props.setSearchText(e.target.value);
         }
     }
 
@@ -105,7 +152,9 @@ export class SearchBar extends Component {
      * @param {object} e The event object.
      */
     search(e) {
-        console.log('search clicked. Will search for ' + this.props.searchText);
+        if (this.props.searchText) {
+
+        }
     }
 
 }

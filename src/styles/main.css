@@ -5,31 +5,56 @@ html, body {
   padding: 0 !important;
   width: 100% !important; }
 
+#root .App button {
+  align-items: center;
+  display: flex;
+  justify-content: center; }
+
 #root .Header {
   align-items: center;
   background-color: white;
-  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.25);
-  -ms-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.25);
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+  -ms-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: row;
-  height: 72px;
+  height: 64px;
   margin: 0;
   padding: 0;
-  width: 100%; }
+  width: 100%;
+  /*
+     * Don't add any margin-left. This will make sure the space between the
+     * header elements is the same as the space at the ends of the header.
+     */
+  /*
+     * The first header element in the nav bar needs to include margin-left, so it 
+     * is not directly against the left-edge of the screen.
+     */ }
   @media all and (max-width: 1024px) and (max-height: 1024px) {
     #root .Header {
-      height: 64px; } }
+      height: 72px; } }
+  #root .Header > .header-element {
+    align-items: center;
+    display: flex;
+    height: 64px;
+    margin: 0 14px 0 0; }
+    @media all and (max-width: 1024px) and (max-height: 1024px) {
+      #root .Header > .header-element {
+        height: 72px;
+        margin: 18px 18px 18px 0; } }
+  #root .Header > .first-header-element {
+    margin-left: 14px; }
+    @media all and (max-width: 1024px) and (max-height: 1024px) {
+      #root .Header > .first-header-element {
+        margin-left: 18px; } }
   #root .Header .logo {
-    height: 54px;
-    padding: 0 18px 0 0;
-    width: 135px; }
+    padding: 0;
+    width: 192px; }
     @media all and (max-width: 1024px) and (max-height: 1024px) {
       #root .Header .logo {
-        height: 50px;
-        padding: 0 14px 0 0;
-        width: 129px; } }
+        padding: 0;
+        width: 216px; } }
 
 #root .HeaderButton {
   background: none;
@@ -37,29 +62,16 @@ html, body {
   color: #5f6368;
   font-size: 24px;
   height: 36px;
-  margin: 18px 18px 18px 0;
   min-height: 36px;
   min-width: 36px;
   outline: none;
   padding: 0;
-  width: 36px;
-  /*
-     * The first button in the nav bar needs to include margin-left too:
-     */ }
-  @media all and (max-width: 1024px) and (max-height: 1024px) {
-    #root .HeaderButton {
-      margin: 14px 14px 14px 0; } }
+  width: 36px; }
   #root .HeaderButton:hover {
     cursor: pointer; }
-  #root .HeaderButton.first-header-button {
-    margin-left: 18px; }
-    @media all and (max-width: 1024px) and (max-height: 1024px) {
-      #root .HeaderButton.first-header-button {
-        margin-left: 14px; } }
 
 #root .SearchBar {
   align-items: center;
-  background-color: #f1f3f4;
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
   -ms-border-radius: 18px;
@@ -77,8 +89,6 @@ html, body {
   @media all and (max-width: 1024px) and (max-height: 1024px) {
     #root .SearchBar {
       display: none; } }
-  #root .SearchBar:hover {
-    background-color: #e8eced; }
   #root .SearchBar .search-bar-button {
     background: none;
     border: none;
@@ -93,8 +103,6 @@ html, body {
     width: 36px; }
     #root .SearchBar .search-bar-button:hover {
       cursor: pointer; }
-    #root .SearchBar .search-bar-button.search-bar-button-clear {
-      display: none; }
   #root .SearchBar .search-bar-input {
     background: none;
     border: none;

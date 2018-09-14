@@ -16,12 +16,17 @@ export class Header extends Component {
 	render() {
 		return (
 			<div className="Header">
-                <HeaderButton
-                    content={<MdMenu />}
-                    needsLeftMargin={true}
-                    onClick={this.handleDrawerButtonClicked} />
-                <div className="logo"></div>
-                <SearchBar />
+                <div className="header-element first-header-element">
+                    <HeaderButton
+                        content={<MdMenu />}
+                        needsLeftMargin={true}
+                        onClick={this.handleDrawerButtonClicked} />
+                </div>
+                <div className="header-element logo">
+                </div>
+                <div className="header-element">
+                    <SearchBar />
+                </div>
 			</div>
 		);
     }

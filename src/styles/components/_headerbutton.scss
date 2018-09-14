@@ -4,29 +4,13 @@
     color: $color-header-item-foreground;
     font-size: $header-button-font-size;
     height: $header-item-length;
-    margin: $header-padding $header-padding $header-padding 0;
     min-height: $header-item-length;
     min-width: $header-item-length;
     outline: none;
     padding: 0;
     width: $header-item-length;
 
-    @include style-for($screen-size-small) {
-        margin: $header-padding-small $header-padding-small $header-padding-small 0;
-    }
-
     &:hover {
         cursor: pointer;
-    }
-
-    /*
-     * The first button in the nav bar needs to include margin-left too:
-     */
-    &.first-header-button {
-        margin-left: $header-padding;
-
-        @include style-for($screen-size-small) {
-            margin-left: $header-padding-small;
-        }
     }
 }
