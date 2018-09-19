@@ -31,7 +31,8 @@ const addEmails = (state, payload) => {
     let emails = state.emails.slice();
     emails.push(...payload.emails);
 
-    return Object.assign({}, state, {
+    return { 
+        ...state,
         emails: emails
-    });
+    };
 }

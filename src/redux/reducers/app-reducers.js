@@ -19,23 +19,26 @@ export default function(state = INITIAL_STATE, action) {
 
         case APP_SET_SCREEN_SIZE:
         
-            return Object.assign({}, state, {
+            return {
+                ...state, 
                 height: action.payload.height,
                 isSmallScreen: (action.payload.width <= MAX_WIDTH_SMALL_SCREEN),
                 width: action.payload.width
-            });
+            };
             
         case APP_SET_SEARCH_BAR_VISIBILITY:
 
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 isSearchBarVisible: action.payload.isSearchBarVisible
-            });
+            };
 
         case APP_SET_SEARCH_TEXT:
 
-            return Object.assign({}, state, { 
+            return {
+                ...state, 
                 searchText: action.payload.searchText
-            });
+            };
 
         default:
 

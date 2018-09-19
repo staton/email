@@ -17,7 +17,7 @@ describe('app-reducers', () => {
     });
 
     it('sets the screen size', () => {
-        const state = Object.assign({}, INITIAL_STATE);
+        const state = { ...INITIAL_STATE };
         const width = 1920;
         const height = 1080;
         const expectedState = {
@@ -32,7 +32,7 @@ describe('app-reducers', () => {
     });
 
     it('sets the search bar to be hidden', () => {
-        const state = Object.assign({}, INITIAL_STATE);
+        const state = { ...INITIAL_STATE };
         const isSearchBarVisible = false;
         const expectedState = {
             ...state,
@@ -44,7 +44,7 @@ describe('app-reducers', () => {
     });
 
     it('sets the search bar to be visible', () => {
-        const state = Object.assign({}, INITIAL_STATE);
+        const state = { ...INITIAL_STATE };
         const isSearchBarVisible = true;
         const expectedState = {
             ...state,
@@ -56,7 +56,7 @@ describe('app-reducers', () => {
     });
     
     it('sets the search text', () => {
-        const state = Object.assign({}, INITIAL_STATE);
+        const state = { ...INITIAL_STATE };
         const searchText = 'ABC1 23 455';
         const expectedState = {
             ...state,
