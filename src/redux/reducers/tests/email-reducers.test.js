@@ -15,7 +15,7 @@ describe('email-reducers', () => {
     it('adds emails to the list of emails', () => {
         const state = Object.assign({}, INITIAL_STATE);
         const emails = state.emails.slice();
-        emails.push([
+        emails.push(...[
             new Email(),
             new Email(),
             new Email()
