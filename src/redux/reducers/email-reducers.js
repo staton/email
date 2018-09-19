@@ -1,29 +1,19 @@
 import Email from '../../models/email';
 import { 
-    ADD_EMAIL,
-    SET_SEARCH_TEXT
+    EMAIL_ADD
 } from '../types';
 
-
 const INITIAL_STATE = {
-    emails: [],
-    searchText: ''
+    emails: []
 };
 
 export default function(state = INITIAL_STATE, action) {
 
     switch (action.type) {
 
-        case ADD_EMAIL:
+        case EMAIL_ADD:
 
             return addEmails(state, action.payload);
-
-        case SET_SEARCH_TEXT:
-
-            return { 
-                ...state,
-                searchText: action.payload.searchText
-            };
 
         default:
 
@@ -37,12 +27,11 @@ export default function(state = INITIAL_STATE, action) {
  * @param {object} state The current state.
  * @param {Email[]} payload The emails to add.
  */
-function addEmails(state, payload) {
+const addEmails = (state, payload) => {
     let emails = state.emails.slice();
     emails.push(...payload.emails);
 
-    return {
-        ...state,       // returns the other properties
-        emails: emails  // and the updated emails 
-    };
+    return Object.assign({}, state, {
+        emails: emails
+    });
 }

@@ -1,42 +1,36 @@
+$local-border-radius: $var-header-item-length / 2;
+$local-max-width: 600px;
+$local-min-width: 180px;
+
 .SearchBar {
-    align-items: center;
-    @include border-radius($header-item-length / 2);
-    display: flex;
-    flex-direction: row;
-    height: $header-item-length;
-    max-width: 600px;
-    min-width: 140px;
+    background-color: $color-search-bar-background;
+    @include border-radius($local-border-radius);
+    max-width: $local-max-width;
+    min-width: $local-min-width;
+    padding: 0;
     @include transition(background-color .2s ease-in);
-    width: 600px;
+    width: $local-max-width;
 
-    @include style-for($screen-size-small) {
-        display: none;
+    @include style-for($var-screen-size-small) {
+        width: $local-min-width;
     }
 
-    & .search-bar-button {
-        background: none;
-        border: none;
-        color: $color-header-item-foreground;
-        font-size: $header-button-font-size;
-        height: 100%;
-        margin: 0 8px 0 8px;
-        min-height: 100%;
-        min-width: $header-item-length;
-        outline: none;
-        padding: 0;
-        width: $header-item-length;
-
-        &:hover {
-            cursor: pointer;
-        }
+    &:hover {
+        background-color: $color-search-bar-background-hover;
     }
 
-    & .search-bar-input {
+    & .search-bar-inner-div {
+        align-items: center;
         background: none;
-        border: none;
-        font-size: 16px;
-        height: 100%;
-        outline: none;
-        width: 100%;
+        @include border-radius($local-border-radius);
+        @include box-shadow(none);
+        display: flex;
+        flex-direction: row;
+        height: $var-header-item-length;
+    }
+
+    & .inner-input-focused {
+        background-color: $color-search-bar-background-focus !important;
+        @include box-shadow(0 0 .2rem 0  $color-search-bar-box-shadow-focus !important);
     }
 }

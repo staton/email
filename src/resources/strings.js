@@ -4,6 +4,7 @@ class Strings {
 
     get Clear() { return this._clear; }
     get Search() { return this._search; }
+    get SearchPlaceholder() { return this._searchPlaceholder; }
 
     constructor() {
         this.initializeStringsToBrowserLanguage();
@@ -42,6 +43,7 @@ class Strings {
     setEnglishStrings() {
         this._clear = 'Clear';
         this._search = 'Search';
+        this._searchPlaceholder = 'Search...';
     }
 
     /**
@@ -50,6 +52,7 @@ class Strings {
     setSimplifiedChineseStrings() {
         this._clear = '清白';
         this._search = '搜索';
+        this._searchPlaceholder = '搜索...';
     }
 
     /**

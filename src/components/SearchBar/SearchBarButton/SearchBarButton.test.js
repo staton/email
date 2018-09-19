@@ -1,31 +1,32 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
-import { HeaderButton } from './HeaderButton';
+import { shallow, mount } from 'enzyme';
+import { SearchBarButton } from './SearchBarButton';
 
-describe('<HeaderButton />', () => {
+describe('<SearchBarButton />', () => {
 
     it('renders correctly', () => {
         const wrapper = shallow(
-            <HeaderButton 
-                content="X" 
+            <SearchBarButton 
+                content="X"
                 id="btn-id"
+                title="Search"
             />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
-
-    it('calls onClick when clicked', () => {
+    
+    it('handles click events', () => {
         const onClick = jest.fn();
-        const wrapper = shallow(
-            <HeaderButton 
-                content="X" 
+        const wrapper = mount(
+            <SearchBarButton 
+                content="X"
                 id="btn-id"
                 onClick={onClick}
             />);
-        const button = wrapper.find('button');
+        let button = wrapper.find('button');
 
         button.simulate('click');
         expect(onClick).toHaveBeenCalledTimes(1);
     });
-    
+
 });

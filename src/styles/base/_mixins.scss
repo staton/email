@@ -40,7 +40,7 @@
 ///         @include style-for($screen-size-small) { width: 50%; }
 ///     }
 @mixin style-for($screen-size) {
-    @if $screen-size == $screen-size-small {
+    @if $screen-size == $var-screen-size-small {
         @media all and (max-width: 1024px) and (max-height: 1024px) { @content; }
     }
 }

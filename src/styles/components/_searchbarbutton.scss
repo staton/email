@@ -1,10 +1,11 @@
-.HeaderButton {
+.SearchBarButton {
     background: none;
     border: none;
     color: $color-header-item-foreground;
     font-size: $var-header-button-font-size;
-    height: $var-header-item-length;
-    min-height: $var-header-item-length;
+    height: 100%;
+    margin: 0 8px 0 8px;
+    min-height: 100%;
     min-width: $var-header-item-length;
     outline: none;
     padding: 0;

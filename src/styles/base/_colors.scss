@@ -5,3 +5,20 @@ $color-header-background: rgb(255, 255, 255);
 /// The foreground color of the header items (buttons, etc.).
 /// @type {color}
 $color-header-item-foreground: rgb(95, 99, 104);
+
+/// The default background color of the search bar.
+/// @type {color}
+$color-search-bar-background: rgb(241, 243, 244);
+
+/// The background color when the search bar is focused.
+/// @type {color}
+$color-search-bar-background-focus: rgb(255, 255, 255);
+
+/// The background color when the mouse hovers over the search bar.
+/// @type {color}
+$color-search-bar-background-hover: rgb(232, 234, 237);
+
+/// The box-shadow color when the search bar is focused.
+/// @type {color}
+$color-search-bar-box-shadow-focus: rgba(41, 182, 246, 1.0);
+

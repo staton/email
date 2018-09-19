@@ -1,54 +1,36 @@
 import React from 'react';
-import Adapter from 'enzyme-adapter-react-16';
-import Enzyme, { shallow, mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
+import { shallow } from 'enzyme';
 import { SearchBar } from './SearchBar';
-import { setSearchText } from '../../redux/actions/email-actions';
+import SearchBarButton from './SearchBarButton/SearchBarButton';
+import SearchBarInput from './SearchBarInput/SearchBarInput';
 
 describe('<SearchBar />', () => {
 
-    const GET_PROPS = () => {
-        return {
-            searchText: '',
-            setSearchText: setSearchText
-        }
-    };
+    it('renders correctly with no text', () => {
+        const wrapper = shallow(<SearchBar searchText="" />);
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
 
-    Enzyme.configure({ adapter: new Adapter() });
-
-    it('renders correctly', () => {
-        const wrapper = shallow(<SearchBar {...GET_PROPS()} />);
-        expect(wrapper).toMatchSnapshot();
-        wrapper.unmount();
+    it('renders correctly with text', () => {
+        const wrapper = shallow(<SearchBar searchText="hello" />);
+        expect(toJson(wrapper)).toMatchSnapshot();
     });
     
-    it('contains the correct child elements', () => {
-        const wrapper = shallow(<SearchBar {...GET_PROPS()} />);
-        expect(wrapper.find('.search-bar-button-search').length).toEqual(1);
-        expect(wrapper.find('.search-bar-input').length).toEqual(1);
-        expect(wrapper.find('.search-bar-button-clear').length).toEqual(1);
-        wrapper.unmount();
+    it('contains an input and search button when input contains no text', () => {
+        const wrapper = shallow(<SearchBar searchText="" />);
+        expect(wrapper.find(SearchBarInput).length).toEqual(1);
+        expect(wrapper.find(SearchBarButton).length).toEqual(1);
+        expect(wrapper.find('#search-bar-search-button').length).toEqual(1);
+        expect(wrapper.find('#search-bar-clear-button').length).toEqual(0);
     });
 
-    // need to have a mock store to test this properly...:
-    /*
-    it('hides the clear search button when input does not contain text', () => {
-        const wrapper = mount(<SearchBar {...GET_PROPS()} />);
-        const searchInput = wrapper.find('.search-bar-input');
-        const clearSearchButton = wrapper.find('.search-bar-button-clear');
-        wrapper.instance().handleSearchTextChanged({ target: { value: ''} });
-        expect(clearSearchButton.prop('style')).toHaveProperty('display', 'none');
-        wrapper.unmount();
+    it('contains an input, search button, and clear button when input contains text', () => {
+        const wrapper = shallow(<SearchBar searchText="hello" />);
+        expect(wrapper.find(SearchBarInput).length).toEqual(1);
+        expect(wrapper.find(SearchBarButton).length).toEqual(2);
+        expect(wrapper.find('#search-bar-search-button').length).toEqual(1);
+        expect(wrapper.find('#search-bar-clear-button').length).toEqual(1);
     });
-    
-    it('displays the clear search button when input contains text', () => {
-        const wrapper = mount(<SearchBar {...GET_PROPS()} />);
-        const searchInput = wrapper.find('.search-bar-input');
-        const clearSearchButton = wrapper.find('.search-bar-button-clear');
-        wrapper.instance().handleSearchTextChanged({ target: { value: 'foo'} });
-        //wrapper.instance().value = 'foo';
-        expect(clearSearchButton.prop('style')).toHaveProperty('display', 'block');
-        wrapper.unmount();
-    });
-    */
 
 });
