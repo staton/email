@@ -1,5 +1,6 @@
 import { MAX_WIDTH_SMALL_SCREEN } from '../../resources/constants';
 import {
+    APP_SET_DRAWER_VISIBILITY,
     APP_SET_SCREEN_SIZE,
     APP_SET_SEARCH_BAR_VISIBILITY,
     APP_SET_SEARCH_TEXT
@@ -7,6 +8,7 @@ import {
 
 const INITIAL_STATE = {
     height: window.innerHeight,
+    isDrawerVisible: false,
     isSearchBarVisible: (window.innerWidth > MAX_WIDTH_SMALL_SCREEN),
     isSmallScreen: (window.innerWidth <= MAX_WIDTH_SMALL_SCREEN),
     searchText: '',
@@ -16,6 +18,13 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
     
     switch (action.type) {
+
+        case APP_SET_DRAWER_VISIBILITY:
+
+            return {
+                ...state,
+                isDrawerVisible: action.payload.isDrawerVisible
+            };
 
         case APP_SET_SCREEN_SIZE:
         

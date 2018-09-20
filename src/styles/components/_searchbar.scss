@@ -1,5 +1,5 @@
 $local-border-radius: $var-header-item-length / 2;
-$local-max-width: 600px;
+$local-max-width: 520px;
 $local-min-width: 180px;
 
 .SearchBar {
@@ -12,7 +12,7 @@ $local-min-width: 180px;
     width: $local-max-width;
 
     @include style-for($var-screen-size-small) {
-        width: $local-min-width;
+        width: auto;
     }
 
     &:hover {

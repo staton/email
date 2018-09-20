@@ -3,6 +3,18 @@ import * as types from '../../types';
 
 describe('app-actions action creators', () => {
 
+    it('should create an action to set the drawer visibility', () => {
+        const isDrawerVisible = true;
+        const expectedAction = {
+            type: types.APP_SET_DRAWER_VISIBILITY,
+            payload: {
+                isDrawerVisible: isDrawerVisible
+            }
+        };
+
+        expect(actions.setDrawerVisibility(isDrawerVisible)).toEqual(expectedAction);
+    });
+
     it('should create an action to set the screen size', () => {
         const width = 1920;
         const height = 1080;

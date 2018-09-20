@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Drawer /> renders correctly for large screens 1`] = `
+<div
+  className="Drawer"
+>
+  <div
+    className="drawer-content"
+  >
+    Drawer
+  </div>
+</div>
+`;
+
+exports[`<Drawer /> renders correctly for small screens 1`] = `
+<div
+  className="Drawer"
+>
+  <div
+    className="drawer-content"
+  >
+    Drawer
+  </div>
+  <div
+    className="drawer-shadow"
+    onClick={[Function]}
+  />
+</div>
+`;

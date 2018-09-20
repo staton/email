@@ -1,8 +1,17 @@
 .App {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 
     & button {
         align-items: center;
         display: flex;
         justify-content: center;
+    }
+
+    & .body-content {
+        display: flex;
+        flex: 1;
+        justify-content: stretch;
     }
 }

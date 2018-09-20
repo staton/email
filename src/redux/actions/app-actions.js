@@ -1,8 +1,18 @@
 import {
+    APP_SET_DRAWER_VISIBILITY,
     APP_SET_SCREEN_SIZE,
     APP_SET_SEARCH_BAR_VISIBILITY,
     APP_SET_SEARCH_TEXT
 } from '../types';
+
+export const setDrawerVisibility = (isDrawerVisible) => {
+    return {
+        type: APP_SET_DRAWER_VISIBILITY,
+        payload: {
+            isDrawerVisible: isDrawerVisible
+        }
+    };
+};
 
 export const setScreenSize = (width, height) => {
     return {

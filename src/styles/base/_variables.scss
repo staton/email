@@ -6,21 +6,13 @@ $var-header-button-font-size: 24px;
 /// @type {length}
 $var-header-height: 64px;
 
-/// The height of the header on small screens.
-/// @type {length}
-$var-header-height-small: 72px;
-
 /// The width and/or height of the elements in the header.
 /// @type {length}
 $var-header-item-length: 36px;
 
 /// The header padding.
 /// @type {length}
-$var-header-padding: ($var-header-height - $var-header-item-length) / 2;
-
-/// The header padding for small screens.
-/// @type {length}
-$var-header-padding-small: ($var-header-height-small - $var-header-item-length) / 2;
+$var-header-padding: 8px;
 
 /// Indicates small-screen devices. Used as a parameter the style-for mixin.
 /// @type {string}

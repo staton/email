@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Drawer from '../Drawer/Drawer';
 import Header from '../Header/Header';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -20,6 +21,9 @@ export class App extends Component {
 		return (
 			<div className="App">
 				<Header />
+                <div className="body-content">
+                    <Drawer />
+                </div>
 			</div>
 		);
     }

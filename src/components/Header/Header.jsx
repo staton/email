@@ -4,14 +4,16 @@ import SearchBar from '../SearchBar/SearchBar';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { MdMenu, MdSearch, MdSettings  } from 'react-icons/md';
-import { setSearchBarVisibility } from '../../redux/actions/app-actions';
+import { 
+    setDrawerVisibility, 
+    setSearchBarVisibility 
+} from '../../redux/actions/app-actions';
 
 export class Header extends Component {
 
     constructor() {
         super();
 
-        this.searchBarContainer = React.createRef();
         this.handleDrawerButtonClicked = this.handleDrawerButtonClicked.bind(this);
         this.handleSearchButtonClicked = this.handleSearchButtonClicked.bind(this);
         this.handleSettingsButtonClicked = this.handleSettingsButtonClicked.bind(this);
@@ -37,10 +39,7 @@ export class Header extends Component {
                     }
                     {
                         (this.shouldShowSearchBar())
-                        ?   <div 
-                                className="header-element"
-                                ref={this.searchBarContainer}
-                            >
+                        ?   <div className="header-element">
                                 <SearchBar />
                             </div>
                         :   null
@@ -75,7 +74,7 @@ export class Header extends Component {
      * @param {object} e The event.
      */
     handleDrawerButtonClicked(e) {
-        
+        this.props.setDrawerVisibility(!this.props.isDrawerVisible);
     }
 
     /**
@@ -125,13 +124,15 @@ export class Header extends Component {
 
 function mapStateToProps(store, ownProps) {
     return {
-        isSmallScreen: store.app.isSmallScreen,
-        isSearchBarVisible: store.app.isSearchBarVisible
+        isDrawerVisible: store.app.isDrawerVisible,
+        isSearchBarVisible: store.app.isSearchBarVisible,
+        isSmallScreen: store.app.isSmallScreen
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        setDrawerVisibility: setDrawerVisibility,
         setSearchBarVisibility: setSearchBarVisibility
     },
     dispatch);

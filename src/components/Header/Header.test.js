@@ -51,4 +51,74 @@ describe('<Header />', () => {
         expect(wrapper.find(SearchBar).length).toEqual(1);
     });
 
+    it('correctly calls setDrawerVisibility when the user clicks on the menu button when drawer is closed (small screens)', () => {
+        const isDrawerVisible = false;  // drawer is closed
+        const setDrawerVisibility = jest.fn();
+        const wrapper = shallow(
+            <Header 
+                isDrawerVisible={isDrawerVisible}
+                isSmallScreen={true}
+                setDrawerVisibility={setDrawerVisibility} 
+            />);
+        wrapper.find('#header-menu-button').simulate('click');
+        expect(setDrawerVisibility).toHaveBeenCalledTimes(1);
+        expect(setDrawerVisibility).toHaveBeenCalledWith(!isDrawerVisible);
+    });
+
+    it('correctly calls setDrawerVisibility when the user clicks on the menu button when drawer is closed (large screens)', () => {
+        const isDrawerVisible = false;  // drawer is closed
+        const setDrawerVisibility = jest.fn();
+        const wrapper = shallow(
+            <Header 
+                isDrawerVisible={isDrawerVisible}
+                isSmallScreen={false}
+                setDrawerVisibility={setDrawerVisibility} 
+            />);
+        wrapper.find('#header-menu-button').simulate('click');
+        expect(setDrawerVisibility).toHaveBeenCalledTimes(1);
+        expect(setDrawerVisibility).toHaveBeenCalledWith(!isDrawerVisible);
+    });
+
+    it('correctly calls setDrawerVisibility when the user clicks on the menu button when drawer is open (large screens)', () => {
+        const isDrawerVisible = true;   // drawer is open
+        const setDrawerVisibility = jest.fn();
+        const wrapper = shallow(
+            <Header 
+                isDrawerVisible={isDrawerVisible}
+                isSmallScreen={false}
+                setDrawerVisibility={setDrawerVisibility} 
+            />);
+        wrapper.find('#header-menu-button').simulate('click');
+        expect(setDrawerVisibility).toHaveBeenCalledTimes(1);
+        expect(setDrawerVisibility).toHaveBeenCalledWith(!isDrawerVisible);
+    });
+
+    it('correctly calls setSearchBarVisibility when the user clicks on the search button when search bar is hidden', () => {
+        const isSearchBarVisible = false;   // search bar is hidden
+        const setSearchBarVisibility = jest.fn();
+        const wrapper = shallow(
+            <Header 
+                isSearchBarVisible={isSearchBarVisible}
+                isSmallScreen={true}
+                setSearchBarVisibility={setSearchBarVisibility} 
+            />);
+        wrapper.find('#header-search-button').simulate('click');
+        expect(setSearchBarVisibility).toHaveBeenCalledTimes(1);
+        expect(setSearchBarVisibility).toHaveBeenCalledWith(!isSearchBarVisible);
+    });
+
+    it('correctly calls setSearchBarVisibility when the user clicks on the search button when search bar is open', () => {
+        const isSearchBarVisible = true;   // search bar is open
+        const setSearchBarVisibility = jest.fn();
+        const wrapper = shallow(
+            <Header 
+                isSearchBarVisible={isSearchBarVisible}
+                isSmallScreen={true}
+                setSearchBarVisibility={setSearchBarVisibility} 
+            />);
+        wrapper.find('#header-search-button').simulate('click');
+        expect(setSearchBarVisibility).toHaveBeenCalledTimes(1);
+        expect(setSearchBarVisibility).toHaveBeenCalledWith(!isSearchBarVisible);
+    });
+
 });

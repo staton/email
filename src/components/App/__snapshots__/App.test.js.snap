@@ -5,5 +5,10 @@ exports[`<App /> renders correctly 1`] = `
   className="App"
 >
   <Connect(Header) />
+  <div
+    className="body-content"
+  >
+    <Connect(Drawer) />
+  </div>
 </div>
 `;

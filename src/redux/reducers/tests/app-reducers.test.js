@@ -6,6 +6,7 @@ describe('app-reducers', () => {
 
     const INITIAL_STATE = {
         height: window.innerHeight,
+        isDrawerVisible: false,
         isSearchBarVisible: (window.innerWidth > MAX_WIDTH_SMALL_SCREEN),
         isSmallScreen: (window.innerWidth <= MAX_WIDTH_SMALL_SCREEN),
         searchText: '',
@@ -14,6 +15,18 @@ describe('app-reducers', () => {
 
     it('returns the initial state', () => {
         expect(appReducer(undefined, {})).toEqual(INITIAL_STATE);
+    });
+
+    it('sets the drawer visibility', () => {
+        const state = { ...INITIAL_STATE };
+        const isDrawerVisible = true;
+        const expectedState = {
+            ...state,
+            isDrawerVisible: isDrawerVisible
+        };
+        const action = actions.setDrawerVisibility(isDrawerVisible);
+
+        expect(appReducer(state, action)).toEqual(expectedState);
     });
 
     it('sets the screen size', () => {
