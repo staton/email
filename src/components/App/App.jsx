@@ -21,7 +21,7 @@ export class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-                <div className="body-content">
+                <div className="App__content">
                     <Drawer />
                 </div>
 			</div>

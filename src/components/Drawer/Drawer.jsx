@@ -14,7 +14,7 @@ export class Drawer extends Component {
 	render() {
 		return (
 			<div className="Drawer">
-                <div className={this.getDrawerClassNames()}>
+                <div className={this.getDrawerContentClassNames()}>
                     Drawer
                 </div>
                 {
@@ -23,7 +23,8 @@ export class Drawer extends Component {
                     (this.props.isSmallScreen)
                     ?   <div 
                             className={this.getDrawerShadowClassNames()}
-                            onClick={this.handleDrawerShadowClicked}>
+                            onClick={this.handleDrawerShadowClicked}
+                        >
                         </div>
                     :   null
                 }
@@ -32,23 +33,32 @@ export class Drawer extends Component {
     }
 
     /**
-     * Gets the class name(s) for the drawer, based on it's current state.
-     * @returns {string} The class name(s) for the drawer.
+     * Gets the inline style for the drawer. The style for the drawer will be updated
+     * if the isDrawerVisible prop is true.
+     * @returns {string} The name of the drawer content classes.
      */
-    getDrawerClassNames() {
+    getDrawerContentClassNames() {
+        const drawerContentClassName = 'Drawer__content';
+        const drawerContentVisibleClassNames = drawerContentClassName + ' Drawer__content--visible';
+
         return (this.props.isDrawerVisible)
-            ? 'drawer-content drawer-content-visible'
-            : 'drawer-content';
+            ? drawerContentVisibleClassNames 
+            : drawerContentClassName;
     }
 
     /**
-     * Gets the class name(s) for the drawer, based on it's current state.
-     * @returns {string} The class name(s) for the drawer shadow.
+     * Gets the class names drawer's shadow. The style for the drawer's shadow will
+     * be updated if the isDrawerVisible prop is true.
+     * Note: this method will only be called on small screen devices.
+     * @returns {string} The name of the drawer classes.
      */
     getDrawerShadowClassNames() {
+        const drawerShadowClassName = 'Drawer__shadow';
+        const drawerShadowVisibleClassNames = drawerShadowClassName + ' Drawer__shadow--visible';
+
         return (this.props.isDrawerVisible)
-            ? 'drawer-shadow drawer-shadow-visible'
-            : 'drawer-shadow';
+            ? drawerShadowVisibleClassNames
+            : drawerShadowClassName;
     }
 
     /**

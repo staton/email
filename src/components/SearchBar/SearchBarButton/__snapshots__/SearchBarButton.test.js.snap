@@ -3,7 +3,6 @@
 exports[`<SearchBarButton /> renders correctly 1`] = `
 <button
   className="SearchBarButton"
-  id="btn-id"
   onClick={[Function]}
   onMouseDown={[Function]}
   title="Search"

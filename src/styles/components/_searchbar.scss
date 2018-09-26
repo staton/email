@@ -19,7 +19,7 @@ $local-min-width: 180px;
         background-color: $color-search-bar-background-hover;
     }
 
-    & .search-bar-inner-div {
+    & .SearchBar__inner-div {
         align-items: center;
         background: none;
         @include border-radius($local-border-radius);
@@ -27,10 +27,10 @@ $local-min-width: 180px;
         display: flex;
         flex-direction: row;
         height: $var-header-item-length;
-    }
 
-    & .inner-input-focused {
-        background-color: $color-search-bar-background-focus !important;
-        @include box-shadow(0 0 .2rem 0  $color-search-bar-box-shadow-focus !important);
+        &.SearchBar__inner-div--focused {
+            background-color: $color-search-bar-background-focus !important;
+            @include box-shadow(0 0 .2rem 0  $color-search-bar-box-shadow-focus !important);
+        }
     }
 }

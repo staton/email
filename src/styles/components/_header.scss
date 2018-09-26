@@ -10,25 +10,25 @@
     padding: 0 $var-header-padding;
     z-index: 16;
 
-    & .left-side-elements {
+    & .Header__left-element-group {
         display: flex;
         flex: 1;
         flex-direction: row;
     }
 
-    & .right-side-elements {
+    & .Header__right-element-group {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
     }
 
-    & .header-element {
+    & .Header__element {
         align-items: center;
         display: flex;
         padding: $var-header-padding;
     }
 
-    & .logo {
+    & .Header__logo {
         width: 192px;
         
         @include style-for($var-screen-size-small) {

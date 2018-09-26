@@ -7,9 +7,6 @@ import { connect } from 'react-redux';
 import { MdClear, MdSearch  } from 'react-icons/md';
 import { setSearchText } from '../../redux/actions/app-actions';
 
-const unfocusedClassNames = 'search-bar-inner-div';
-const focusedClassNames = unfocusedClassNames + ' inner-input-focused';
-
 export class SearchBar extends Component {
 
     constructor() {
@@ -17,7 +14,7 @@ export class SearchBar extends Component {
         
         // In this component, local state will be used to determine the 
         // style of the search bar, based on whether or not it is in focus.
-        this.state = { innerDivClassNames: unfocusedClassNames };
+        this.state = { isSearchFocused: false };
 
         this.handleClearSearchText = this.handleClearSearchText.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
@@ -28,7 +25,7 @@ export class SearchBar extends Component {
     }
 
 	render() {
-        var innerDivClassNames = this.state.innerDivClassNames;
+        const innerDivClassNames = this.getSearchBarInnerDivClassNames();
 
 		return (
             <div 
@@ -38,7 +35,6 @@ export class SearchBar extends Component {
                 <div className={innerDivClassNames}>
                     <SearchBarButton 
                         content={<MdSearch />}
-                        id="search-bar-search-button"
                         onClick={this.search}
                         title={STRINGS.Search}
                     />
@@ -53,7 +49,6 @@ export class SearchBar extends Component {
                         (this.props.searchText)
                         ?   <SearchBarButton
                                 content={<MdClear />}
-                                id="search-bar-clear-button"
                                 onClick={this.handleClearSearchText}
                                 title={STRINGS.Clear}
                             />
@@ -62,6 +57,19 @@ export class SearchBar extends Component {
                 </div>
             </div>
 		);
+    }
+    
+    /**
+     * Gets the class names for the search bar, based on if the input is focused or not.
+     * @returns {string} The class names for the search bar.
+     */
+    getSearchBarInnerDivClassNames() {
+        const searchBarInnerDivClassName = 'SearchBar__inner-div';
+        const searchBarInnerDivFocusedClassNames = searchBarInnerDivClassName + ' SearchBar__inner-div--focused';
+
+        return (this.state.isSearchFocused)
+            ? searchBarInnerDivFocusedClassNames
+            : searchBarInnerDivClassName;
     }
     
     /**
@@ -91,7 +99,7 @@ export class SearchBar extends Component {
     handleSearchBlurred(e) {
         // remove the focused class name from this element, to revert to the
         // search bar's default style.
-        this.setState({ innerDivClassNames: unfocusedClassNames });
+        this.setState({ isSearchFocused: false });
     }
 
     /**
@@ -101,7 +109,7 @@ export class SearchBar extends Component {
     handleSearchFocused(e) {
         // add the focused class name to this element, which will control
         // the search bar style when it is focused.
-        this.setState({ innerDivClassNames: focusedClassNames });
+        this.setState({ isSearchFocused: true });
     }
 
     /**

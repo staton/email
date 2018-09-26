@@ -5,7 +5,7 @@ exports[`<Drawer /> renders correctly for large screens 1`] = `
   className="Drawer"
 >
   <div
-    className="drawer-content"
+    className="Drawer__content"
   >
     Drawer
   </div>
@@ -17,12 +17,12 @@ exports[`<Drawer /> renders correctly for small screens 1`] = `
   className="Drawer"
 >
   <div
-    className="drawer-content"
+    className="Drawer__content"
   >
     Drawer
   </div>
   <div
-    className="drawer-shadow"
+    className="Drawer__shadow"
     onClick={[Function]}
   />
 </div>

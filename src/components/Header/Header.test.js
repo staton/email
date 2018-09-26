@@ -22,10 +22,10 @@ describe('<Header />', () => {
                 isSearchBarVisible={false}
                 isSmallScreen={true} 
             />);
-        expect(wrapper.find('#header-menu-button').length).toEqual(1);
-        expect(wrapper.find('#header-search-button').length).toEqual(1);
-        expect(wrapper.find('#header-settings-button').length).toEqual(1);
-        expect(wrapper.find('.logo').length).toEqual(1);
+        expect(wrapper.find('#Header__menu-button').length).toEqual(1);
+        expect(wrapper.find('#Header__search-button').length).toEqual(1);
+        expect(wrapper.find('#Header__settings-button').length).toEqual(1);
+        expect(wrapper.find('.Header__logo').length).toEqual(1);
         expect(wrapper.find(SearchBar).length).toEqual(0);
     });
 
@@ -35,19 +35,19 @@ describe('<Header />', () => {
                 isSearchBarVisible={true}
                 isSmallScreen={true} 
             />);
-        expect(wrapper.find('#header-menu-button').length).toEqual(1);
-        expect(wrapper.find('#header-search-button').length).toEqual(1);
-        expect(wrapper.find('#header-settings-button').length).toEqual(1);
-        expect(wrapper.find('.logo').length).toEqual(0);
+        expect(wrapper.find('#Header__menu-button').length).toEqual(1);
+        expect(wrapper.find('#Header__search-button').length).toEqual(1);
+        expect(wrapper.find('#Header__settings-button').length).toEqual(1);
+        expect(wrapper.find('.Header__logo').length).toEqual(0);
         expect(wrapper.find(SearchBar).length).toEqual(1);
     });
     
     it('renders menu btn, search btn, settings btn, logo, and search bar for large screens', () => {
         const wrapper = shallow(<Header isSmallScreen={false} />);
-        expect(wrapper.find('#header-menu-button').length).toEqual(1);
-        expect(wrapper.find('#header-search-button').length).toEqual(0);
-        expect(wrapper.find('#header-settings-button').length).toEqual(1);
-        expect(wrapper.find('.logo').length).toEqual(1);
+        expect(wrapper.find('#Header__menu-button').length).toEqual(1);
+        expect(wrapper.find('#Header__search-button').length).toEqual(0);
+        expect(wrapper.find('#Header__settings-button').length).toEqual(1);
+        expect(wrapper.find('.Header__logo').length).toEqual(1);
         expect(wrapper.find(SearchBar).length).toEqual(1);
     });
 
@@ -60,7 +60,7 @@ describe('<Header />', () => {
                 isSmallScreen={true}
                 setDrawerVisibility={setDrawerVisibility} 
             />);
-        wrapper.find('#header-menu-button').simulate('click');
+        wrapper.find('#Header__menu-button').simulate('click');
         expect(setDrawerVisibility).toHaveBeenCalledTimes(1);
         expect(setDrawerVisibility).toHaveBeenCalledWith(!isDrawerVisible);
     });
@@ -74,7 +74,7 @@ describe('<Header />', () => {
                 isSmallScreen={false}
                 setDrawerVisibility={setDrawerVisibility} 
             />);
-        wrapper.find('#header-menu-button').simulate('click');
+        wrapper.find('#Header__menu-button').simulate('click');
         expect(setDrawerVisibility).toHaveBeenCalledTimes(1);
         expect(setDrawerVisibility).toHaveBeenCalledWith(!isDrawerVisible);
     });
@@ -88,7 +88,7 @@ describe('<Header />', () => {
                 isSmallScreen={false}
                 setDrawerVisibility={setDrawerVisibility} 
             />);
-        wrapper.find('#header-menu-button').simulate('click');
+        wrapper.find('#Header__menu-button').simulate('click');
         expect(setDrawerVisibility).toHaveBeenCalledTimes(1);
         expect(setDrawerVisibility).toHaveBeenCalledWith(!isDrawerVisible);
     });
@@ -102,7 +102,7 @@ describe('<Header />', () => {
                 isSmallScreen={true}
                 setSearchBarVisibility={setSearchBarVisibility} 
             />);
-        wrapper.find('#header-search-button').simulate('click');
+        wrapper.find('#Header__search-button').simulate('click');
         expect(setSearchBarVisibility).toHaveBeenCalledTimes(1);
         expect(setSearchBarVisibility).toHaveBeenCalledWith(!isSearchBarVisible);
     });
@@ -116,7 +116,7 @@ describe('<Header />', () => {
                 isSmallScreen={true}
                 setSearchBarVisibility={setSearchBarVisibility} 
             />);
-        wrapper.find('#header-search-button').simulate('click');
+        wrapper.find('#Header__search-button').simulate('click');
         expect(setSearchBarVisibility).toHaveBeenCalledTimes(1);
         expect(setSearchBarVisibility).toHaveBeenCalledWith(!isSearchBarVisible);
     });

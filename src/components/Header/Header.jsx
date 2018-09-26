@@ -20,52 +20,60 @@ export class Header extends Component {
     }
 
 	render() {
+        const headerLeftElementGroupClassName = 'Header__left-element-group';
+        const headerRightElementGroupClassName = 'Header__right-element-group';
+        const headerElementClassName = 'Header__element';
+        const headerLogoClassName = 'Header__logo';
+        const headerMenuButtonId = 'Header__menu-button';
+        const headerSearchButtonId = 'Header__search-button';
+        const headerSettingsButtonId = 'Header__settings-button';
+
 		return (
-			<div className="Header">
-                <div className="left-side-elements">
-                    <div className="header-element">
+			<header className="Header">
+                <div className={headerLeftElementGroupClassName}>
+                    <div className={headerElementClassName}>
                         <HeaderButton
                             content={<MdMenu />}
-                            id="header-menu-button"
+                            id={headerMenuButtonId}
                             onClick={this.handleDrawerButtonClicked} 
                         />
                     </div>
                     {
                         (this.shouldShowLogo())
-                        ?   <div className="header-element logo">
+                        ?   <div className={headerElementClassName + ' ' + headerLogoClassName}>
                                 logo
                             </div>
                         : null
                     }
                     {
                         (this.shouldShowSearchBar())
-                        ?   <div className="header-element">
+                        ?   <div className={headerElementClassName}>
                                 <SearchBar />
                             </div>
                         :   null
                     }
                 </div>
-                <div className="right-side-elements">
+                <div className={headerRightElementGroupClassName}>
                     {
                         (this.shouldShowSearchButton())
-                        ?   <div className="header-element">
+                        ?   <div className={headerElementClassName}>
                                 <HeaderButton
                                     content={<MdSearch />}
-                                    id="header-search-button"
+                                    id={headerSearchButtonId}
                                     onClick={this.handleSearchButtonClicked} 
                                 />
                             </div>
                         :   null
                     }
-                    <div className="header-element">
+                    <div className={headerElementClassName}>
                         <HeaderButton
                             content={<MdSettings />}
-                            id="header-settings-button"
+                            id={headerSettingsButtonId}
                             onClick={this.handleSettingsButtonClicked} 
                         />
                     </div>
                 </div>
-			</div>
+			</header>
 		);
     }
     

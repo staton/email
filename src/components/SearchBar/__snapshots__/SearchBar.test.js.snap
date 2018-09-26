@@ -10,11 +10,10 @@ exports[`<SearchBar /> renders correctly with no text 1`] = `
   }
 >
   <div
-    className="search-bar-inner-div"
+    className="SearchBar__inner-div"
   >
     <SearchBarButton
       content={<Unknown />}
-      id="search-bar-search-button"
       onClick={[Function]}
       title="Search"
     />
@@ -38,11 +37,10 @@ exports[`<SearchBar /> renders correctly with text 1`] = `
   }
 >
   <div
-    className="search-bar-inner-div"
+    className="SearchBar__inner-div"
   >
     <SearchBarButton
       content={<Unknown />}
-      id="search-bar-search-button"
       onClick={[Function]}
       title="Search"
     />
@@ -54,7 +52,6 @@ exports[`<SearchBar /> renders correctly with text 1`] = `
     />
     <SearchBarButton
       content={<Unknown />}
-      id="search-bar-clear-button"
       onClick={[Function]}
       title="Clear"
     />

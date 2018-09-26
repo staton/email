@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
 const propTypes = {
     content: PropTypes.any.isRequired,
@@ -26,20 +24,7 @@ export class HeaderButton extends Component {
 	}
 }
 
-function mapStateToProps(store, ownProps) {
-    return {
-        content: ownProps.content,
-        onClick: ownProps.onClick
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-    },
-    dispatch);
-}
-
 HeaderButton.propTypes = propTypes;
 HeaderButton.defaultProps = defaultProps;
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderButton);
+export default HeaderButton;

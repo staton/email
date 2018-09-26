@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
     content: PropTypes.any.isRequired,
-    id: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     title: PropTypes.string
 };
@@ -23,7 +22,6 @@ export class SearchBarButton extends Component {
 		return (
             <button 
                 className="SearchBarButton"
-                id={this.props.id}
                 onClick={this.props.onClick}
                 onMouseDown={(e) => e.preventDefault()}
                 title={this.props.title}

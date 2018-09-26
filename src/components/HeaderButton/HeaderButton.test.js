@@ -9,7 +9,7 @@ describe('<HeaderButton />', () => {
         const wrapper = shallow(
             <HeaderButton 
                 content="X" 
-                id="btn-id"
+                id="my-button"
             />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
@@ -19,7 +19,7 @@ describe('<HeaderButton />', () => {
         const wrapper = shallow(
             <HeaderButton 
                 content="X" 
-                id="btn-id"
+                id="my-button"
                 onClick={onClick}
             />);
         const button = wrapper.find('button');

@@ -3,7 +3,7 @@
 exports[`<HeaderButton /> renders correctly 1`] = `
 <button
   className="HeaderButton"
-  id="btn-id"
+  id="my-button"
   onClick={[Function]}
 >
   X
