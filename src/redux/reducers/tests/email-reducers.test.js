@@ -1,12 +1,8 @@
 import * as actions from '../../actions/email-actions';
-import emailReducer from '../email-reducers';
+import emailReducer, { INITIAL_STATE } from '../email-reducers';
 import Email from '../../../models/email';
 
 describe('email-reducers', () => {
-
-    const INITIAL_STATE = {
-        emails: []
-    };
 
     it('returns the initial state', () => {
         expect(emailReducer(undefined, {})).toEqual(INITIAL_STATE);

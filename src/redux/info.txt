@@ -1,3 +1,36 @@
 actions: simply an object with a TYPE and PAYLOAD.
 action creators: functions that create actions. The payload is passed to this function, in order to create & return the action.
 reducers: change the application's state.
+
+
+
+
+
+thunk: an action creator that returns a function instead of an action.
+
+action creators: 
+
+// this action creator returns an action We can't call this method directly from our components, because we don't have the 'items' yet.
+export function itemsFetchDataSuccess(items) {
+	return {
+		type: 'SUCCESS_FETCH_ITEMS',
+		payload: items
+	}
+}
+
+// thunk: this action creator returns a function. When it is called, it will then dispatch the appropriate actions when the time is right.
+export function itemsFetchData(url) {
+	return (dispatch) => {
+		dispatch(itemsIsLoading(true)); // dispatch the 'loading' action to show loading
+
+		fetch(url)
+			.then((response) => {
+				if (!response.ok) { throw Error(response.statusText); }
+
+				dispatch(itemsIsLoading(false)); // dispatch loading action to hide loading
+			})
+			.then((response) => response.json())
+			.then((items) => dispatch(itemsFetchDataSuccess(items))) // now we have the items, so we can finally dispatch the action
+			.catch(() => dispatch(itemsHasErrored(true))); // we got an error response...
+	};
+}

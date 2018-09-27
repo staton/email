@@ -1,6 +1,8 @@
 import * as actions from '../email-actions';
-import * as types from '../../types';
 import Email from '../../../models/email';
+import {
+    EMAIL_ADD
+} from '../../types';
 
 describe('email-actions action creators', () => {
 
@@ -10,7 +12,7 @@ describe('email-actions action creators', () => {
             new Email()
         ];
         const expectedAction = {
-            type: types.EMAIL_ADD,
+            type: EMAIL_ADD,
             payload: {
                 emails: emails
             }

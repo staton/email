@@ -51,10 +51,10 @@
             z-index: 20;
 
             /*
-        * This class will be added to the drawer shadow, setting its "opacity: 1;" and
-        * "pointer-events: all;". This way it can respond to being tapped by the user,
-        * as well as being able to fade in and out.
-        */
+            * This class will be added to the drawer shadow, setting its "opacity: 1;" and
+            * "pointer-events: all;". This way it can respond to being tapped by the user,
+            * as well as being able to fade in and out.
+            */
             &.Drawer__shadow--visible {
                 opacity: 1.0;
                 pointer-events: all;

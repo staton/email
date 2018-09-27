@@ -2,8 +2,8 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
 import { SearchBar } from './SearchBar';
-import SearchBarButton from './SearchBarButton/SearchBarButton';
-import SearchBarInput from './SearchBarInput/SearchBarInput';
+import SearchBarButton from '../SearchBarButton/SearchBarButton';
+import SearchBarInput from '../SearchBarInput/SearchBarInput';
 
 describe('<SearchBar />', () => {
 

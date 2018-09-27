@@ -3,7 +3,7 @@ import {
     EMAIL_ADD
 } from '../types';
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
     emails: []
 };
 

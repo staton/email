@@ -6,7 +6,7 @@ exports[`<SearchBarInput /> renders correctly 1`] = `
   onBlur={[Function]}
   onChange={[Function]}
   onFocus={[Function]}
-  onKeyDown={[Function]}
+  onKeyPress={[Function]}
   placeholder="Search..."
   type="text"
 />

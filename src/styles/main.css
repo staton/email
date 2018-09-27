@@ -68,10 +68,10 @@
         top: 0;
         z-index: 20;
         /*
-        * This class will be added to the drawer shadow, setting its "opacity: 1;" and
-        * "pointer-events: all;". This way it can respond to being tapped by the user,
-        * as well as being able to fade in and out.
-        */ }
+            * This class will be added to the drawer shadow, setting its "opacity: 1;" and
+            * "pointer-events: all;". This way it can respond to being tapped by the user,
+            * as well as being able to fade in and out.
+            */ }
         #root .Drawer .Drawer__shadow.Drawer__shadow--visible {
           opacity: 1.0;
           pointer-events: all; } }
@@ -141,6 +141,9 @@
       width: auto; } }
   #root .SearchBar:hover {
     background-color: #e8eaed; }
+  #root .SearchBar.SearchBar--disabled {
+    pointer-events: none;
+    opacity: 0.7; }
   #root .SearchBar .SearchBar__inner-div {
     align-items: center;
     background: none;

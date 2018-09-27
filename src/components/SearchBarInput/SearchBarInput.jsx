@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import STRINGS from '../../../resources/strings';
+import STRINGS from '../../resources/strings';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -8,7 +8,7 @@ const propTypes = {
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
-    onKeyDown: PropTypes.func,
+    onKeyPress: PropTypes.func,
     placeholder: PropTypes.string
 };
 
@@ -16,7 +16,7 @@ const defaultProps = {
     onBlur: () => {},
     onChange: () => {},
     onFocus: () => {},
-    onKeyDown: () => {},
+    onKeyPress: () => {},
     placeholder: STRINGS.SearchPlaceholder
 };
 
@@ -33,7 +33,7 @@ export class SearchBarInput extends Component {
                 onBlur={this.props.onBlur}
                 onChange={this.props.onChange}
                 onFocus={this.props.onFocus}
-                onKeyDown={this.props.onKeyDown}
+                onKeyPress={this.props.onKeyPress}
                 placeholder={this.props.placeholder}
                 type="text"
                 value={this.props.searchText} 
@@ -45,11 +45,11 @@ export class SearchBarInput extends Component {
 
 function mapStateToProps(store, ownProps) {
     return {
-        searchText: store.app.searchText,
+        searchText: store.search.searchText,
         onBlur: ownProps.onBlur,
         onChange: ownProps.onChange,
         onFocus: ownProps.onFocus,
-        onKeyDown: ownProps.onKeyDown
+        onKeyPress: ownProps.onKeyPress
     };
 }
 

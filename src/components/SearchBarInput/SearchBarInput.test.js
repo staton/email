@@ -13,12 +13,12 @@ describe('<SearchBarInput />', () => {
     it('calls all events when triggered', () => {
         const onBlur = jest.fn();
         const onFocus = jest.fn();
-        const onKeyDown = jest.fn();
+        const onKeyPress = jest.fn();
         const wrapper = mount(
             <SearchBarInput 
                 onBlur={onBlur}
                 onFocus={onFocus}
-                onKeyDown={onKeyDown}
+                onKeyPress={onKeyPress}
             />
         );
         let input = wrapper.find('input');
@@ -29,8 +29,8 @@ describe('<SearchBarInput />', () => {
         input.simulate('focus');
         expect(onFocus).toHaveBeenCalledTimes(1);
 
-        input.simulate('keydown');
-        expect(onKeyDown).toHaveBeenCalledTimes(1);
+        input.simulate('keypress');
+        expect(onKeyPress).toHaveBeenCalledTimes(1);
 
         wrapper.unmount();
     });

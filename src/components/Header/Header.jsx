@@ -4,10 +4,8 @@ import SearchBar from '../SearchBar/SearchBar';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { MdMenu, MdSearch, MdSettings  } from 'react-icons/md';
-import { 
-    setDrawerVisibility, 
-    setSearchBarVisibility 
-} from '../../redux/actions/app-actions';
+import { setDrawerVisibility } from '../../redux/actions/app-actions';
+import { setSearchBarVisibility } from '../../redux/actions/search-actions';
 
 export class Header extends Component {
 
@@ -133,7 +131,7 @@ export class Header extends Component {
 function mapStateToProps(store, ownProps) {
     return {
         isDrawerVisible: store.app.isDrawerVisible,
-        isSearchBarVisible: store.app.isSearchBarVisible,
+        isSearchBarVisible: store.search.isSearchBarVisible,
         isSmallScreen: store.app.isSmallScreen
     };
 }

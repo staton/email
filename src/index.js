@@ -1,16 +1,17 @@
 import './styles/main.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import thunk from 'redux-thunk';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
-import allReducers from './redux/reducers/index';
+import allReducers from './redux/index';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-//import { IconContext } from 'react-icons';
 
-var store = createStore(allReducers);
-//<IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleware(allReducers);
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>

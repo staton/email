@@ -21,7 +21,7 @@ exports[`<SearchBar /> renders correctly with no text 1`] = `
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
-      onKeyDown={[Function]}
+      onKeyPress={[Function]}
     />
   </div>
 </div>
@@ -48,7 +48,7 @@ exports[`<SearchBar /> renders correctly with text 1`] = `
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
-      onKeyDown={[Function]}
+      onKeyPress={[Function]}
     />
     <SearchBarButton
       content={<Unknown />}
