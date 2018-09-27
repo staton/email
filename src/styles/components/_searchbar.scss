@@ -35,7 +35,7 @@ $local-min-width: 180px;
 
         &.SearchBar__inner-div--focused {
             background-color: $color-search-bar-background-focus !important;
-            @include box-shadow(0 0 .2rem 0  $color-search-bar-box-shadow-focus !important);
+            @include box-shadow(0 0 .1rem .05rem  $color-search-bar-box-shadow-focus !important);
         }
     }
 }

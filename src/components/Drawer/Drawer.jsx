@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ComposeEmailButton from '../ComposeEmailButton/ComposeEmailButton';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setDrawerVisibility } from '../../redux/actions/app-actions';
@@ -15,7 +16,7 @@ export class Drawer extends Component {
 		return (
 			<div className="Drawer">
                 <div className={this.getDrawerContentClassNames()}>
-                    Drawer
+                    <ComposeEmailButton content="New Email" />
                 </div>
                 {
                     // The shadow that appears behind the drawer should only be

@@ -1,0 +1,42 @@
+$local-border-radius: ($var-compose-email-button-height / 2);
+
+.ComposeEmailButton {
+    margin: 1em;
+
+    &:hover {
+        cursor: pointer;
+
+        & .ComposeEmailButton__inner-div-1 {
+            @include box-shadow(-.15rem 0 .25rem 0 red);
+        }
+
+        & .ComposeEmailButton__inner-div-2 {
+            @include box-shadow(0 0 .15rem 0 blue);
+        }
+
+        & .ComposeEmailButton__inner-div-3 {
+            @include box-shadow(.15rem 0 .25rem 0 green);
+        }
+
+        & .ComposeEmailButton__inner-div-4 {
+            @include box-shadow(0 .15rem .25rem 0 purple);
+        }
+    }
+
+    & * {
+        @include border-radius($local-border-radius);
+        @include transition(all .1s ease-in);
+    }
+
+    & .ComposeEmailButton__button {
+        background: white;
+        border: none;
+        height: $var-compose-email-button-height;
+        padding: .5em;
+        width: 100%;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

@@ -11,6 +11,48 @@
     flex: 1;
     justify-content: stretch; }
 
+#root .ComposeEmailButton {
+  margin: 1em; }
+  #root .ComposeEmailButton:hover {
+    cursor: pointer; }
+    #root .ComposeEmailButton:hover .ComposeEmailButton__inner-div-1 {
+      -webkit-box-shadow: -0.15rem 0 0.25rem 0 red;
+      -moz-box-shadow: -0.15rem 0 0.25rem 0 red;
+      -ms-box-shadow: -0.15rem 0 0.25rem 0 red;
+      box-shadow: -0.15rem 0 0.25rem 0 red; }
+    #root .ComposeEmailButton:hover .ComposeEmailButton__inner-div-2 {
+      -webkit-box-shadow: 0 0 0.15rem 0 blue;
+      -moz-box-shadow: 0 0 0.15rem 0 blue;
+      -ms-box-shadow: 0 0 0.15rem 0 blue;
+      box-shadow: 0 0 0.15rem 0 blue; }
+    #root .ComposeEmailButton:hover .ComposeEmailButton__inner-div-3 {
+      -webkit-box-shadow: 0.15rem 0 0.25rem 0 green;
+      -moz-box-shadow: 0.15rem 0 0.25rem 0 green;
+      -ms-box-shadow: 0.15rem 0 0.25rem 0 green;
+      box-shadow: 0.15rem 0 0.25rem 0 green; }
+    #root .ComposeEmailButton:hover .ComposeEmailButton__inner-div-4 {
+      -webkit-box-shadow: 0 0.15rem 0.25rem 0 purple;
+      -moz-box-shadow: 0 0.15rem 0.25rem 0 purple;
+      -ms-box-shadow: 0 0.15rem 0.25rem 0 purple;
+      box-shadow: 0 0.15rem 0.25rem 0 purple; }
+  #root .ComposeEmailButton * {
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    border-radius: 24px;
+    -webkit-transition: all 0.1s ease-in;
+    -moz-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in; }
+  #root .ComposeEmailButton .ComposeEmailButton__button {
+    background: white;
+    border: none;
+    height: 48px;
+    padding: .5em;
+    width: 100%; }
+    #root .ComposeEmailButton .ComposeEmailButton__button:hover {
+      cursor: pointer; }
+
 #root .Drawer {
   /*
      * Note: The drawer will initially have "width: 0;". When the drawer should become visible,
@@ -160,10 +202,10 @@
     height: 36px; }
     #root .SearchBar .SearchBar__inner-div.SearchBar__inner-div--focused {
       background-color: white !important;
-      -webkit-box-shadow: 0 0 0.2rem 0 #29b6f6 !important;
-      -moz-box-shadow: 0 0 0.2rem 0 #29b6f6 !important;
-      -ms-box-shadow: 0 0 0.2rem 0 #29b6f6 !important;
-      box-shadow: 0 0 0.2rem 0 #29b6f6 !important; }
+      -webkit-box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important;
+      -moz-box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important;
+      -ms-box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important;
+      box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important; }
 
 #root .SearchBarButton {
   background: none;

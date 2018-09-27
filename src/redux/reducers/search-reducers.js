@@ -19,8 +19,6 @@ export default function(state = INITIAL_STATE, action) {
 
         case SEARCH_SET_IS_SEARCHING:
 
-            console.log('Is Searching: ' + action.payload.isSearching);
-            
             return {
                 ...state,
                 isSearching: action.payload.isSearching
