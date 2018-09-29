@@ -10,7 +10,7 @@ export class Drawer extends Component {
     constructor() {
         super();
 
-        this.handleDrawerShadowClicked = this.handleDrawerShadowClicked.bind(this);
+        this.handleDrawerOverlayClicked = this.handleDrawerOverlayClicked.bind(this);
     }
 
 	render() {
@@ -20,11 +20,11 @@ export class Drawer extends Component {
                     <DrawerMenu />
                 </div>
                 {
-                    // The shadow that appears behind the drawer should only be visible on small screens
+                    // The overlay that appears behind the drawer should only be visible on small screens
                     (this.props.isSmallScreen)
                     ?   <ScreenOverlay
                             isVisible={this.props.isDrawerVisible}
-                            onClick={this.handleDrawerShadowClicked}
+                            onClick={this.handleDrawerOverlayClicked}
                             zIndex={78}
                         />
                     :   null
@@ -34,8 +34,7 @@ export class Drawer extends Component {
     }
 
     /**
-     * Gets the inline style for the drawer. The style for the drawer will be updated
-     * if the isDrawerVisible prop is true.
+     * Gets class name(s) for the drawer.
      * @returns {string} The name of the drawer content classes.
      */
     getDrawerContentClassNames() {
@@ -48,10 +47,10 @@ export class Drawer extends Component {
     }
 
     /**
-     * Called when the user taps on the drawer shadow.
+     * Called when the user taps on the drawer overlay.
      * @param {object} e The event.
      */
-    handleDrawerShadowClicked(e) {
+    handleDrawerOverlayClicked(e) {
         this.props.setDrawerVisibility(false);
     }
 
