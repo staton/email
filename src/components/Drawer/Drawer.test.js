@@ -6,12 +6,22 @@ import { Drawer } from './Drawer';
 describe('<Drawer />', () => {
 
     it('renders correctly for small screens', () => {
-        const wrapper = shallow(<Drawer isSmallScreen={true} />);
+        const wrapper = shallow(
+            <Drawer 
+                isDrawerVisible={true}
+                isSmallScreen={true} 
+            />
+        );
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
     it('renders correctly for large screens', () => {
-        const wrapper = shallow(<Drawer isSmallScreen={false} />);
+        const wrapper = shallow(
+            <Drawer 
+                isDrawerVisible={true}
+                isSmallScreen={false} 
+            />
+        );
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
@@ -20,11 +30,10 @@ describe('<Drawer />', () => {
             <Drawer 
                 isDrawerVisible={true}
                 isSmallScreen={true} 
-            />);
+            />
+        );
         expect(wrapper.find('.Drawer__content').length).toEqual(1);
-        expect(wrapper.find('.Drawer__content--visible').length).toEqual(1);
-        expect(wrapper.find('.Drawer__shadow').length).toEqual(1);
-        expect(wrapper.find('.Drawer__shadow--visible').length).toEqual(1);
+        expect(wrapper.find('.Drawer__content--hidden').length).toEqual(0);
     });
 
     it('has classes to handle drawer visibility for large screens when drawer should be visible', () => {
@@ -32,11 +41,10 @@ describe('<Drawer />', () => {
             <Drawer 
                 isDrawerVisible={true}
                 isSmallScreen={false} 
-            />);
-            expect(wrapper.find('.Drawer__content').length).toEqual(1);
-            expect(wrapper.find('.Drawer__content--visible').length).toEqual(1);
-            expect(wrapper.find('.Drawer__shadow').length).toEqual(0);
-            expect(wrapper.find('.Drawer__shadow--visible').length).toEqual(0);
+            />
+        );
+        expect(wrapper.find('.Drawer__content').length).toEqual(1);
+        expect(wrapper.find('.Drawer__content--hidden').length).toEqual(0);
     });
 
     it('does not have classes to handle drawer visibility for small screens when drawer should be hidden', () => {
@@ -44,11 +52,10 @@ describe('<Drawer />', () => {
             <Drawer 
                 isDrawerVisible={false}
                 isSmallScreen={true} 
-            />);
+            />
+        );
         expect(wrapper.find('.Drawer__content').length).toEqual(1);
-        expect(wrapper.find('.Drawer__content--visible').length).toEqual(0);
-        expect(wrapper.find('.Drawer__shadow').length).toEqual(1);
-        expect(wrapper.find('.Drawer__shadow--visible').length).toEqual(0);
+        expect(wrapper.find('.Drawer__content--hidden').length).toEqual(1);
     });
 
     it('does not have classes to handle drawer visibility for large screens when drawer should be hidden', () => {
@@ -56,26 +63,10 @@ describe('<Drawer />', () => {
             <Drawer 
                 isDrawerVisible={false}
                 isSmallScreen={false} 
-            />);
-            expect(wrapper.find('.Drawer__content').length).toEqual(1);
-            expect(wrapper.find('.Drawer__content--visible').length).toEqual(0);
-            expect(wrapper.find('.Drawer__shadow').length).toEqual(0);
-            expect(wrapper.find('.Drawer__shadow--visible').length).toEqual(0);
-    });
-
-    it('correctly calls setDrawerVisibility when the user clicks on the drawer shadow', () => {
-        const isDrawerVisible = true;
-        const setDrawerVisibility = jest.fn();
-        const wrapper = mount(
-            <Drawer
-                isDrawerVisible={isDrawerVisible}
-                isSmallScreen={true}
-                setDrawerVisibility={setDrawerVisibility}
             />
         );
-        wrapper.find('.Drawer__shadow').simulate('click');
-        expect(setDrawerVisibility).toHaveBeenCalledTimes(1);
-        expect(setDrawerVisibility).toHaveBeenCalledWith(false); // should always be called with false
+        expect(wrapper.find('.Drawer__content').length).toEqual(1);
+        expect(wrapper.find('.Drawer__content--hidden').length).toEqual(1);
     });
 
 });

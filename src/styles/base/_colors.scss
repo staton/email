@@ -1,3 +1,11 @@
+/// The theme color for the app.
+/// @type {color}
+$color-app-theme-background: rgb(20, 187, 90);
+
+/// The foreground color for components using the app-theme-background color.
+/// @type {color}
+$color-app-theme-foreground: rgb(255, 255, 255);
+
 /// The background color of the drawer.
 /// @type {color}
 $color-drawer-background: rgb(255, 255, 255);

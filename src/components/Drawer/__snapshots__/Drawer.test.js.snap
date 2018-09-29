@@ -7,7 +7,7 @@ exports[`<Drawer /> renders correctly for large screens 1`] = `
   <div
     className="Drawer__content"
   >
-    Drawer
+    <Connect(DrawerMenu) />
   </div>
 </div>
 `;
@@ -19,11 +19,12 @@ exports[`<Drawer /> renders correctly for small screens 1`] = `
   <div
     className="Drawer__content"
   >
-    Drawer
+    <Connect(DrawerMenu) />
   </div>
-  <div
-    className="Drawer__shadow"
+  <ScreenOverlay
+    isVisible={true}
     onClick={[Function]}
+    zIndex={78}
   />
 </div>
 `;

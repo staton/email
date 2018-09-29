@@ -7,6 +7,10 @@
         align-items: center;
         display: flex;
         justify-content: center;
+
+        @include style-for($var-screen-size-small) {
+            outline: none !important;
+        }
     }
 
     & .App__content {

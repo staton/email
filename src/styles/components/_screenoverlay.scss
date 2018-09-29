@@ -1,0 +1,16 @@
+.ScreenOverlay {
+    background-color: rgba(0, 0, 0, .2);
+    bottom: 0;
+    left: 0;
+    opacity: 1.0;
+    pointer-events: all;
+    position: fixed;
+    right: 0;
+    @include transition(opacity .25s ease);
+    top: 0;
+
+    &.ScreenOverlay--hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+}

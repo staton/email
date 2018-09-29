@@ -1,64 +1,24 @@
 .Drawer {
 
-    /*
-     * Note: The drawer will initially have "width: 0;". When the drawer should become visible,
-     * the app will add the ".drawer-content-visible" class to the div, which will update the
-     * div's width. We update the width, instead of using "display: none/block", to allow the drawer
-     * to animate by sliding in and out when becoming visible and hidden.
-     */
     & .Drawer__content {
         background-color: $color-drawer-background;
         @include box-shadow(0 0 .5rem 0 rgba(0, 0, 0, .2));
         height: 100%;
         overflow: hidden; /* prevent inner content from being shown when width is 0 */
         @include transition(width .5s ease);
-        width: 0;
-        z-index: 12;
+        width: $var-drawer-menu-width;
+        z-index: 84;
 
         @include style-for($var-screen-size-small) {
             bottom: 0;
             left: 0;
             position: fixed;
-            top: 0;
-            z-index: 24; /* allows the drawer to be drawn over the Header */
+            top: $var-header-height;
+            width: $var-drawer-menu-width-small;
         }
 
-        &.Drawer__content--visible {
-            width: 270px;
-    
-            @include style-for($var-screen-size-small) {
-                width: 65%;
-            }
-        }
-    }
-
-    @include style-for($var-screen-size-small) {
-        /*
-        * The drawer shadow will only be visible on small screens. Note that it will
-        * initially have "pointer-events: none;" and "opacity: 0;", so it will not be
-        * seen to the user.
-        */
-        & .Drawer__shadow {
-            background-color: rgba(0, 0, 0, .2);
-            bottom: 0;
-            left: 0;
-            opacity: 0;
-            pointer-events: none;
-            position: fixed;
-            right: 0;
-            @include transition(opacity .5s ease);
-            top: 0;
-            z-index: 20;
-
-            /*
-            * This class will be added to the drawer shadow, setting its "opacity: 1;" and
-            * "pointer-events: all;". This way it can respond to being tapped by the user,
-            * as well as being able to fade in and out.
-            */
-            &.Drawer__shadow--visible {
-                opacity: 1.0;
-                pointer-events: all;
-            }
+        &.Drawer__content--hidden {
+            width: 0;
         }
     }
 }

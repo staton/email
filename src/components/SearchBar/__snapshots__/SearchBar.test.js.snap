@@ -3,11 +3,6 @@
 exports[`<SearchBar /> renders correctly with no text 1`] = `
 <div
   className="SearchBar"
-  style={
-    Object {
-      "backgroundColor": undefined,
-    }
-  }
 >
   <div
     className="SearchBar__inner-div"
@@ -30,11 +25,6 @@ exports[`<SearchBar /> renders correctly with no text 1`] = `
 exports[`<SearchBar /> renders correctly with text 1`] = `
 <div
   className="SearchBar"
-  style={
-    Object {
-      "backgroundColor": undefined,
-    }
-  }
 >
   <div
     className="SearchBar__inner-div"

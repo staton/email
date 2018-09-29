@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ComposeEmailButton /> renders correctly 1`] = `
+<div
+  className="ComposeEmailButton"
+>
+  <button
+    className="ComposeEmailButton__button"
+    onClick={[Function]}
+    title="Search"
+  >
+    New Email
+  </button>
+</div>
+`;

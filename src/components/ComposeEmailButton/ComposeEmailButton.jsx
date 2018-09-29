@@ -21,21 +21,13 @@ export class ComposeEmailButton extends Component {
 	render() {
 		return (
             <div className="ComposeEmailButton">
-                <div className="ComposeEmailButton__inner-div-1">
-                    <div className="ComposeEmailButton__inner-div-2">
-                        <div className="ComposeEmailButton__inner-div-3">
-                            <div className="ComposeEmailButton__inner-div-4">
-                                <button 
-                                    className="ComposeEmailButton__button"
-                                    onClick={this.props.onClick}
-                                    title={this.props.title}
-                                >
-                                    {this.props.content}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button 
+                    className="ComposeEmailButton__button"
+                    onClick={this.props.onClick}
+                    title={this.props.title}
+                >
+                    {this.props.content}
+                </button>
             </div>
 		);
     }

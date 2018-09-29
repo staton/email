@@ -2,6 +2,18 @@
 /// @type {length}
 $var-compose-email-button-height: 48px;
 
+/// The height of the compose email button for small screens.
+/// @type {length}
+$var-compose-email-button-height-small: 64px;
+
+/// The width of the drawer menu.
+/// @type {length}
+$var-drawer-menu-width: 270px;
+
+/// THe width of the drawer menu for small screens.
+/// @type {length}
+$var-drawer-menu-width-small: 248px;
+
 /// The font/icon size of buttons in the header.
 /// @type {length}
 $var-header-button-font-size: 24px;

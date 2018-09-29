@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import ComposeEmailButton from '../ComposeEmailButton/ComposeEmailButton';
 import Drawer from '../Drawer/Drawer';
 import Header from '../Header/Header';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { MdEdit } from 'react-icons/md';
 import { setScreenSize } from '../../redux/actions/app-actions';
 
 export class App extends Component {
@@ -24,6 +26,13 @@ export class App extends Component {
                 <div className="App__content">
                     <Drawer />
                 </div>
+                {
+                    // For small screens, the New Email button will be a FAB.
+                    // For larger screens, it will be in the drawer.
+                    (this.props.isSmallScreen)
+                    ?   <ComposeEmailButton content={<MdEdit />} />
+                    :   null
+                }
 			</div>
 		);
     }
@@ -40,6 +49,7 @@ export class App extends Component {
 
 function mapStateToProps(store, ownProps) {
     return {
+        isSmallScreen: store.app.isSmallScreen
     };
 }
 
