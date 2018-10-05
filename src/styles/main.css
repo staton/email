@@ -74,10 +74,10 @@
   height: 100%;
   overflow: hidden;
   /* prevent inner content from being shown when width is 0 */
-  -webkit-transition: width 0.5s ease;
-  -moz-transition: width 0.5s ease;
-  -o-transition: width 0.5s ease;
-  transition: width 0.5s ease;
+  -webkit-transition: width 0.25s ease;
+  -moz-transition: width 0.25s ease;
+  -o-transition: width 0.25s ease;
+  transition: width 0.25s ease;
   width: 270px;
   z-index: 84; }
   @media all and (max-width: 1023px) and (max-height: 1024px) {
@@ -85,8 +85,10 @@
       bottom: 0;
       left: 0;
       position: fixed;
-      top: 64px;
-      width: 248px; } }
+      top: 0;
+      /*$var-header-height;*/
+      width: 248px;
+      z-index: 128; } }
   #root .Drawer .Drawer__content.Drawer__content--hidden {
     width: 0; }
 
@@ -95,6 +97,60 @@
   @media all and (max-width: 1023px) and (max-height: 1024px) {
     #root .DrawerMenu {
       width: 248px; } }
+
+#root .DrawerMenuList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+#root .DrawerMenuListItem {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.75rem; }
+  #root .DrawerMenuListItem:hover {
+    background-color: #f2f2f2;
+    cursor: pointer; }
+  @media all and (max-width: 1023px) and (max-height: 1024px) {
+    #root .DrawerMenuListItem {
+      padding: 1rem; } }
+  #root .DrawerMenuListItem .DrawerMenuListItem__left-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; }
+    #root .DrawerMenuListItem .DrawerMenuListItem__left-container > * {
+      padding-right: 0.75rem; }
+      @media all and (max-width: 1023px) and (max-height: 1024px) {
+        #root .DrawerMenuListItem .DrawerMenuListItem__left-container > * {
+          padding-right: 1rem; } }
+    #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__icon {
+      align-items: center;
+      color: #2b2d31;
+      display: flex;
+      font-size: 24px;
+      justify-content: center;
+      width: 24px; }
+    #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__primary-content {
+      font-size: 16px; }
+    #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__secondary-content {
+      color: #73767a;
+      font-size: 12px; }
+  #root .DrawerMenuListItem .DrawerMenuListItem__badge {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.51);
+    -webkit-border-radius: 14px;
+    -moz-border-radius: 14px;
+    -ms-border-radius: 14px;
+    border-radius: 14px;
+    color: white;
+    display: flex;
+    font-size: 12px;
+    height: 28px;
+    justify-content: center;
+    min-width: 28px; }
 
 #root .Header {
   align-items: center;

@@ -25,7 +25,7 @@ export class Drawer extends Component {
                     ?   <ScreenOverlay
                             isVisible={this.props.isDrawerVisible}
                             onClick={this.handleDrawerOverlayClicked}
-                            zIndex={78}
+                            zIndex={127}
                         />
                     :   null
                 }

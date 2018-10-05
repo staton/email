@@ -10,6 +10,14 @@ $color-app-theme-foreground: rgb(255, 255, 255);
 /// @type {color}
 $color-drawer-background: rgb(255, 255, 255);
 
+/// The background color of badges on the drawer menu.
+/// @type {color}
+$color-drawer-menu-item-badge-background: rgba(0, 0, 0, .51);
+
+/// The foreground color of badges on the drawer menu.
+/// @type {color}
+$color-drawer-menu-item-badge-foreground: rgb(255, 255, 255);
+
 /// The background color of the header.
 /// @type {color}
 $color-header-background: rgb(255, 255, 255);
@@ -17,6 +25,10 @@ $color-header-background: rgb(255, 255, 255);
 /// The foreground color of the header items (buttons, etc.).
 /// @type {color}
 $color-header-item-foreground: rgb(95, 99, 104);
+
+/// The primary foreground color.
+/// @type {color}
+$color-primary-foreground: rgb(43, 45, 49);
 
 /// The default background color of the search bar.
 /// @type {color}
@@ -33,4 +45,8 @@ $color-search-bar-background-hover: rgb(232, 234, 237);
 /// The box-shadow color when the search bar is focused.
 /// @type {color}
 $color-search-bar-box-shadow-focus: rgb(207, 212, 218);
+
+/// The secondary background color.
+/// @type {color}
+$color-secondary-foreground: rgb(115, 118, 122);
 

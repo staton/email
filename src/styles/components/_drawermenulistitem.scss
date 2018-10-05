@@ -1,0 +1,66 @@
+$local-menu-item-padding: .75rem;
+$local-menu-item-padding-small-screen: 1rem;
+$local-icon-size: 24px;
+
+.DrawerMenuListItem {
+    align-items: center;
+    background-color: $color-drawer-background;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: $local-menu-item-padding;
+
+    &:hover {
+        background-color: darken($color-drawer-background, 5%);
+        cursor: pointer;
+    }
+
+    @include style-for($var-screen-size-small) {
+        padding: $local-menu-item-padding-small-screen;
+    }
+
+    & .DrawerMenuListItem__left-container {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        & > * {
+            padding-right: $local-menu-item-padding;
+
+            @include style-for($var-screen-size-small) {
+                padding-right: $local-menu-item-padding-small-screen;
+            }
+        }
+
+        & .DrawerMenuListItem__icon {
+            align-items: center;
+            color: $color-primary-foreground;
+            display: flex;
+            font-size: $local-icon-size;
+            justify-content: center;
+            width: $local-icon-size;
+        }
+
+        & .DrawerMenuListItem__primary-content {
+            font-size: 16px;
+        }
+    
+        & .DrawerMenuListItem__secondary-content {
+            color: $color-secondary-foreground;
+            font-size: 12px;
+        }
+    }
+    
+    & .DrawerMenuListItem__badge {
+        align-items: center;
+        background-color: $color-drawer-menu-item-badge-background;
+        @include border-radius($var-drawer-menu-item-badge-length / 2);
+        color: $color-drawer-menu-item-badge-foreground;
+        display: flex;
+        font-size: 12px;
+        height: $var-drawer-menu-item-badge-length;
+        justify-content: center;
+        min-width: $var-drawer-menu-item-badge-length;
+    }
+}

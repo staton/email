@@ -1,12 +1,12 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
-import { DrawerMenuItem } from './DrawerMenuItem';
+import { DrawerMenuList } from './DrawerMenuList';
 
-describe('<DrawerMenuItem />', () => {
+describe('<DrawerMenuList />', () => {
 
     it('renders correctly', () => {
-        const wrapper = shallow(<DrawerMenuItem />);
+        const wrapper = shallow(<DrawerMenuList />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 

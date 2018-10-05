@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ComposeEmailButton from '../ComposeEmailButton/ComposeEmailButton';
-import DrawerMenuItem from '../DrawerMenuItem/DrawerMenuItem';
+import DrawerMenuList from '../DrawerMenuList/DrawerMenuList';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -16,20 +16,7 @@ export class DrawerMenu extends Component {
                     ?   null
                     :   <ComposeEmailButton content="New Email" />
                 }
-                <ul className="DrawerMenu__list">
-                    <DrawerMenuItem 
-                        primaryContent='Inbox'
-                    />
-                    <DrawerMenuItem 
-                        primaryContent='Sent'
-                    />
-                    <DrawerMenuItem 
-                        primaryContent='Spam'
-                    />
-                    <DrawerMenuItem 
-                        primaryContent='Deleted'
-                    />
-                </ul>
+                <DrawerMenuList />
             </div>
 		);
     }

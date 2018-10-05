@@ -5,7 +5,7 @@
         @include box-shadow(0 0 .5rem 0 rgba(0, 0, 0, .2));
         height: 100%;
         overflow: hidden; /* prevent inner content from being shown when width is 0 */
-        @include transition(width .5s ease);
+        @include transition(width .25s ease);
         width: $var-drawer-menu-width;
         z-index: 84;
 
@@ -13,8 +13,9 @@
             bottom: 0;
             left: 0;
             position: fixed;
-            top: $var-header-height;
+            top: 0; /*$var-header-height;*/
             width: $var-drawer-menu-width-small;
+            z-index: 128;
         }
 
         &.Drawer__content--hidden {
