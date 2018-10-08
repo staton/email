@@ -10,8 +10,10 @@
         font-size: 1rem;
         font-weight: 600;
         height: $var-compose-email-button-height;
+        overflow: hidden;
         padding: 1rem;
         @include transition(box-shadow .1s ease-in);
+        white-space: nowrap;
         width: 100%;
 
         @include style-for($var-screen-size-small) {

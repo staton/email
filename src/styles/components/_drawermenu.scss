@@ -1,7 +1,2 @@
 .DrawerMenu {
-    width: $var-drawer-menu-width;
-
-    @include style-for($var-screen-size-small) {
-        width: $var-drawer-menu-width-small;
-    }
 }

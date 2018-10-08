@@ -32,11 +32,13 @@
     font-size: 1rem;
     font-weight: 600;
     height: 48px;
+    overflow: hidden;
     padding: 1rem;
     -webkit-transition: box-shadow 0.1s ease-in;
     -moz-transition: box-shadow 0.1s ease-in;
     -o-transition: box-shadow 0.1s ease-in;
     transition: box-shadow 0.1s ease-in;
+    white-space: nowrap;
     width: 100%; }
     @media all and (max-width: 1023px) and (max-height: 1024px) {
       #root .ComposeEmailButton .ComposeEmailButton__button {
@@ -91,12 +93,6 @@
       z-index: 128; } }
   #root .Drawer .Drawer__content.Drawer__content--hidden {
     width: 0; }
-
-#root .DrawerMenu {
-  width: 270px; }
-  @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .DrawerMenu {
-      width: 248px; } }
 
 #root .DrawerMenuList {
   list-style-type: none;
