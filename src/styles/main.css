@@ -33,7 +33,6 @@
     font-weight: 600;
     height: 48px;
     overflow: hidden;
-    padding: 1rem;
     -webkit-transition: box-shadow 0.1s ease-in;
     -moz-transition: box-shadow 0.1s ease-in;
     -o-transition: box-shadow 0.1s ease-in;
@@ -51,9 +50,8 @@
         -moz-box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
         -ms-box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
         box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
-        font-size: 24px;
         height: 64px;
-        margin: 1em;
+        margin: 1rem;
         position: fixed;
         right: 0;
         width: 64px;
@@ -66,6 +64,15 @@
       -ms-box-shadow: 0 0.125rem 0.3rem 0 rgba(0, 0, 0, 0.35);
       box-shadow: 0 0.125rem 0.3rem 0 rgba(0, 0, 0, 0.35);
       cursor: pointer; }
+    #root .ComposeEmailButton .ComposeEmailButton__button .ComposeEmailButton__icon {
+      font-size: 24px;
+      height: 24px;
+      padding: 0 0.25rem; }
+      @media all and (max-width: 1023px) and (max-height: 1024px) {
+        #root .ComposeEmailButton .ComposeEmailButton__button .ComposeEmailButton__icon {
+          padding: 1rem; } }
+    #root .ComposeEmailButton .ComposeEmailButton__button .ComposeEmailButton__content {
+      padding: 0 0.25rem; }
 
 #root .Drawer .Drawer__content {
   background-color: white;
@@ -147,6 +154,11 @@
     height: 28px;
     justify-content: center;
     min-width: 28px; }
+
+#root .EmailList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
 
 #root .Header {
   align-items: center;

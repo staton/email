@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import ComposeEmailButton from '../ComposeEmailButton/ComposeEmailButton';
 import Drawer from '../Drawer/Drawer';
+import EmailList from '../EmailList/EmailList';
 import Header from '../Header/Header';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { MdEdit } from 'react-icons/md';
 import { setScreenSize } from '../../redux/actions/app-actions';
+import { loadEmails } from '../../redux/actions/email-actions';
 
 export class App extends Component {
 
@@ -16,7 +18,11 @@ export class App extends Component {
     }
 
     componentDidMount() {
+        // listen for window resize events:
         window.addEventListener('resize', this.handleResize);
+
+        // load the initial emails:
+        this.props.loadEmails();
     }
 
 	render() {
@@ -25,12 +31,13 @@ export class App extends Component {
 				<Header />
                 <div className="App__content">
                     <Drawer />
+                    <EmailList />
                 </div>
                 {
                     // For small screens, the New Email button will be a FAB.
                     // For larger screens, it will be in the drawer.
                     (this.props.isSmallScreen)
-                    ?   <ComposeEmailButton content={<MdEdit />} />
+                    ?   <ComposeEmailButton icon={<MdEdit />} />
                     :   null
                 }
 			</div>
@@ -55,6 +62,7 @@ function mapStateToProps(store, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        loadEmails: loadEmails,
         setScreenSize: setScreenSize
     },
     dispatch);

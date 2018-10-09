@@ -1,45 +1,23 @@
-import EmailFlags from './emailFlags';
-
 class Email {
     
     get BccEmails() {
         return this._bccEmails;
     }
 
-    set BccEmails(bccEmails) {
-        this._bccEmails = bccEmails;
-    }
-
     get Body() {
         return this._body;
-    }
-
-    set Body(body) {
-        this._body = body;
     }
 
     get CcEmails() {
         return this._ccEmails;
     }
 
-    set CcEmails(ccEmails) {
-        this._ccEmails = ccEmails;
-    }
-
     get DeletionDateTime() {
         return this._deletionDateTime;
     }
 
-    set DeletionDateTime(deletionDateTime) {
-        this._deletionDateTime = deletionDateTime;
-    }
-
     get EmailSentDateTime() {
         return this._emailSentDateTime;
-    }
-
-    set EmailSentDateTime(emailSentDateTime) {
-        this._emailSentDateTime = emailSentDateTime;
     }
 
     get Flags() {
@@ -50,36 +28,42 @@ class Email {
         return this._fromEmail;
     }
 
-    set FromEmail(fromEmail) {
-        this._fromEmail = fromEmail;
-    }
-
     get FromName() {
         return this._fromName;
     }
 
-    set FromName(fromName) {
-        this._fromName = fromName;
+    get Id() {
+        return this._id;
+    }
+
+    get Preview () {
+        return this._preview;
     }
 
     get Subject() {
         return this._subject;
     }
 
-    set Subject(subject) {
-        this._subject = subject;
-    }
-
     get ToEmails() {
         return this._toEmails;
     }
 
-    set ToEmails(toEmails) {
-        this._toEmails = toEmails;
-    }
+    constructor(id, fromName, fromEmail, toEmails, ccEmails, bccEmails,
+        subject, preview, emailSentDateTime, deletionDateTime, flags) {
 
-    constructor() {
-        this._flags = new EmailFlags();
+        this._id = id;
+        this._fromName = fromName;
+        this._fromEmail = fromEmail;
+        this._toEmails = toEmails;
+        this._ccEmails = ccEmails,
+        this._bccEmails = bccEmails;
+        this._subject = subject;
+        this._preview = preview;
+        this._body = ''; // body will be loaded only when user clicks on email
+        this._emailSentDateTime = emailSentDateTime;
+        this._deletionDateTime = deletionDateTime;
+        this._flags = flags;
+
     }
 
 }

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DrawerMenuListItem /> renders correctly 1`] = `
+<li
+  className="DrawerMenuListItem"
+  title=""
+>
+  <div
+    className="DrawerMenuListItem__left-container"
+  >
+    <div
+      className="DrawerMenuListItem__icon"
+    />
+    <div
+      className="DrawerMenuListItem__content"
+    >
+      <div
+        className="DrawerMenuListItem__primary-content"
+      >
+        Text
+      </div>
+    </div>
+  </div>
+</li>
+`;

@@ -1,3 +1,5 @@
+$local-icon-content-padding: 0 .25rem;
+
 .ComposeEmailButton {
     padding: 1rem;
 
@@ -11,7 +13,6 @@
         font-weight: 600;
         height: $var-compose-email-button-height;
         overflow: hidden;
-        padding: 1rem;
         @include transition(box-shadow .1s ease-in);
         white-space: nowrap;
         width: 100%;
@@ -20,9 +21,8 @@
             @include border-radius($var-compose-email-button-height-small / 2);
             bottom: 0;
             @include box-shadow(0 .125rem .35rem 0 rgba(0, 0, 0, 0.4));
-            font-size: $var-header-button-font-size;
             height: $var-compose-email-button-height-small;
-            margin: 1em;
+            margin: 1rem;
             position: fixed;
             right: 0;
             width: $var-compose-email-button-height-small;
@@ -36,6 +36,20 @@
         &:hover {
             @include box-shadow(0 .125rem .3rem 0 rgba(0, 0, 0, 0.35));
             cursor: pointer;
+        }
+
+        & .ComposeEmailButton__icon {
+            font-size: $var-header-button-font-size;
+            height: $var-header-button-font-size;
+            padding: $local-icon-content-padding;
+
+            @include style-for($var-screen-size-small) {
+                padding: 1rem;
+            }
+        }
+
+        & .ComposeEmailButton__content {
+            padding: $local-icon-content-padding;
         }
     }
 }

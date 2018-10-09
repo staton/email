@@ -1,33 +1,26 @@
 class EmailFlags {
 
-    get IsImportant() {
-        return this._isImportant;
+    get didReply() {
+        return this._didReply;
     }
 
-    set IsImportant(isImportant) {
-        this._isImportant = isImportant;
+    get IsImportant() {
+        return this._isImportant;
     }
 
     get IsSpam() {
         return this._isSpam;
     }
 
-    set IsSpam(isSpam) {
-        this._isSpam = isSpam;
-    }
-
     get IsUnread() {
         return this._isUnread;
     }
 
-    set IsUnread(isUnread) {
+    constructor(didReply, isImportant, isSpam, isUnread) {
+        this._didReply = didReply;
+        this._isImportant = isImportant;
+        this._isSpam = isSpam;
         this._isUnread = isUnread;
-    }
-
-    constructor() {
-        this._isImportant = false;
-        this._isSpam = false;
-        this._isUnread = true;
     }
 
 }
