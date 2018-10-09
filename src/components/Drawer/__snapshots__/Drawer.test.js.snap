@@ -24,7 +24,7 @@ exports[`<Drawer /> renders correctly for small screens 1`] = `
   <ScreenOverlay
     isVisible={true}
     onClick={[Function]}
-    zIndex={78}
+    zIndex={127}
   />
 </div>
 `;

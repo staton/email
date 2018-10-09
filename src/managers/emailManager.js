@@ -16,8 +16,8 @@ class EmailManager {
                 json.bccEmails,
                 json.subject,
                 json.preview,
-                json.emailSentDateTime,
-                json.deletionDateTime,
+                new Date(json.emailSentDateTime),
+                json.deletionDateTime ? new Date(json.deletionDateTime) : null,
                 new EmailFlags(
                     json.didReply,
                     json.isImportant,

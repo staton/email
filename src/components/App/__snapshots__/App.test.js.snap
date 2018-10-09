@@ -9,6 +9,7 @@ exports[`<App /> renders correctly 1`] = `
     className="App__content"
   >
     <Connect(Drawer) />
+    <Connect(EmailList) />
   </div>
 </div>
 `;

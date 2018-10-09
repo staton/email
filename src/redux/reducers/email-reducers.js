@@ -1,13 +1,15 @@
 import EMAIL_MANAGER from '../../managers/emailManager';
 import { 
     EMAIL_ADD,
+    EMAIL_LOAD_ERROR,
     EMAIL_LOAD_IS_BUSY,
     EMAIL_LOAD_SUCCESS
 } from '../types';
 
 export const INITIAL_STATE = {
     emails: [],
-    isBusy: false,
+    didErrorLoadingEmails: false,
+    isBusyLoadingEmails: false,
     selectedEmails: []
 };
 
@@ -19,13 +21,17 @@ export default function(state = INITIAL_STATE, action) {
 
             return addEmails(state, action.payload);
 
+        case EMAIL_LOAD_ERROR:
+
+            return setDidErrorLoadingEmails(state, action.payload);
+
         case EMAIL_LOAD_IS_BUSY:
 
             return setIsBusyLoadingEmails(state, action.payload);
 
         case EMAIL_LOAD_SUCCESS:
 
-            return emailsLoaded(state, action.payload);
+            return loadEmails(state, action.payload);
 
         default:
 
@@ -40,7 +46,6 @@ export default function(state = INITIAL_STATE, action) {
  * @param {object} payload The payload.
  */
 const addEmails = (state, payload) => {
-    console.log('addEmails called');
     let emails = state.emails.slice();
     emails.push(...payload.emails);
     // todo: remove nulls (in case of error when adding)
@@ -51,16 +56,35 @@ const addEmails = (state, payload) => {
     };
 };
 
-const emailsLoaded = (state, payload) => {
-    console.log('emailsLoaded called');
+/**
+ * Takes the emails (in JSON form) that was loaded from the server,
+ * transforms them into Email objects, and adds them to the list of emails.
+ * @param {object} state The current state.
+ * @param {object} payload The payload.
+ */
+const loadEmails = (state, payload) => {
     let emails = state.emails.slice();
     emails.push(...JSON.parse(payload.response).emails.map((json) => EMAIL_MANAGER.createEmailFromJson(json)));
     // todo: remove nulls (in case of error when adding)
     
     return {
         ...state,
+        didErrorLoadingEmails: false,
         emails: emails
     };
+};
+
+/**
+ * Sets the 'didErrorLoadingEmails' flag to true.
+ * @param {object} state The current state.
+ * @param {object} payload The payload.
+ */
+const setDidErrorLoadingEmails = (state, payload) => {
+    console.warn(payload.err);
+    return {
+        ...state,
+        didErrorLoadingEmails: true
+    }
 };
 
 /**
@@ -69,9 +93,8 @@ const emailsLoaded = (state, payload) => {
  * @param {object} payload The payload.
  */
 const setIsBusyLoadingEmails = (state, payload) => {
-    console.log('setIsBusyLoadingEmails called');
     return {
         ...state,
-        isBusy: payload.isBusy
+        isBusyLoadingEmails: payload.isBusyLoadingEmails
     };
 };

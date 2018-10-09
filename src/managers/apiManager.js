@@ -8,7 +8,7 @@ class ApiManager {
             .then((response) => success(response))
             .catch((err) => { 
                 console.warn(err);
-                failure();
+                failure(err);
             });
     }
 

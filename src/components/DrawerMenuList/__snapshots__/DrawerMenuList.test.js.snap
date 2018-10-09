@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DrawerMenuList /> renders correctly 1`] = `
+<ul
+  className="DrawerMenuList"
+>
+  <Connect(DrawerMenuListItem)
+    badge={205}
+    icon={<Unknown />}
+    primaryContent="Inbox"
+    secondaryContent="test"
+  />
+  <Connect(DrawerMenuListItem)
+    primaryContent="Drafts"
+  />
+  <Connect(DrawerMenuListItem)
+    primaryContent="Sent"
+  />
+  <Connect(DrawerMenuListItem)
+    primaryContent="Spam"
+  />
+  <Connect(DrawerMenuListItem)
+    primaryContent="Deleted"
+  />
+</ul>
+`;

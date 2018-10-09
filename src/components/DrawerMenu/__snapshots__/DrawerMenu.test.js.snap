@@ -6,6 +6,7 @@ exports[`<DrawerMenu /> renders correctly 1`] = `
 >
   <ComposeEmailButton
     content="New Email"
+    icon={<Unknown />}
     onClick={[Function]}
     title=""
   />

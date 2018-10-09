@@ -1,6 +1,7 @@
 import API_MANAGER from '../../managers/mockApiManager';
 import { 
     EMAIL_ADD, 
+    EMAIL_LOAD_ERROR,
     EMAIL_LOAD_IS_BUSY,
     EMAIL_LOAD_SUCCESS
 } from '../types';
@@ -17,35 +18,45 @@ export const addEmails = (emails) => {
 export const loadEmails = () => {
 
     return (dispatch) => {
-
-        dispatch(loadEmailsIsBusy(true));
+        dispatch(setIsBusyLoadingEmails(true));
 
         API_MANAGER.loadEmails(
             (response) => {
-                dispatch(loadEmailsIsBusy(false));
+                dispatch(setIsBusyLoadingEmails(false));
                 dispatch(loadEmailsSuccess(response));
             },
-            () => dispatch(loadEmailsIsBusy(false))
+            (err) => { 
+                dispatch(setIsBusyLoadingEmails(false));
+                dispatch(loadEmailsError(err));
+            }
         );
-
     };
 
 };
 
-const loadEmailsIsBusy = (isBusy) => {
+export const loadEmailsError = (err) => {
     return {
-        type: EMAIL_LOAD_IS_BUSY,
+        type: EMAIL_LOAD_ERROR,
         payload: {
-            isBusy: isBusy
+            err: err
         }
     };
 };
 
-const loadEmailsSuccess = (response) => {
+export const loadEmailsSuccess = (response) => {
     return {
         type: EMAIL_LOAD_SUCCESS,
         payload: {
             response: response
+        }
+    };
+};
+
+export const setIsBusyLoadingEmails = (isBusyLoadingEmails) => {
+    return {
+        type: EMAIL_LOAD_IS_BUSY,
+        payload: {
+            isBusyLoadingEmails: isBusyLoadingEmails
         }
     };
 };

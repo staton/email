@@ -8,7 +8,7 @@ class MockApiManager {
             try {
                 success(response);
             } catch (err) {
-                failure();
+                failure(err);
             }
         }, 1500);
     }

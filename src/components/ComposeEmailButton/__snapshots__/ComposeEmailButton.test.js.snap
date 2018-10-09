@@ -9,7 +9,11 @@ exports[`<ComposeEmailButton /> renders correctly 1`] = `
     onClick={[Function]}
     title="Search"
   >
-    New Email
+    <span
+      className="ComposeEmailButton__content"
+    >
+      New Email
+    </span>
   </button>
 </div>
 `;
