@@ -14,9 +14,17 @@ const defaultProps = {
 export class EmailListItem extends Component {
 
 	render() {
+        const emailSentDate = this.props.email.EmailSentDateTime.toLocaleDateString();
 		return (
             <li className="EmailListItem">
-            {this.props.email.Subject}
+                <input type="checkbox" />
+                <div className="EmailListItem__marker">&nbsp;&nbsp;</div>
+                <div className="EmailListItem__email-info-container">
+                    <div className="EmailListItem__sender-name">{this.props.email.FromName}</div>
+                    <div className="EmailListItem__subject">{this.props.email.Subject}</div>
+                    <div className="EmailListItem__preview">{this.props.email.Preview}</div>
+                    <div className="EmailListItem__sent-date">{emailSentDate}</div>
+                </div>
             </li>
 		);
     }
@@ -25,7 +33,8 @@ export class EmailListItem extends Component {
 
 function mapStateToProps(store, ownProps) {
     return {
-        email: ownProps.email
+        email: ownProps.email,
+        isSmallScreen: store.app.isSmallScreen
     };
 }
 

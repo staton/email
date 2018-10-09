@@ -1,3 +1,60 @@
 .EmailListItem {
-    
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+
+    & .EmailListItem__email-info-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        
+        @include style-for($var-screen-size-small) {
+            flex-wrap: wrap;
+        }
+
+        & .EmailListItem__sender-name {
+            order: 10;
+
+            @include style-for($var-screen-size-small) {
+                flex-basis: auto;
+            }
+        }
+
+        & .EmailListItem__subject {
+            order: 20;
+
+            @include style-for($var-screen-size-small) {
+                flex-basis: 100%;
+            }
+        }
+
+        & .EmailListItem__preview {
+            order: 30;
+
+            @include style-for($var-screen-size-small) {
+                flex-basis: 100%;
+            }
+        }
+
+        & .EmailListItem__sent-date {
+            margin-left: auto;
+            order: 40;
+
+            @include style-for($var-screen-size-small) {
+                /* 
+                * for mobile, we want the date to be on the top-row. 
+                * changing the order will prevent it from being the last element.
+                */
+                
+                order: 15;
+            }
+        }
+
+        & .EmailListItem__subject, .EmailListItem__preview {
+            overflow: hidden;
+            @include text-overflow(ellipsis);
+            white-space: nowrap;
+        }
+    }
 }

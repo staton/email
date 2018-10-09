@@ -46,6 +46,22 @@
     }
 }
 
+/// Mixin for creating a text-overflow style.
+/// 
+/// @param {} $style - The type of text overflow style.
+/// 
+/// @example scss - Usage
+///     .my-class {
+///         overflow: hidden;
+///         @include text-overflow(ellipsis);
+///         white-space: nowrap;
+///     }
+@mixin text-overflow($style) {
+    text-overflow: $style;
+    -ms-text-overflow: $style;
+    -o-text-overflow: $style;
+}
+
 /// Mixin for creating a transition for an element's propert(ies).
 /// 
 /// @param {} $transition - The transition for the element.

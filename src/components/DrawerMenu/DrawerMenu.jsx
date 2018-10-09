@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import ComposeEmailButton from '../ComposeEmailButton/ComposeEmailButton';
-import DrawerMenuList from '../DrawerMenuList/DrawerMenuList';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { MdEdit } from 'react-icons/md';
+import ComposeEmailButton from '../ComposeEmailButton/ComposeEmailButton';
+import DrawerMenuList from '../DrawerMenuList/DrawerMenuList';
+import STRINGS from '../../resources/strings';
 
 export class DrawerMenu extends Component {
 
@@ -16,8 +17,9 @@ export class DrawerMenu extends Component {
                     (this.props.isSmallScreen)
                     ?   null
                     :   <ComposeEmailButton 
-                            content="New Email" 
+                            content={STRINGS.NewEmail} 
                             icon={<MdEdit />}
+                            title={STRINGS.NewEmail}
                         />
                 }
                 <DrawerMenuList />
