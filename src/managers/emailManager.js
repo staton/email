@@ -1,8 +1,15 @@
 import Email from "../models/email";
 import EmailFlags from "../models/emailFlags";
 
+const _ = require('lodash');
+
 class EmailManager {
     
+    /**
+     * Converts an email represented by a JSON string to an Email object.
+     * @param {string} json The JSON string representing an Email object.
+     * @returns {Email} The Email object.
+     */
     createEmailFromJson(json) {
         let email = null;
 
@@ -30,6 +37,18 @@ class EmailManager {
         }
 
         return email;
+    }
+
+    /**
+     * Sorts an array of emails by date.
+     * @param {Email[]} emails The emails to sort.
+     * @param {boolean} isAscending Indicates if the results should sort by asc.
+     * @returns {Email[]} The sorted Email array.
+     */
+    sortEmailsByDate(emails, isAscending) {
+        return (isAscending)
+            ? _.sortBy(emails, [(o) => o.EmailSentDateTime ])
+            : _.sortBy(emails, [(o) => o.EmailSentDateTime ]).reverse();
     }
 
 }

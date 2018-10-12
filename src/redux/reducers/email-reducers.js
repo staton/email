@@ -70,7 +70,7 @@ const loadEmails = (state, payload) => {
     return {
         ...state,
         didErrorLoadingEmails: false,
-        emails: emails
+        emails: EMAIL_MANAGER.sortEmailsByDate(emails, false)
     };
 };
 
