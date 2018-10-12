@@ -166,13 +166,15 @@
   width: 100%; }
 
 #root .EmailListItem {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  max-width: 100%; }
+  padding: .25rem .5rem .25rem 0; }
   #root .EmailListItem .EmailListItem__email-info-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    overflow: hidden;
     width: 100%; }
     @media all and (max-width: 1023px) and (max-height: 1024px) {
       #root .EmailListItem .EmailListItem__email-info-container {
