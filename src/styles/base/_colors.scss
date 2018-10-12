@@ -18,6 +18,14 @@ $color-drawer-menu-item-badge-background: rgba(0, 0, 0, .51);
 /// @type {color}
 $color-drawer-menu-item-badge-foreground: rgb(255, 255, 255);
 
+/// The background color of unread email list items.
+/// @type {color}
+$color-email-list-item-unread-background: rgb(255, 255, 255);
+
+/// The background color of read email list items.
+/// @type {color}
+$color-email-list-item-read-background: rgb(224, 227, 232);
+
 /// The background color of the header.
 /// @type {color}
 $color-header-background: rgb(255, 255, 255);

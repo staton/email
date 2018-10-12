@@ -19,10 +19,10 @@ class EmailManager {
                 new Date(json.emailSentDateTime),
                 json.deletionDateTime ? new Date(json.deletionDateTime) : null,
                 new EmailFlags(
-                    json.didReply,
-                    json.isImportant,
-                    json.isSpam,
-                    json.isUnread
+                    json.flags.didReply,
+                    json.flags.isImportant,
+                    json.flags.isSpam,
+                    json.flags.isUnread
                 )
             );
         } catch (exception) {

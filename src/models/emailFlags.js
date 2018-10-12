@@ -1,6 +1,6 @@
 class EmailFlags {
 
-    get didReply() {
+    get DidReply() {
         return this._didReply;
     }
 

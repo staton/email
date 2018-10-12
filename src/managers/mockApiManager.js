@@ -61,7 +61,7 @@ class MockApiManager {
                 "ccEmails": [],
                 "bccEmails": [],
                 "subject": "hello from bob again",
-                "preview": "here is a really long email preview to test to make sure that it gets cut off ok its not long enough yeah now it should be long enough",
+                "preview": "here is a really long email preview to test to abc dfef gh s make sure that it gets cut off ok its not long enough yeah now it should be long enough",
                 "body": "",
                 "emailSentDateTime": "2018-08-29T11:58:00Z",
                 "deletionDateTime": "",

@@ -16,7 +16,7 @@ export class EmailListItem extends Component {
 	render() {
         const emailSentDate = this.props.email.EmailSentDateTime.toLocaleDateString();
 		return (
-            <li className="EmailListItem">
+            <li className={this.getEmailListItemClassNames()}>
                 <input type="checkbox" />
                 <div className="EmailListItem__marker">&nbsp;&nbsp;</div>
                 <div className="EmailListItem__email-info-container">
@@ -29,6 +29,14 @@ export class EmailListItem extends Component {
 		);
     }
 
+    getEmailListItemClassNames() {
+        var className = 'EmailListItem';
+        var readEmailClassNames = className + ' EmailListItem--read';
+        console.log(this.props.email.Flags.IsUnread);
+        return this.props.email.Flags.IsUnread
+            ? className
+            : readEmailClassNames;
+    }
 }
 
 function mapStateToProps(store, ownProps) {
