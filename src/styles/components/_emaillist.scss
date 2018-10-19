@@ -2,7 +2,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow-y: scroll;
+    overflow-y: overlay;
     width: 100%;
 
     @include style-for($var-screen-size-small) {

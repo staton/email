@@ -1,4 +1,5 @@
 .Drawer {
+    z-index: 84;
 
     & .Drawer__content {
         background-color: $color-drawer-background;
@@ -7,7 +8,7 @@
         overflow: hidden; /* prevent inner content from being shown when width is 0 */
         @include transition(width .25s ease);
         width: $var-drawer-menu-width;
-        z-index: 84;
+        
 
         @include style-for($var-screen-size-small) {
             bottom: 0;
@@ -21,5 +22,9 @@
         &.Drawer__content--hidden {
             width: 0;
         }
+    }
+
+    @include style-for($var-screen-size-small) {
+        z-index: 128;
     }
 }

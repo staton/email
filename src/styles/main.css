@@ -77,32 +77,36 @@
     #root .ComposeEmailButton .ComposeEmailButton__button .ComposeEmailButton__content {
       padding: 0 0.25rem; }
 
-#root .Drawer .Drawer__content {
-  background-color: white;
-  -webkit-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-  -ms-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-  height: 100%;
-  overflow: hidden;
-  /* prevent inner content from being shown when width is 0 */
-  -webkit-transition: width 0.25s ease;
-  -moz-transition: width 0.25s ease;
-  -o-transition: width 0.25s ease;
-  transition: width 0.25s ease;
-  width: 270px;
+#root .Drawer {
   z-index: 84; }
+  #root .Drawer .Drawer__content {
+    background-color: white;
+    -webkit-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+    -ms-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+    height: 100%;
+    overflow: hidden;
+    /* prevent inner content from being shown when width is 0 */
+    -webkit-transition: width 0.25s ease;
+    -moz-transition: width 0.25s ease;
+    -o-transition: width 0.25s ease;
+    transition: width 0.25s ease;
+    width: 270px; }
+    @media all and (max-width: 1023px) and (max-height: 1024px) {
+      #root .Drawer .Drawer__content {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        top: 0;
+        /*$var-header-height;*/
+        width: 248px;
+        z-index: 128; } }
+    #root .Drawer .Drawer__content.Drawer__content--hidden {
+      width: 0; }
   @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .Drawer .Drawer__content {
-      bottom: 0;
-      left: 0;
-      position: fixed;
-      top: 0;
-      /*$var-header-height;*/
-      width: 248px;
+    #root .Drawer {
       z-index: 128; } }
-  #root .Drawer .Drawer__content.Drawer__content--hidden {
-    width: 0; }
 
 #root .DrawerMenuList {
   list-style-type: none;
@@ -162,7 +166,7 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow-y: scroll;
+  overflow-y: overlay;
   width: 100%; }
   @media all and (max-width: 1023px) and (max-height: 1024px) {
     #root .EmailList {
@@ -176,15 +180,19 @@
   padding: 1rem; }
   @media all and (max-width: 1023px) and (max-height: 1024px) {
     #root .EmailListItem {
-      padding: .25rem .5rem .25rem 0; } }
+      line-height: 1.15rem;
+      padding: .35rem .5rem .35rem 0; } }
   #root .EmailListItem:hover, #root .EmailListItem:active {
     background-color: #f2f2f2;
     cursor: pointer; }
   #root .EmailListItem.EmailListItem--read {
-    background-color: #e0e3e8; }
+    background-color: #eaedf2; }
     #root .EmailListItem.EmailListItem--read:hover, #root .EmailListItem.EmailListItem--read:active {
-      background-color: #d1d6dd;
+      background-color: #dae0e8;
       cursor: pointer; }
+    #root .EmailListItem.EmailListItem--read * {
+      color: #555555;
+      font-weight: normal !important; }
   #root .EmailListItem .EmailListItem__email-info-container {
     display: flex;
     flex-direction: row;
@@ -195,21 +203,23 @@
       #root .EmailListItem .EmailListItem__email-info-container {
         flex-wrap: wrap; } }
     #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__sender-name {
+      font-weight: 700;
       order: 10;
       width: 15%; }
       @media all and (max-width: 1023px) and (max-height: 1024px) {
         #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__sender-name {
           flex-basis: auto;
+          line-height: 1.5rem;
           width: auto; } }
     #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__subject {
-      font-weight: 600;
+      font-weight: 700;
       order: 20;
       max-width: 20%;
       padding-right: .75rem; }
       @media all and (max-width: 1023px) and (max-height: 1024px) {
         #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__subject {
           flex-basis: 100%;
-          font-weight: normal;
+          font-size: 0.85rem;
           max-width: none;
           padding-right: 0; } }
     #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__preview {
@@ -218,6 +228,7 @@
       @media all and (max-width: 1023px) and (max-height: 1024px) {
         #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__preview {
           flex-basis: 100%;
+          font-size: 0.85rem;
           max-width: none; } }
     #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__sent-date {
       margin-left: auto;
@@ -228,6 +239,7 @@
                 * for mobile, we want the date to be on the top-row. 
                 * changing the order will prevent it from being the last element.
                 */
+          font-size: .7rem;
           order: 15; } }
     #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__sender-name, #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__subject, #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__preview {
       overflow: hidden;

@@ -1,3 +1,6 @@
+$local-font-weight-bold: 700;
+$local-font-size-small: .85rem;
+
 .EmailListItem {
     align-items: center;
     background-color: $color-email-list-item-unread-background;
@@ -6,7 +9,8 @@
     padding: 1rem;
 
     @include style-for($var-screen-size-small) {
-        padding: .25rem .5rem .25rem 0;
+        line-height: 1.15rem;
+        padding: .35rem .5rem .35rem 0;
     }
 
     &:hover, &:active {
@@ -20,6 +24,11 @@
         &:hover, &:active {
             background-color: darken($color-email-list-item-read-background, 5%);
             cursor: pointer;
+        }
+
+        & * {
+            color: $color-email-list-item-read-color;
+            font-weight: normal !important;
         }
     }
 
@@ -35,24 +44,26 @@
         }
 
         & .EmailListItem__sender-name {
+            font-weight: $local-font-weight-bold;
             order: 10;
             width: 15%;
 
             @include style-for($var-screen-size-small) {
                 flex-basis: auto;
+                line-height: 1.5rem;
                 width: auto;
             }
         }
 
         & .EmailListItem__subject {
-            font-weight: 600;
+            font-weight: $local-font-weight-bold;
             order: 20;
             max-width: 20%;
             padding-right: .75rem;
 
             @include style-for($var-screen-size-small) {
                 flex-basis: 100%;
-                font-weight: normal;
+                font-size: $local-font-size-small;
                 max-width: none;
                 padding-right: 0;
             }
@@ -64,6 +75,7 @@
 
             @include style-for($var-screen-size-small) {
                 flex-basis: 100%;
+                font-size: $local-font-size-small;
                 max-width: none;
             }
         }
@@ -77,7 +89,7 @@
                 * for mobile, we want the date to be on the top-row. 
                 * changing the order will prevent it from being the last element.
                 */
-                
+                font-size: .7rem;
                 order: 15;
             }
         }

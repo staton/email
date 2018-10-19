@@ -1,7 +1,7 @@
 import Email from "../models/email";
 import EmailFlags from "../models/emailFlags";
 
-const _ = require('lodash');
+var _ = require('lodash');
 
 class EmailManager {
     
