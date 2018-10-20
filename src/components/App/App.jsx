@@ -3,6 +3,8 @@ import ComposeEmailButton from '../ComposeEmailButton/ComposeEmailButton';
 import Drawer from '../Drawer/Drawer';
 import EmailList from '../EmailList/EmailList';
 import Header from '../Header/Header';
+import LoadingOverlay from '../LoadingOverlay/LoadingOverlay';
+import LoadingOverlayState from '../../enums/LoadingOverlay';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { MdEdit } from 'react-icons/md';
@@ -31,6 +33,11 @@ export class App extends Component {
 				<Header />
                 <div className="App__content">
                     <Drawer />
+                    {
+                        (this.props.emailLoadingOverlayState === LoadingOverlayState.None)
+                        ? null
+                        : <LoadingOverlay loadingOverlayState={this.props.emailLoadingOverlayState} />
+                    }
                     <EmailList />
                 </div>
                 {
@@ -56,6 +63,7 @@ export class App extends Component {
 
 function mapStateToProps(store, ownProps) {
     return {
+        emailLoadingOverlayState: store.email.loadingOverlayState,
         isSmallScreen: store.app.isSmallScreen
     };
 }

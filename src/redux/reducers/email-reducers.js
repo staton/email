@@ -1,15 +1,16 @@
 import EMAIL_MANAGER from '../../managers/emailManager';
+import LoadingOverlayState from '../../enums/LoadingOverlay';
 import { 
     EMAIL_ADD,
     EMAIL_LOAD_ERROR,
-    EMAIL_LOAD_IS_BUSY,
-    EMAIL_LOAD_SUCCESS
+    EMAIL_LOAD_SUCCESS,
+    EMAIL_LOADING_OVERLAY_STATE
 } from '../types';
 
 export const INITIAL_STATE = {
     emails: [],
     didErrorLoadingEmails: false,
-    isBusyLoadingEmails: false,
+    loadingOverlayState: LoadingOverlayState.None,
     selectedEmails: []
 };
 
@@ -25,9 +26,9 @@ export default function(state = INITIAL_STATE, action) {
 
             return setDidErrorLoadingEmails(state, action.payload);
 
-        case EMAIL_LOAD_IS_BUSY:
+        case EMAIL_LOADING_OVERLAY_STATE:
 
-            return setIsBusyLoadingEmails(state, action.payload);
+            return setEmailLoadingOverlayState(state, action.payload);
 
         case EMAIL_LOAD_SUCCESS:
 
@@ -92,9 +93,9 @@ const setDidErrorLoadingEmails = (state, payload) => {
  * @param {object} state The current state.
  * @param {object} payload The payload.
  */
-const setIsBusyLoadingEmails = (state, payload) => {
+const setEmailLoadingOverlayState = (state, payload) => {
     return {
         ...state,
-        isBusyLoadingEmails: payload.isBusyLoadingEmails
+        loadingOverlayState: payload.loadingOverlayState
     };
 };

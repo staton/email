@@ -1,0 +1,20 @@
+.LoadingOverlay {
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    opacity: 1.0;
+    padding-top: ($var-header-height * 2);
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    @include transition(opacity 2s ease);
+    z-index: 56;
+
+    &.LoadingOverlay--fade {
+        opacity: 0;
+    }
+}

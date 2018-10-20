@@ -4,10 +4,12 @@ import {
     APP_SET_SCREEN_SIZE
 } from '../types';
 
+var isSmallScreen = (window.innerWidth <= MAX_WIDTH_SMALL_SCREEN);
+
 export const INITIAL_STATE = {
     height: window.innerHeight,
-    isDrawerVisible: false,
-    isSmallScreen: (window.innerWidth <= MAX_WIDTH_SMALL_SCREEN),
+    isDrawerVisible: !isSmallScreen,
+    isSmallScreen: isSmallScreen,
     width: window.innerWidth
 };
 

@@ -10,7 +10,7 @@ class MockApiManager {
             } catch (err) {
                 failure(err);
             }
-        }, 1500);
+        }, 3000);
     }
 
     getMockEmailJson() {

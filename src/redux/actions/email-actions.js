@@ -1,9 +1,11 @@
 import API_MANAGER from '../../managers/mockApiManager';
+import LoadingOverlayState from '../../enums/LoadingOverlay';
+import { EMAIL_OVERLAY_FADE_SPEED } from '../../resources/constants';
 import { 
     EMAIL_ADD, 
     EMAIL_LOAD_ERROR,
-    EMAIL_LOAD_IS_BUSY,
-    EMAIL_LOAD_SUCCESS
+    EMAIL_LOAD_SUCCESS,
+    EMAIL_LOADING_OVERLAY_STATE
 } from '../types';
 
 export const addEmails = (emails) => {
@@ -18,16 +20,19 @@ export const addEmails = (emails) => {
 export const loadEmails = () => {
 
     return (dispatch) => {
-        dispatch(setIsBusyLoadingEmails(true));
+        dispatch(setEmailLoadingOverlayState(LoadingOverlayState.Visible));
 
         API_MANAGER.loadEmails(
             (response) => {
-                dispatch(setIsBusyLoadingEmails(false));
                 dispatch(loadEmailsSuccess(response));
+                dispatch(setEmailLoadingOverlayState(LoadingOverlayState.Fading));
+                setTimeout(() => {
+                    dispatch(setEmailLoadingOverlayState(LoadingOverlayState.None));
+                }, EMAIL_OVERLAY_FADE_SPEED + 50);
             },
             (err) => { 
-                dispatch(setIsBusyLoadingEmails(false));
                 dispatch(loadEmailsError(err));
+                dispatch(setEmailLoadingOverlayState(LoadingOverlayState.None));
             }
         );
     };
@@ -52,11 +57,11 @@ export const loadEmailsSuccess = (response) => {
     };
 };
 
-export const setIsBusyLoadingEmails = (isBusyLoadingEmails) => {
+export const setEmailLoadingOverlayState = (loadingOverlayState) => {
     return {
-        type: EMAIL_LOAD_IS_BUSY,
+        type: EMAIL_LOADING_OVERLAY_STATE,
         payload: {
-            isBusyLoadingEmails: isBusyLoadingEmails
+            loadingOverlayState: loadingOverlayState
         }
     };
 };
