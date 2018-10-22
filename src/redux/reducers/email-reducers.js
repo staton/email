@@ -2,13 +2,17 @@ import EMAIL_MANAGER from '../../managers/emailManager';
 import LoadingOverlayState from '../../enums/LoadingOverlay';
 import { 
     EMAIL_ADD,
+    EMAIL_LIST_ITEM_SWIPED,
     EMAIL_LOAD_ERROR,
     EMAIL_LOAD_SUCCESS,
     EMAIL_LOADING_OVERLAY_STATE
 } from '../types';
+import Email from '../../models/email';
+import _ from 'lodash';
 
 export const INITIAL_STATE = {
     emails: [],
+    currentSwipedEmails: [],
     didErrorLoadingEmails: false,
     loadingOverlayState: LoadingOverlayState.None,
     selectedEmails: []
@@ -21,6 +25,10 @@ export default function(state = INITIAL_STATE, action) {
         case EMAIL_ADD:
 
             return addEmails(state, action.payload);
+
+        case EMAIL_LIST_ITEM_SWIPED:
+
+            return updateCurrentSwipedEmails(state, action.payload);
 
         case EMAIL_LOAD_ERROR:
 
@@ -97,5 +105,31 @@ const setEmailLoadingOverlayState = (state, payload) => {
     return {
         ...state,
         loadingOverlayState: payload.loadingOverlayState
+    };
+};
+
+/**
+ * Adds or removed the email from the list of emails that
+ * have currently been 'swiped' on the email list page.
+ * @param {object} state The current state.
+ * @param {object} payload The payload.
+ */
+const updateCurrentSwipedEmails = (state, payload) => {
+    let currentSwipedEmails = state.currentSwipedEmails.slice();
+    if (payload.isSwipedOpen) {
+        // swiped left, so add the email to the list (if not already added):
+        if (!_.head(_.filter(currentSwipedEmails, (o) => o.Id === payload.email.Id))) {
+            console.log('adding swiped email!!!' + payload.email.Subject);
+            currentSwipedEmails.push(payload.email);
+        }
+    } else {
+        // swiped right, so try to remove the email from the list:
+        console.log('removing swiped email!!!' + payload.email.Subject);
+        currentSwipedEmails = _.reject(currentSwipedEmails, (o) => o.Id === payload.email.Id);
+    }
+
+    return {
+        ...state,
+        currentSwipedEmails: currentSwipedEmails
     };
 };

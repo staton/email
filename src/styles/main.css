@@ -172,81 +172,98 @@
     #root .EmailList {
       padding-bottom: 96px; } }
 
-#root .EmailListItem {
+#root .EmailListItem .EmailListItem__container {
   align-items: center;
   background-color: white;
   display: flex;
   flex-direction: row;
   padding: 1rem; }
   @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .EmailListItem {
+    #root .EmailListItem .EmailListItem__container {
       line-height: 1.15rem;
-      padding: .35rem .5rem .35rem 0; } }
-  #root .EmailListItem:hover, #root .EmailListItem:active {
+      padding: .35rem .5rem .35rem 0;
+      /* allow the email list item to be swiped */
+      position: relative;
+      /* animation for the swipe. */
+      -webkit-transition: right 0.125s ease-in;
+      -moz-transition: right 0.125s ease-in;
+      -o-transition: right 0.125s ease-in;
+      transition: right 0.125s ease-in; } }
+  #root .EmailListItem .EmailListItem__container:hover {
     background-color: #f2f2f2;
     cursor: pointer; }
-  #root .EmailListItem.EmailListItem--read {
+  #root .EmailListItem .EmailListItem__container.EmailListItem__container--read {
     background-color: #eaedf2; }
-    #root .EmailListItem.EmailListItem--read:hover, #root .EmailListItem.EmailListItem--read:active {
+    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read:hover {
       background-color: #dae0e8;
       cursor: pointer; }
-    #root .EmailListItem.EmailListItem--read * {
+    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read * {
       color: #555555;
       font-weight: normal !important; }
-  #root .EmailListItem .EmailListItem__email-info-container {
+  #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     overflow: hidden;
     width: 100%; }
     @media all and (max-width: 1023px) and (max-height: 1024px) {
-      #root .EmailListItem .EmailListItem__email-info-container {
-        flex-wrap: wrap; } }
-    #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__sender-name {
+      #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container {
+        flex-wrap: wrap;
+        /*pointer-events: none;*/ } }
+    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sender-name {
       font-weight: 700;
       order: 10;
       width: 15%; }
       @media all and (max-width: 1023px) and (max-height: 1024px) {
-        #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__sender-name {
+        #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sender-name {
           flex-basis: auto;
           line-height: 1.5rem;
           width: auto; } }
-    #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__subject {
+    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__subject {
       font-weight: 700;
       order: 20;
       max-width: 20%;
       padding-right: .75rem; }
       @media all and (max-width: 1023px) and (max-height: 1024px) {
-        #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__subject {
+        #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__subject {
           flex-basis: 100%;
           font-size: 0.85rem;
           max-width: none;
           padding-right: 0; } }
-    #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__preview {
+    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__preview {
       max-width: 50%;
       order: 30; }
       @media all and (max-width: 1023px) and (max-height: 1024px) {
-        #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__preview {
+        #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__preview {
           flex-basis: 100%;
           font-size: 0.85rem;
           max-width: none; } }
-    #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__sent-date {
+    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sent-date {
       margin-left: auto;
       order: 40; }
       @media all and (max-width: 1023px) and (max-height: 1024px) {
-        #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__sent-date {
+        #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sent-date {
           /* 
-                * for mobile, we want the date to be on the top-row. 
-                * changing the order will prevent it from being the last element.
-                */
+                    * for mobile, we want the date to be on the top-row. 
+                    * changing the order will prevent it from being the last element.
+                    */
           font-size: .7rem;
           order: 15; } }
-    #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__sender-name, #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__subject, #root .EmailListItem .EmailListItem__email-info-container .EmailListItem__preview {
+    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sender-name, #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__subject, #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__preview {
       overflow: hidden;
       text-overflow: ellipsis;
       -ms-text-overflow: ellipsis;
       -o-text-overflow: ellipsis;
       white-space: nowrap; }
+
+#root .EmailListItem .EmailListItem__options-inset-shadow {
+  background-color: blue;
+  -webkit-box-shadow: inset 0.5rem 0 0.5rem 0rem rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: inset 0.5rem 0 0.5rem 0rem rgba(0, 0, 0, 0.35);
+  -ms-box-shadow: inset 0.5rem 0 0.5rem 0rem rgba(0, 0, 0, 0.35);
+  box-shadow: inset 0.5rem 0 0.5rem 0rem rgba(0, 0, 0, 0.35);
+  height: 100%;
+  width: 100%; }
 
 #root .Header {
   align-items: center;

@@ -2,102 +2,117 @@ $local-font-weight-bold: 700;
 $local-font-size-small: .85rem;
 
 .EmailListItem {
-    align-items: center;
-    background-color: $color-email-list-item-unread-background;
-    display: flex;
-    flex-direction: row;
-    padding: 1rem;
 
-    @include style-for($var-screen-size-small) {
-        line-height: 1.15rem;
-        padding: .35rem .5rem .35rem 0;
-    }
+    & .EmailListItem__container {
+        align-items: center;
+        background-color: $color-email-list-item-unread-background;
+        display: flex;
+        flex-direction: row;
+        padding: 1rem;
 
-    &:hover, &:active {
-        background-color: darken($color-email-list-item-unread-background, 5%);
-        cursor: pointer;
-    }
+        @include style-for($var-screen-size-small) {
+            line-height: 1.15rem;
+            padding: .35rem .5rem .35rem 0;
+            /* allow the email list item to be swiped */
+            position: relative;
+            /* animation for the swipe. */
+            @include transition(right .125s ease-in);
+        }
 
-    &.EmailListItem--read {
-        background-color: $color-email-list-item-read-background;
-
-        &:hover, &:active {
-            background-color: darken($color-email-list-item-read-background, 5%);
+        &:hover {
+            background-color: darken($color-email-list-item-unread-background, 5%);
             cursor: pointer;
         }
 
-        & * {
-            color: $color-email-list-item-read-color;
-            font-weight: normal !important;
+        &.EmailListItem__container--read {
+            background-color: $color-email-list-item-read-background;
+
+            &:hover {
+                background-color: darken($color-email-list-item-read-background, 5%);
+                cursor: pointer;
+            }
+
+            & * {
+                color: $color-email-list-item-read-color;
+                font-weight: normal !important;
+            }
+        }
+
+        & .EmailListItem__email-info-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            overflow: hidden;
+            width: 100%;
+            
+            @include style-for($var-screen-size-small) {
+                flex-wrap: wrap;
+                /*pointer-events: none;*/
+            }
+
+            & .EmailListItem__sender-name {
+                font-weight: $local-font-weight-bold;
+                order: 10;
+                width: 15%;
+
+                @include style-for($var-screen-size-small) {
+                    flex-basis: auto;
+                    line-height: 1.5rem;
+                    width: auto;
+                }
+            }
+
+            & .EmailListItem__subject {
+                font-weight: $local-font-weight-bold;
+                order: 20;
+                max-width: 20%;
+                padding-right: .75rem;
+
+                @include style-for($var-screen-size-small) {
+                    flex-basis: 100%;
+                    font-size: $local-font-size-small;
+                    max-width: none;
+                    padding-right: 0;
+                }
+            }
+
+            & .EmailListItem__preview {
+                max-width: 50%;
+                order: 30;
+
+                @include style-for($var-screen-size-small) {
+                    flex-basis: 100%;
+                    font-size: $local-font-size-small;
+                    max-width: none;
+                }
+            }
+
+            & .EmailListItem__sent-date {
+                margin-left: auto;
+                order: 40;
+
+                @include style-for($var-screen-size-small) {
+                    /* 
+                    * for mobile, we want the date to be on the top-row. 
+                    * changing the order will prevent it from being the last element.
+                    */
+                    font-size: .7rem;
+                    order: 15;
+                }
+            }
+
+            & .EmailListItem__sender-name, .EmailListItem__subject, .EmailListItem__preview {
+                overflow: hidden;
+                @include text-overflow(ellipsis);
+                white-space: nowrap;
+            }
         }
     }
 
-    & .EmailListItem__email-info-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        overflow: hidden;
+    & .EmailListItem__options-inset-shadow {
+        background-color: blue;
+        @include box-shadow(inset .5rem 0 .5rem 0rem rgba(0, 0, 0, .35));
+        height: 100%;
         width: 100%;
-        
-        @include style-for($var-screen-size-small) {
-            flex-wrap: wrap;
-        }
-
-        & .EmailListItem__sender-name {
-            font-weight: $local-font-weight-bold;
-            order: 10;
-            width: 15%;
-
-            @include style-for($var-screen-size-small) {
-                flex-basis: auto;
-                line-height: 1.5rem;
-                width: auto;
-            }
-        }
-
-        & .EmailListItem__subject {
-            font-weight: $local-font-weight-bold;
-            order: 20;
-            max-width: 20%;
-            padding-right: .75rem;
-
-            @include style-for($var-screen-size-small) {
-                flex-basis: 100%;
-                font-size: $local-font-size-small;
-                max-width: none;
-                padding-right: 0;
-            }
-        }
-
-        & .EmailListItem__preview {
-            max-width: 50%;
-            order: 30;
-
-            @include style-for($var-screen-size-small) {
-                flex-basis: 100%;
-                font-size: $local-font-size-small;
-                max-width: none;
-            }
-        }
-
-        & .EmailListItem__sent-date {
-            margin-left: auto;
-            order: 40;
-
-            @include style-for($var-screen-size-small) {
-                /* 
-                * for mobile, we want the date to be on the top-row. 
-                * changing the order will prevent it from being the last element.
-                */
-                font-size: .7rem;
-                order: 15;
-            }
-        }
-
-        & .EmailListItem__sender-name, .EmailListItem__subject, .EmailListItem__preview {
-            overflow: hidden;
-            @include text-overflow(ellipsis);
-            white-space: nowrap;
-        }
     }
 }

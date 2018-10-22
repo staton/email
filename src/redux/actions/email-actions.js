@@ -3,6 +3,7 @@ import LoadingOverlayState from '../../enums/LoadingOverlay';
 import { EMAIL_OVERLAY_FADE_SPEED } from '../../resources/constants';
 import { 
     EMAIL_ADD, 
+    EMAIL_LIST_ITEM_SWIPED,
     EMAIL_LOAD_ERROR,
     EMAIL_LOAD_SUCCESS,
     EMAIL_LOADING_OVERLAY_STATE
@@ -62,6 +63,16 @@ export const setEmailLoadingOverlayState = (loadingOverlayState) => {
         type: EMAIL_LOADING_OVERLAY_STATE,
         payload: {
             loadingOverlayState: loadingOverlayState
+        }
+    };
+};
+
+export const updateCurrentSwipedEmails = (email, isSwipedOpen) => {
+    return {
+        type: EMAIL_LIST_ITEM_SWIPED,
+        payload: {
+            email: email,
+            isSwipedOpen: isSwipedOpen
         }
     };
 };
