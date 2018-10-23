@@ -15,6 +15,11 @@
     flex: 1;
     justify-content: stretch; }
 
+#root .CheckBox {
+  align-items: center;
+  display: flex;
+  justify-content: center; }
+
 #root .ComposeEmailButton {
   padding: 1rem; }
   @media all and (max-width: 1023px) and (max-height: 1024px) {

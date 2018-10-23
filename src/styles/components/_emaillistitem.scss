@@ -1,7 +1,6 @@
 $local-font-weight-bold: 700;
-$local-font-size-smaller: .8rem;
 $local-font-size-small: .85rem;
-$local-line-height: 1.5rem;
+$local-font-size-smaller: .8rem;
 
 .EmailListItem {
     
@@ -70,7 +69,7 @@ $local-line-height: 1.5rem;
                 padding: 0;
             }
         }
-
+        
         /* This style is for the container of the Sender, Date, Subject, and Preview sections. */
         & .EmailListItem__email-info-container {
             align-items: center;
@@ -91,7 +90,7 @@ $local-line-height: 1.5rem;
 
                 @include style-for($var-screen-size-small) {
                     flex-basis: auto;
-                    line-height: $local-line-height;
+                    line-height: 1.5rem;
                     width: auto;
                 }
             }

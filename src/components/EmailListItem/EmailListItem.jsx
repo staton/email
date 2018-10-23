@@ -1,31 +1,33 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {MdFlag} from 'react-icons/md';
+import CheckBox from '../CheckBox/CheckBox';
 import Email from '../../models/email';
 import EmailListItemIcon from '../EmailListItemIcon/EmailListItemIcon';
 import EmailListItemOptions from '../EmailListItemOptions/EmailListItemOptions';
-import Touch from '../../models/touch';
-import { updateCurrentSwipedEmails } from '../../redux/actions/email-actions';
-import {MdCheckBoxOutlineBlank, MdFlag} from 'react-icons/md';
+import GESTURE_MANAGER from '../../managers/gestureManager';
+import {updateCurrentSwipedEmails} from '../../redux/actions/email-actions';
+
 
 const propTypes = {
     email: PropTypes.instanceOf(Email).isRequired,
+    isSelected: PropTypes.bool,
     isSwipedOpen: PropTypes.bool
 };
 
 const defaultProps = {
+    isSelected: false,
     isSwipedOpen: false
 };
 
 export class EmailListItem extends Component {
 
-    touchStart;
-    touchEnd;
-    
     constructor() {
         super();
 
+        this.handleCheckBoxClicked = this.handleCheckBoxClicked.bind(this);
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
     }
@@ -41,7 +43,10 @@ export class EmailListItem extends Component {
             >
                 <div className={this.getEmailListItemClassNames()}>
                     <div className="EmailListItem__checkbox-container">
-                        <MdCheckBoxOutlineBlank />
+                        <CheckBox
+                            isChecked={this.props.isSelected}
+                            onClick={this.handleCheckBoxClicked}
+                         />
                     </div>
                     {(!this.props.isSmallScreen) ? this.getFlag() : null}
                     <div className="EmailListItem__email-info-container">
@@ -80,24 +85,20 @@ export class EmailListItem extends Component {
      * @returns {Element} The flag icon.
      */
     getFlag() {
-        let isImportant = this.props.email.Flags.IsImportant;
-        let className = 'EmailListItem__important';
-        
-        if (isImportant) {
-            className += ' EmailListItem__important--flagged';
-        }
-
         return (
             <EmailListItemIcon 
                 content={<MdFlag />} 
-                isVisible={isImportant}
+                isVisible={this.props.email.Flags.IsImportant}
             />
         );
-       // return (
-            //<div className={className}>
-            //{(isImportant) ? <MdFlag /> : null}
-            //</div>
-        //);
+    }
+
+    /**
+     * Called when the user taps the checkbox.
+     * @param {object} e The event.
+     */
+    handleCheckBoxClicked(e) {
+        console.log('email list item - checkbox clicked!');
     }
 
     /**
@@ -105,8 +106,7 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchStart(e) {
-        let data = e.touches ? e.touches[0] : e;
-        this.touchStart = new Touch(Date.now(), data.pageX, data.pageY);
+        GESTURE_MANAGER.handleTouchStart(e);
     }
 
     /**
@@ -114,31 +114,11 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchEnd(e) {
-        let data = e.changedTouches ? e.changedTouches[0] : e;
-        this.touchEnd = new Touch(Date.now(), data.pageX, data.pageY);
-        this.checkIfSwiped();
-    }
-
-    /**
-     * Checks to see if a swipe action occurred on this email list item.
-     */
-    checkIfSwiped() {
-        const SWIPE_THRESHOLD = 1000;
-
-        if (this.touchStart 
-            && this.touchEnd
-            && this.touchEnd.Time - this.touchStart.Time <= SWIPE_THRESHOLD
-            && Math.abs(this.touchStart.Y - this.touchEnd.Y) < 50) {
-
-            if (this.touchStart.X - this.touchEnd.X >= 60) {
-                // swiped left
-                this.props.updateCurrentSwipedEmails(this.props.email, true);
-            } else if (this.touchEnd.X - this.touchStart.X >= 60) {
-                // swiped right
-                this.props.updateCurrentSwipedEmails(this.props.email, false);
-            }
-        }
-
+        GESTURE_MANAGER.handleTouchEnd(e);
+        GESTURE_MANAGER.checkForSwipe(
+            () => this.props.updateCurrentSwipedEmails(this.props.email, true),
+            () => this.props.updateCurrentSwipedEmails(this.props.email, false)
+        );
     }
 
 }
@@ -146,8 +126,9 @@ export class EmailListItem extends Component {
 function mapStateToProps(store, ownProps) {
     return {
         email: ownProps.email,
-        isSwipedOpen: ownProps.isSwipedOpen,
-        isSmallScreen: store.app.isSmallScreen
+        isSelected: ownProps.isSelected,
+        isSmallScreen: store.app.isSmallScreen,
+        isSwipedOpen: ownProps.isSwipedOpen
     };
 }
 
