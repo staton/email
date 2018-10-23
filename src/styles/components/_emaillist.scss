@@ -1,8 +1,10 @@
 .EmailList {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
     overflow-y: overlay;
+    padding: 0;
     width: 100%;
 
     @include style-for($var-screen-size-small) {

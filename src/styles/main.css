@@ -165,30 +165,46 @@
 #root .EmailList {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
   overflow-y: overlay;
+  padding: 0;
   width: 100%; }
   @media all and (max-width: 1023px) and (max-height: 1024px) {
     #root .EmailList {
       padding-bottom: 96px; } }
 
+@media all and (max-width: 1023px) and (max-height: 1024px) {
+  #root .EmailListItem {
+    align-items: stretch;
+    display: flex;
+    line-height: 1.15rem; } }
+
 #root .EmailListItem .EmailListItem__container {
   align-items: center;
   background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: row;
-  padding: 1rem; }
+  height: 56px;
+  padding: 0 1rem 0 0;
+  z-index: 2;
+  /* This style will target email list items that have already been read. */
+  /* This style is for the container of the Sender, Date, Subject, and Preview sections. */ }
   @media all and (max-width: 1023px) and (max-height: 1024px) {
     #root .EmailListItem .EmailListItem__container {
-      line-height: 1.15rem;
-      padding: .35rem .5rem .35rem 0;
+      flex-grow: 1;
+      overflow: hidden;
+      height: 72px;
+      padding: 0 .5rem 0 0;
       /* allow the email list item to be swiped */
       position: relative;
+      right: 0;
       /* animation for the swipe. */
-      -webkit-transition: right 0.125s ease-in;
-      -moz-transition: right 0.125s ease-in;
-      -o-transition: right 0.125s ease-in;
-      transition: right 0.125s ease-in; } }
+      -webkit-transition: right 0.2s ease-in;
+      -moz-transition: right 0.2s ease-in;
+      -o-transition: right 0.2s ease-in;
+      transition: right 0.2s ease-in; } }
   #root .EmailListItem .EmailListItem__container:hover {
     background-color: #f2f2f2;
     cursor: pointer; }
@@ -200,7 +216,21 @@
     #root .EmailListItem .EmailListItem__container.EmailListItem__container--read * {
       color: #555555;
       font-weight: normal !important; }
+  #root .EmailListItem .EmailListItem__container.EmailListItem__container--swiped-open {
+    right: 192px; }
+  #root .EmailListItem .EmailListItem__container .EmailListItem__checkbox-container {
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    padding: 0 1rem 0 1rem; }
+    @media all and (max-width: 1023px) and (max-height: 1024px) {
+      #root .EmailListItem .EmailListItem__container .EmailListItem__checkbox-container {
+        max-width: 72px;
+        min-width: 72px;
+        padding: 0; } }
   #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container {
+    align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -208,8 +238,7 @@
     width: 100%; }
     @media all and (max-width: 1023px) and (max-height: 1024px) {
       #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container {
-        flex-wrap: wrap;
-        /*pointer-events: none;*/ } }
+        flex-wrap: wrap; } }
     #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sender-name {
       font-weight: 700;
       order: 10;
@@ -231,6 +260,7 @@
           max-width: none;
           padding-right: 0; } }
     #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__preview {
+      font-size: 0.8rem;
       max-width: 50%;
       order: 30; }
       @media all and (max-width: 1023px) and (max-height: 1024px) {
@@ -239,6 +269,7 @@
           font-size: 0.85rem;
           max-width: none; } }
     #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sent-date {
+      font-size: 0.8rem;
       margin-left: auto;
       order: 40; }
       @media all and (max-width: 1023px) and (max-height: 1024px) {
@@ -256,14 +287,58 @@
       -o-text-overflow: ellipsis;
       white-space: nowrap; }
 
-#root .EmailListItem .EmailListItem__options-inset-shadow {
-  background-color: blue;
-  -webkit-box-shadow: inset 0.5rem 0 0.5rem 0rem rgba(0, 0, 0, 0.35);
-  -moz-box-shadow: inset 0.5rem 0 0.5rem 0rem rgba(0, 0, 0, 0.35);
-  -ms-box-shadow: inset 0.5rem 0 0.5rem 0rem rgba(0, 0, 0, 0.35);
-  box-shadow: inset 0.5rem 0 0.5rem 0rem rgba(0, 0, 0, 0.35);
+#root .EmailListItemIcon {
+  min-width: 20px;
+  padding: 0 1rem 0 0; }
+  @media all and (max-width: 1023px) and (max-height: 1024px) {
+    #root .EmailListItemIcon {
+      min-width: auto;
+      order: 5;
+      padding: 0;
+      width: auto; } }
+  #root .EmailListItemIcon.EmailListItemIcon--visible {
+    align-items: center;
+    color: #f52830 !important;
+    display: flex;
+    font-size: 20px;
+    justify-content: center; }
+    @media all and (max-width: 1023px) and (max-height: 1024px) {
+      #root .EmailListItemIcon.EmailListItemIcon--visible {
+        font-size: 1rem;
+        padding: 0 0.5rem 0 0; } }
+
+#root .EmailListItemOptions {
+  display: flex;
+  height: 72px;
+  position: absolute;
+  right: 0;
+  width: 192px;
+  z-index: 1; }
+
+#root .EmailListItemOptionsButton {
+  border: none;
+  color: white;
+  font-size: 28px;
   height: 100%;
+  outline: none;
   width: 100%; }
+  #root .EmailListItemOptionsButton:first-child {
+    -webkit-box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
+    -ms-box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2); }
+  #root .EmailListItemOptionsButton.EmailListItemOptionsButton__delete {
+    background-color: #f52830; }
+    #root .EmailListItemOptionsButton.EmailListItemOptionsButton__delete:hover {
+      background-color: #e00a13; }
+  #root .EmailListItemOptionsButton.EmailListItemOptionsButton__flag {
+    background-color: #eeb53a; }
+    #root .EmailListItemOptionsButton.EmailListItemOptionsButton__flag:hover {
+      background-color: #e2a013; }
+  #root .EmailListItemOptionsButton.EmailListItemOptionsButton__more {
+    background-color: #c7d1db; }
+    #root .EmailListItemOptionsButton.EmailListItemOptionsButton__more:hover {
+      background-color: #a8b8c7; }
 
 #root .Header {
   align-items: center;

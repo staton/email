@@ -1,0 +1,24 @@
+.EmailListItemIcon {
+    min-width: $var-email-list-item-icon-size;
+    padding: 0 $var-email-list-item-icon-padding 0 0;
+
+    @include style-for($var-screen-size-small) {
+        min-width: auto;
+        order: 5;
+        padding: 0;
+        width: auto;
+    }
+
+    &.EmailListItemIcon--visible {
+        align-items: center;
+        color: $color-alert !important;
+        display: flex;
+        font-size: $var-email-list-item-icon-size;
+        justify-content: center;
+
+        @include style-for($var-screen-size-small) {
+            font-size: $var-email-list-item-icon-size-small;
+            padding: 0 $var-email-list-item-icon-padding-small 0 0;
+        }
+    }
+}

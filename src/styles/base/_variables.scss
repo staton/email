@@ -18,6 +18,34 @@ $var-drawer-menu-width: 270px;
 /// @type {length}
 $var-drawer-menu-width-small: 248px;
 
+/// The height of email list items.
+/// @type {length}
+$var-email-list-item-height: 56px;
+
+/// The height of email list items for small screens.
+/// @type {length}
+$var-email-list-item-height-small: 72px;
+
+/// The size of the icons for email list items.
+/// @type {length}
+$var-email-list-item-icon-size: 20px;
+
+/// The size of the icons for email list items for small screens.
+/// @type {length}
+$var-email-list-item-icon-size-small: 1rem;
+
+/// The padding size of icons for email list items.
+/// @type {length}
+$var-email-list-item-icon-padding: 1rem;
+
+/// The padding size of icons for email list items for small screens.
+/// @type {length}
+$var-email-list-item-icon-padding-small: .5rem;
+
+/// The width of the email list item options menu.
+/// @type {length}
+$var-email-list-item-options-menu-width: 192px;
+
 /// The font/icon size of buttons in the header.
 /// @type {length}
 $var-header-button-font-size: 24px;

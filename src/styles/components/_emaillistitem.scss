@@ -1,22 +1,36 @@
 $local-font-weight-bold: 700;
+$local-font-size-smaller: .8rem;
 $local-font-size-small: .85rem;
+$local-line-height: 1.5rem;
 
 .EmailListItem {
+    
+    @include style-for($var-screen-size-small) {
+        align-items: stretch;
+        display: flex;
+        line-height: 1.15rem;
+    }
 
     & .EmailListItem__container {
         align-items: center;
         background-color: $color-email-list-item-unread-background;
+        border-bottom: 1px solid rgba(0, 0, 0, .15);
         display: flex;
         flex-direction: row;
-        padding: 1rem;
+        height: $var-email-list-item-height;
+        padding: 0 1rem 0 0;
+        z-index: 2;
 
         @include style-for($var-screen-size-small) {
-            line-height: 1.15rem;
-            padding: .35rem .5rem .35rem 0;
+            flex-grow: 1;
+            overflow: hidden;
+            height: $var-email-list-item-height-small;
+            padding: 0 .5rem 0 0;
             /* allow the email list item to be swiped */
             position: relative;
+            right: 0;
             /* animation for the swipe. */
-            @include transition(right .125s ease-in);
+            @include transition(right .2s ease-in);
         }
 
         &:hover {
@@ -24,6 +38,7 @@ $local-font-size-small: .85rem;
             cursor: pointer;
         }
 
+        /* This style will target email list items that have already been read. */
         &.EmailListItem__container--read {
             background-color: $color-email-list-item-read-background;
 
@@ -38,7 +53,27 @@ $local-font-size-small: .85rem;
             }
         }
 
+        &.EmailListItem__container--swiped-open {
+            right: $var-email-list-item-options-menu-width;
+        }
+
+        & .EmailListItem__checkbox-container {
+            align-items: center;
+            display: flex;
+            font-size: $var-email-list-item-icon-size;
+            justify-content: center;
+            padding: 0 $var-email-list-item-icon-padding 0 $var-email-list-item-icon-padding;
+
+            @include style-for($var-screen-size-small) {
+                max-width: $var-email-list-item-height-small;
+                min-width: $var-email-list-item-height-small;
+                padding: 0;
+            }
+        }
+
+        /* This style is for the container of the Sender, Date, Subject, and Preview sections. */
         & .EmailListItem__email-info-container {
+            align-items: center;
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
@@ -47,7 +82,6 @@ $local-font-size-small: .85rem;
             
             @include style-for($var-screen-size-small) {
                 flex-wrap: wrap;
-                /*pointer-events: none;*/
             }
 
             & .EmailListItem__sender-name {
@@ -57,7 +91,7 @@ $local-font-size-small: .85rem;
 
                 @include style-for($var-screen-size-small) {
                     flex-basis: auto;
-                    line-height: 1.5rem;
+                    line-height: $local-line-height;
                     width: auto;
                 }
             }
@@ -77,6 +111,7 @@ $local-font-size-small: .85rem;
             }
 
             & .EmailListItem__preview {
+                font-size: $local-font-size-smaller;
                 max-width: 50%;
                 order: 30;
 
@@ -88,6 +123,7 @@ $local-font-size-small: .85rem;
             }
 
             & .EmailListItem__sent-date {
+                font-size: $local-font-size-smaller;
                 margin-left: auto;
                 order: 40;
 
@@ -107,12 +143,5 @@ $local-font-size-small: .85rem;
                 white-space: nowrap;
             }
         }
-    }
-
-    & .EmailListItem__options-inset-shadow {
-        background-color: blue;
-        @include box-shadow(inset .5rem 0 .5rem 0rem rgba(0, 0, 0, .35));
-        height: 100%;
-        width: 100%;
     }
 }

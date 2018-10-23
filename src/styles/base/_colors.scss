@@ -1,3 +1,7 @@
+/// The color for alerts.
+/// @type {color}
+$color-alert: rgb(245, 40, 48);
+
 /// The theme color for the app.
 /// @type {color}
 $color-app-theme-background: rgb(0, 201, 87);
@@ -17,6 +21,14 @@ $color-drawer-menu-item-badge-background: rgba(0, 0, 0, .51);
 /// The foreground color of badges on the drawer menu.
 /// @type {color}
 $color-drawer-menu-item-badge-foreground: rgb(255, 255, 255);
+
+/// The background color of the email list options more button.
+/// @type {color}
+$color-email-list-item-options-more-background: rgb(199, 209, 219);
+
+/// The foreground color of badges on the email list item options buttons.
+/// @type {color}
+$color-email-list-item-options-foreground: rgb(255, 255, 255);
 
 /// The background color of unread email list items.
 /// @type {color}
@@ -61,4 +73,8 @@ $color-search-bar-box-shadow-focus: rgb(207, 212, 218);
 /// The secondary background color.
 /// @type {color}
 $color-secondary-foreground: rgb(115, 118, 122);
+
+/// The color for warnings.
+/// @type {color}
+$color-warning: rgb(238, 181, 58);
 

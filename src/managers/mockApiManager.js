@@ -67,7 +67,7 @@ class MockApiManager {
                 "deletionDateTime": "",
                 "flags": {
                     "didReply": false,
-                    "isImportant": false,
+                    "isImportant": true,
                     "isSpam": false,
                     "isUnread": true
                 }

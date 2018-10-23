@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Email from '../../models/email';
+import EmailListItemIcon from '../EmailListItemIcon/EmailListItemIcon';
+import EmailListItemOptions from '../EmailListItemOptions/EmailListItemOptions';
 import Touch from '../../models/touch';
 import { updateCurrentSwipedEmails } from '../../redux/actions/email-actions';
+import {MdCheckBoxOutlineBlank, MdFlag} from 'react-icons/md';
 
 const propTypes = {
     email: PropTypes.instanceOf(Email).isRequired,
@@ -14,8 +17,6 @@ const propTypes = {
 const defaultProps = {
     isSwipedOpen: false
 };
-
-const SWIPE_THRESHOLD = 1000;
 
 export class EmailListItem extends Component {
 
@@ -31,31 +32,27 @@ export class EmailListItem extends Component {
 
 	render() {
         const emailSentDate = this.props.email.EmailSentDateTime.toLocaleDateString();
-        const isSwipedOpen = this.props.isSwipedOpen;
+
 		return (
             <li 
                 className="EmailListItem"
                 onTouchStart={this.handleTouchStart}
                 onTouchEnd={this.handleTouchEnd}
             >
-                <div
-                    className={this.getEmailListItemClassNames()}
-                    style={(isSwipedOpen) ? { 'right': '96px' } : { 'right': '0px'}}
-                >
-                    <input type="checkbox" />
-                    <div className="EmailListItem__marker">&nbsp;&nbsp;</div>
+                <div className={this.getEmailListItemClassNames()}>
+                    <div className="EmailListItem__checkbox-container">
+                        <MdCheckBoxOutlineBlank />
+                    </div>
+                    {(!this.props.isSmallScreen) ? this.getFlag() : null}
                     <div className="EmailListItem__email-info-container">
+                        {(this.props.isSmallScreen) ? this.getFlag() : null}
                         <div className="EmailListItem__sender-name">{this.props.email.FromName}</div>
                         <div className="EmailListItem__subject">{this.props.email.Subject}</div>
                         <div className="EmailListItem__preview">{this.props.email.Preview}</div>
                         <div className="EmailListItem__sent-date">{emailSentDate}</div>
                     </div>
                 </div>
-                {
-                    (isSwipedOpen)
-                    ?   <div className="EmailListItem__options-inset-shadow"></div>
-                    :   null
-                }
+                {(this.props.isSmallScreen) ? <EmailListItemOptions email={this.props.email} /> : null}
             </li>
 		);
     }
@@ -71,11 +68,36 @@ export class EmailListItem extends Component {
             className += ' EmailListItem__container--read';
         }
 
-        //if (this.props.isSwipedOpen) {
-        //    className += ' EmailListItem--swiped-open';
-        //}
+        if (this.props.isSwipedOpen) {
+            className += ' EmailListItem__container--swiped-open';
+        }
 
         return className;
+    }
+
+    /**
+     * Gets the flag icon, indicating this is an important email.
+     * @returns {Element} The flag icon.
+     */
+    getFlag() {
+        let isImportant = this.props.email.Flags.IsImportant;
+        let className = 'EmailListItem__important';
+        
+        if (isImportant) {
+            className += ' EmailListItem__important--flagged';
+        }
+
+        return (
+            <EmailListItemIcon 
+                content={<MdFlag />} 
+                isVisible={isImportant}
+            />
+        );
+       // return (
+            //<div className={className}>
+            //{(isImportant) ? <MdFlag /> : null}
+            //</div>
+        //);
     }
 
     /**
@@ -101,6 +123,7 @@ export class EmailListItem extends Component {
      * Checks to see if a swipe action occurred on this email list item.
      */
     checkIfSwiped() {
+        const SWIPE_THRESHOLD = 1000;
 
         if (this.touchStart 
             && this.touchEnd
