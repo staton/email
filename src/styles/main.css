@@ -19,6 +19,8 @@
   align-items: center;
   display: flex;
   justify-content: center; }
+  #root .CheckBox.CheckBox--checked {
+    color: #00c957; }
 
 #root .ComposeEmailButton {
   padding: 1rem; }
@@ -195,6 +197,7 @@
   padding: 0 1rem 0 0;
   z-index: 2;
   /* This style will target email list items that have already been read. */
+  /* On Mobile, when the user swipes an email, offset it from the right side */
   /* This style is for the container of the Sender, Date, Subject, and Preview sections. */ }
   @media all and (max-width: 1023px) and (max-height: 1024px) {
     #root .EmailListItem .EmailListItem__container {
@@ -214,11 +217,15 @@
     background-color: #f2f2f2;
     cursor: pointer; }
   #root .EmailListItem .EmailListItem__container.EmailListItem__container--read {
-    background-color: #eaedf2; }
+    background-color: #eaedf2;
+    /* Change the text color and font weight for the read emails */ }
     #root .EmailListItem .EmailListItem__container.EmailListItem__container--read:hover {
       background-color: #dae0e8;
       cursor: pointer; }
-    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read * {
+    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__sender-name,
+    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__subject,
+    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__preview,
+    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__send-date {
       color: #555555;
       font-weight: normal !important; }
   #root .EmailListItem .EmailListItem__container.EmailListItem__container--swiped-open {
@@ -303,7 +310,7 @@
       width: auto; } }
   #root .EmailListItemIcon.EmailListItemIcon--visible {
     align-items: center;
-    color: #f52830 !important;
+    color: #f52830;
     display: flex;
     font-size: 20px;
     justify-content: center; }

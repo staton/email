@@ -5,7 +5,8 @@ import {
     EMAIL_LIST_ITEM_SWIPED,
     EMAIL_LOAD_ERROR,
     EMAIL_LOAD_SUCCESS,
-    EMAIL_LOADING_OVERLAY_STATE
+    EMAIL_LOADING_OVERLAY_STATE,
+    EMAIL_SELECT
 } from '../types';
 import Email from '../../models/email';
 import _ from 'lodash';
@@ -41,6 +42,10 @@ export default function(state = INITIAL_STATE, action) {
         case EMAIL_LOAD_SUCCESS:
 
             return loadEmails(state, action.payload);
+
+        case EMAIL_SELECT:
+
+            return selectEmail(state, action.payload);
 
         default:
 
@@ -84,6 +89,27 @@ const loadEmails = (state, payload) => {
 };
 
 /**
+ * Selects or unselects an email in the email list.
+ * @param {object} state The current state.
+ * @param {object} payload The payload.
+ */
+const selectEmail = (state, payload) => {
+    let selectedEmails = state.selectedEmails.slice();
+    let isAlreadySelected = EMAIL_MANAGER.isEmailInArray(selectedEmails, payload.email);
+
+    if (isAlreadySelected && !payload.isSelected) {
+        selectedEmails = EMAIL_MANAGER.removeEmailFromArray(selectedEmails, payload.email);
+    } else if (!isAlreadySelected && payload.isSelected) {
+        selectedEmails.push(payload.email);
+    }
+
+    return {
+        ...state,
+        selectedEmails: selectedEmails
+    };
+};
+
+/**
  * Sets the 'didErrorLoadingEmails' flag to true.
  * @param {object} state The current state.
  * @param {object} payload The payload.
@@ -119,13 +145,12 @@ const updateCurrentSwipedEmails = (state, payload) => {
     if (payload.isSwipedOpen) {
         // swiped left, so add the email to the list (if not already added):
         if (!_.head(_.filter(currentSwipedEmails, (o) => o.Id === payload.email.Id))) {
-            console.log('adding swiped email!!!' + payload.email.Subject);
             currentSwipedEmails.push(payload.email);
         }
     } else {
         // swiped right, so try to remove the email from the list:
-        console.log('removing swiped email!!!' + payload.email.Subject);
-        currentSwipedEmails = _.reject(currentSwipedEmails, (o) => o.Id === payload.email.Id);
+        currentSwipedEmails = EMAIL_MANAGER.removeEmailFromArray(currentSwipedEmails, payload.email); 
+        //_.reject(currentSwipedEmails, (o) => o.Id === payload.email.Id);
     }
 
     return {

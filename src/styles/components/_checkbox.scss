@@ -2,4 +2,8 @@
     align-items: center;
     display: flex;
     justify-content: center;
+
+    &.CheckBox--checked {
+        color: $color-app-theme-background;
+    }
 }

@@ -26,10 +26,21 @@ export class EmailList extends Component {
         return this.props.emails.map((email) => 
             <EmailListItem 
                 email={email} 
+                isSelected={this.isEmailSelected(email)}
                 isSwipedOpen={this.isEmailSwipedOpen(email)}
                 key={email.Id}
             />
         );
+    }
+
+    /**
+     * Checks if an email is selected or not.
+     * @param {Email} email The email to check whether it is selected open or not.
+     * @returns {boolean} True if it is selected, false otherwise.
+     */
+    isEmailSelected(email) {
+        let isEmailSelected = _.head(_.filter(this.props.selectedEmails, (o) => o.Id === email.Id)) !== undefined;
+        return isEmailSelected;
     }
 
     /**
@@ -47,7 +58,8 @@ export class EmailList extends Component {
 function mapStateToProps(store, ownProps) {
     return {
         emails: store.email.emails,
-        currentSwipedEmails: store.email.currentSwipedEmails
+        currentSwipedEmails: store.email.currentSwipedEmails,
+        selectedEmails: store.email.selectedEmails
     };
 }
 

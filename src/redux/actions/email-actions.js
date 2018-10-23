@@ -6,7 +6,8 @@ import {
     EMAIL_LIST_ITEM_SWIPED,
     EMAIL_LOAD_ERROR,
     EMAIL_LOAD_SUCCESS,
-    EMAIL_LOADING_OVERLAY_STATE
+    EMAIL_LOADING_OVERLAY_STATE,
+    EMAIL_SELECT
 } from '../types';
 
 export const addEmails = (emails) => {
@@ -54,6 +55,16 @@ export const loadEmailsSuccess = (response) => {
         type: EMAIL_LOAD_SUCCESS,
         payload: {
             response: response
+        }
+    };
+};
+
+export const selectEmail = (email, isSelected) => {
+    return {
+        type: EMAIL_SELECT,
+        payload: {
+            email: email,
+            isSelected: isSelected
         }
     };
 };

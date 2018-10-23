@@ -51,6 +51,26 @@ class EmailManager {
             : _.sortBy(emails, [(o) => o.EmailSentDateTime ]).reverse();
     }
 
+    /**
+     * Checks to see if a given email is in an array of emails.
+     * @param {Email[]} emails The email array. 
+     * @param {Email} email The email to find.
+     * @returns {boolean} True if the email is in the array, false otherwise.
+     */
+    isEmailInArray(emails, email) {
+        return _.head(_.filter(emails, (o) => o.Id === email.Id));
+    }
+
+    /**
+     * Removes an email from the given array.
+     * @param {Email[]} emails The email array.
+     * @param {Email} email The email to remove.
+     * @returns {Email[]} The original emails array, without the given email.
+     */
+    removeEmailFromArray(emails, email) {
+        return _.reject(emails, (o) => o.Id === email.Id);
+    }
+
 }
 
 const EMAIL_MANAGER = new EmailManager();

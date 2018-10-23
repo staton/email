@@ -11,7 +11,7 @@
 
     &.EmailListItemIcon--visible {
         align-items: center;
-        color: $color-alert !important;
+        color: $color-alert;
         display: flex;
         font-size: $var-email-list-item-icon-size;
         justify-content: center;

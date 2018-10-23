@@ -8,7 +8,10 @@ import Email from '../../models/email';
 import EmailListItemIcon from '../EmailListItemIcon/EmailListItemIcon';
 import EmailListItemOptions from '../EmailListItemOptions/EmailListItemOptions';
 import GESTURE_MANAGER from '../../managers/gestureManager';
-import {updateCurrentSwipedEmails} from '../../redux/actions/email-actions';
+import {
+    selectEmail,
+    updateCurrentSwipedEmails
+} from '../../redux/actions/email-actions';
 
 
 const propTypes = {
@@ -98,7 +101,7 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleCheckBoxClicked(e) {
-        console.log('email list item - checkbox clicked!');
+        this.props.selectEmail(this.props.email, !this.props.isSelected);
     }
 
     /**
@@ -134,6 +137,7 @@ function mapStateToProps(store, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        selectEmail: selectEmail,
         updateCurrentSwipedEmails: updateCurrentSwipedEmails
     },
     dispatch);

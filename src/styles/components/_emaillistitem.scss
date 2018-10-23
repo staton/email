@@ -46,12 +46,17 @@ $local-font-size-smaller: .8rem;
                 cursor: pointer;
             }
 
-            & * {
+            /* Change the text color and font weight for the read emails */
+            & .EmailListItem__sender-name,
+              .EmailListItem__subject,
+              .EmailListItem__preview,
+              .EmailListItem__send-date {
                 color: $color-email-list-item-read-color;
                 font-weight: normal !important;
             }
         }
 
+        /* On Mobile, when the user swipes an email, offset it from the right side */
         &.EmailListItem__container--swiped-open {
             right: $var-email-list-item-options-menu-width;
         }
@@ -69,7 +74,7 @@ $local-font-size-smaller: .8rem;
                 padding: 0;
             }
         }
-        
+
         /* This style is for the container of the Sender, Date, Subject, and Preview sections. */
         & .EmailListItem__email-info-container {
             align-items: center;
