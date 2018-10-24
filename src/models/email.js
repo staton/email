@@ -1,3 +1,5 @@
+import BackgroundColor from '../enums/backgroundColor';
+
 class Email {
     
     get BccEmails() {
@@ -48,6 +50,14 @@ class Email {
         return this._toEmails;
     }
 
+    get FirstLetter() {
+        return this._firstLetter;
+    }
+
+    get Color() {
+        return this._color;
+    }
+
     constructor(id, fromName, fromEmail, toEmails, ccEmails, bccEmails,
         subject, preview, emailSentDateTime, deletionDateTime, flags) {
 
@@ -63,6 +73,10 @@ class Email {
         this._emailSentDateTime = emailSentDateTime;
         this._deletionDateTime = deletionDateTime;
         this._flags = flags;
+        this._firstLetter = (this._fromName.trim() === '')
+            ? '?'
+            : this._fromName.charAt(0).toUpperCase();
+        this._color = BackgroundColor.getRandomEmailColor();
 
     }
 

@@ -1,0 +1,25 @@
+$local-checkbox-size: 40px;
+
+.DynamicCheckBox {
+    align-items: center;
+    @include border-radius($local-checkbox-size);
+    color: white;
+    display: flex;
+    font-size: 20px;
+    font-weight: normal;
+    height: $local-checkbox-size;
+    justify-content: center;
+    width: $local-checkbox-size;
+
+    &.DynamicCheckBox--active {
+        background-color: white !important;
+        border: 2px solid rgba(0, 0, 0, .2);
+        @include border-radius($local-checkbox-size);
+        color: $color-app-theme-background;
+        font-size: 24px;
+    }
+
+    &.DynamicCheckBox--checked {
+        
+    }
+}

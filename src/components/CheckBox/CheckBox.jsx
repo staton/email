@@ -19,11 +19,13 @@ class CheckBox extends Component {
 
         this.handleClicked = this.handleClicked.bind(this);
     }
+
 	render() {
 		return (
             <div 
                 className={this.getClassName()}
-                onClick={this.handleClicked}>
+                onClick={this.handleClicked}
+            >
             {
                 (this.props.isChecked) 
                 ?   <MdCheckBox /> 

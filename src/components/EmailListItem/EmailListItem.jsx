@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {MdFlag} from 'react-icons/md';
 import CheckBox from '../CheckBox/CheckBox';
+import DynamicCheckBox from '../DynamicCheckBox/DynamicCheckBox';
 import Email from '../../models/email';
 import EmailListItemIcon from '../EmailListItemIcon/EmailListItemIcon';
 import EmailListItemOptions from '../EmailListItemOptions/EmailListItemOptions';
@@ -46,14 +47,39 @@ export class EmailListItem extends Component {
             >
                 <div className={this.getEmailListItemClassNames()}>
                     <div className="EmailListItem__checkbox-container">
-                        <CheckBox
-                            isChecked={this.props.isSelected}
-                            onClick={this.handleCheckBoxClicked}
-                         />
+                    {
+                        (this.props.isSmallScreen)
+                        ?   <DynamicCheckBox 
+                                backgroundColor={this.props.email.Color}
+                                content={this.props.email.FirstLetter}
+                                isChecked={this.props.isSelected}
+                                onClick={this.handleCheckBoxClicked}
+                            />
+                        :   <CheckBox
+                                isChecked={this.props.isSelected}
+                                onClick={this.handleCheckBoxClicked}
+                            />
+                    }
                     </div>
-                    {(!this.props.isSmallScreen) ? this.getFlag() : null}
+                    {
+                        // Show flag here for large displays
+                        (!this.props.isSmallScreen) 
+                        ?   <EmailListItemIcon 
+                                content={<MdFlag />} 
+                                isVisible={this.props.email.Flags.IsImportant}
+                            />
+                        : null
+                    }
                     <div className="EmailListItem__email-info-container">
-                        {(this.props.isSmallScreen) ? this.getFlag() : null}
+                        {
+                            // Show flag here for small displays
+                            (this.props.isSmallScreen) 
+                            ?   <EmailListItemIcon 
+                                    content={<MdFlag />} 
+                                    isVisible={this.props.email.Flags.IsImportant}
+                                />
+                            : null
+                        }
                         <div className="EmailListItem__sender-name">{this.props.email.FromName}</div>
                         <div className="EmailListItem__subject">{this.props.email.Subject}</div>
                         <div className="EmailListItem__preview">{this.props.email.Preview}</div>
