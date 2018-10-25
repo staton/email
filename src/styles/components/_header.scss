@@ -7,7 +7,6 @@
     height: $var-header-height;
     justify-content: space-between;
     margin: 0;
-    padding: 0 $var-header-padding;
     z-index: 96;
 
     & .Header__left-element-group {
@@ -26,13 +25,5 @@
         align-items: center;
         display: flex;
         padding: $var-header-padding;
-    }
-
-    & .Header__logo {
-        width: 192px;
-        
-        @include style-for($var-screen-size-small) {
-            width: 180px;
-        }
     }
 }

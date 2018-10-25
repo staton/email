@@ -99,19 +99,25 @@ const loadEmails = (state, payload) => {
  * @param {object} payload The payload.
  */
 const selectEmail = (state, payload) => {
-    let selectedEmails = state.selectedEmails.slice();
+    let selectedEmails;
 
-    for (let i = 0; i < payload.emails.length; i++) {
-        let email = payload.emails[i];
-        let isAlreadySelected = EMAIL_MANAGER.isEmailInArray(selectedEmails, email);
-       
-        if (isAlreadySelected && !payload.isSelected) {
-            selectedEmails = EMAIL_MANAGER.removeEmailFromArray(selectedEmails, email);
-        } else if (!isAlreadySelected && payload.isSelected) {
-            selectedEmails.push(email);
+    if (payload.emails.length === 0) {
+        // empty array passed, so clear all selected emails
+        selectedEmails = [];
+    } else {
+        selectedEmails = state.selectedEmails.slice();
+
+        for (let i = 0; i < payload.emails.length; i++) {
+            let email = payload.emails[i];
+            let isAlreadySelected = EMAIL_MANAGER.isEmailInArray(selectedEmails, email);
+        
+            if (isAlreadySelected && !payload.isSelected) {
+                selectedEmails = EMAIL_MANAGER.removeEmailFromArray(selectedEmails, email);
+            } else if (!isAlreadySelected && payload.isSelected) {
+                selectedEmails.push(email);
+            }
         }
     }
-
     return {
         ...state,
         selectedEmails: selectedEmails

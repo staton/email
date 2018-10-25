@@ -186,7 +186,7 @@
   #root .DynamicCheckBox.DynamicCheckBox--active {
     /* background-color needs !important, since it is also set inline. */
     background-color: #f2f5f9 !important;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.25);
     -webkit-border-radius: 34px;
     -moz-border-radius: 34px;
     -ms-border-radius: 34px;
@@ -400,7 +400,6 @@
   height: 64px;
   justify-content: space-between;
   margin: 0;
-  padding: 0 8px;
   z-index: 96; }
   #root .Header .Header__left-element-group {
     display: flex;
@@ -414,11 +413,6 @@
     align-items: center;
     display: flex;
     padding: 8px; }
-  #root .Header .Header__logo {
-    width: 192px; }
-    @media all and (max-width: 1023px) and (max-height: 1024px) {
-      #root .Header .Header__logo {
-        width: 180px; } }
 
 #root .HeaderButton {
   background: none;
@@ -433,6 +427,16 @@
   width: 36px; }
   #root .HeaderButton:hover {
     cursor: pointer; }
+
+#root .ListSelectionHeader {
+  align-items: center;
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: row;
+  height: 64px;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 8px; }
 
 #root .LoadingOverlay {
   align-items: flex-start;
@@ -506,6 +510,21 @@
   80%,
   90% {
     stroke: #003015; } }
+
+#root .MainHeader {
+  align-items: center;
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: row;
+  height: 64px;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 8px; }
+  #root .MainHeader .MainHeader__logo {
+    width: 192px; }
+    @media all and (max-width: 1023px) and (max-height: 1024px) {
+      #root .MainHeader .MainHeader__logo {
+        width: 180px; } }
 
 #root .ScreenOverlay {
   background-color: rgba(0, 0, 0, 0.2);

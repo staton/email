@@ -52,40 +52,11 @@ export class EmailListItem extends Component {
             >
                 <div className={this.getEmailListItemClassNames()}>
                     <div className="EmailListItem__checkbox-container">
-                    {
-                        (this.props.isSmallScreen)
-                        ?   <DynamicCheckBox 
-                                active={this.props.isListActive}
-                                backgroundColor={this.props.email.Color}
-                                content={this.props.email.FirstLetter}
-                                isChecked={this.props.isSelected}
-                                onClick={this.handleCheckBoxClicked}
-                            />
-                        :   <CheckBox
-                                isChecked={this.props.isSelected}
-                                onClick={this.handleCheckBoxClicked}
-                            />
-                    }
+                    {this.getCheckBox()}
                     </div>
-                    {
-                        // Show flag here for large displays
-                        (!this.props.isSmallScreen) 
-                        ?   <EmailListItemIcon 
-                                content={<MdFlag />} 
-                                isVisible={this.props.email.Flags.IsImportant}
-                            />
-                        : null
-                    }
+                    {(!this.props.isSmallScreen) ? this.getFlagIcon() : null}
                     <div className="EmailListItem__email-info-container">
-                        {
-                            // Show flag here for small displays
-                            (this.props.isSmallScreen) 
-                            ?   <EmailListItemIcon 
-                                    content={<MdFlag />} 
-                                    isVisible={this.props.email.Flags.IsImportant}
-                                />
-                            : null
-                        }
+                        {(this.props.isSmallScreen) ? this.getFlagIcon() : null}
                         <div className="EmailListItem__sender-name">{this.props.email.FromName}</div>
                         <div className="EmailListItem__subject">{this.props.email.Subject}</div>
                         <div className="EmailListItem__preview">{this.props.email.Preview}</div>
@@ -95,6 +66,40 @@ export class EmailListItem extends Component {
                 {(this.props.isSmallScreen) ? <EmailListItemOptions email={this.props.email} /> : null}
             </li>
 		);
+    }
+
+    /**
+     * Gets the checkbox for this list item.
+     * @returns {Element} The checkbox.
+     */
+    getCheckBox() {
+        return (
+            (this.props.isSmallScreen)
+            ?   <DynamicCheckBox 
+                    active={this.props.isListActive}
+                    backgroundColor={this.props.email.Color}
+                    content={this.props.email.FirstLetter}
+                    isChecked={this.props.isSelected}
+                    onClick={this.handleCheckBoxClicked}
+                />
+            :   <CheckBox
+                    isChecked={this.props.isSelected}
+                    onClick={this.handleCheckBoxClicked}
+                />
+        );
+    }
+
+    /**
+     * Gets the flag icon for this list item.
+     * @returns {Element} The flag icon.
+     */
+    getFlagIcon() {
+        return (
+            <EmailListItemIcon 
+                content={<MdFlag />} 
+                isVisible={this.props.email.Flags.IsImportant}
+            />
+        );
     }
 
     /**
@@ -144,7 +149,7 @@ export class EmailListItem extends Component {
             // automatically reset any currently swiped emails:
             this.props.updateCurrentSwipedEmails(this.props.currentSwipedEmails, false);
         }
-        console.log('handle long pressed');
+        
         this.props.setListActive(!this.props.isListActive);
     }
 
@@ -153,13 +158,14 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchEnded(e) {
-        if (!this.props.isListActive) {
-            GESTURE_MANAGER.handleTouchEnded(e);
-            GESTURE_MANAGER.checkForSwipe(
-                () => this.props.updateCurrentSwipedEmails([this.props.email], true),
-                () => this.props.updateCurrentSwipedEmails([this.props.email], false)
-            );
-        }
+        if (this.props.isListActive)
+            return;
+            
+        GESTURE_MANAGER.handleTouchEnded(e);
+        GESTURE_MANAGER.checkForSwipe(
+            () => this.props.updateCurrentSwipedEmails([this.props.email], true),
+            () => this.props.updateCurrentSwipedEmails([this.props.email], false)
+        );
     }
 
     /**
@@ -167,9 +173,10 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchMoved(e) {
-        if (!this.props.isListActive) {
-            GESTURE_MANAGER.handleTouchMoved(e);
-        }
+        if (this.props.isListActive)
+            return;
+
+        GESTURE_MANAGER.handleTouchMoved(e);
     }
 
     /**
@@ -177,10 +184,11 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchStarted(e) {
-        if (!this.props.isListActive) {
-            let id = GESTURE_MANAGER.handleTouchStarted(e);
-            GESTURE_MANAGER.startLongPressTimer(id, this.handleLongPressed);
-        }
+        if (this.props.isListActive)
+            return;
+
+        let id = GESTURE_MANAGER.handleTouchStarted(e);
+        GESTURE_MANAGER.startLongPressTimer(id, this.handleLongPressed);
     }
 
 }

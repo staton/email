@@ -24,24 +24,20 @@ export class EmailList extends Component {
 
 	render() {
 		return (
-            <ul className="EmailList">{this.showEmails()}</ul>
+            <ul className="EmailList">
+                {
+                    this.props.emails.map((email) => 
+                        <EmailListItem 
+                            email={email}
+                            isListActive={this.props.isListActive}
+                            isSelected={this.isEmailSelected(email)}
+                            isSwipedOpen={this.isEmailSwipedOpen(email)}
+                            key={email.Id}
+                            setListActive={this.handleListActivated}
+                        />)
+                }
+            </ul>
 		);
-    }
-
-    /**
-     * Shows the list of emails.
-     */
-    showEmails() {
-        return this.props.emails.map((email) => 
-            <EmailListItem 
-                email={email}
-                isListActive={this.props.isListActive}
-                isSelected={this.isEmailSelected(email)}
-                isSwipedOpen={this.isEmailSwipedOpen(email)}
-                key={email.Id}
-                setListActive={this.handleListActivated}
-            />
-        );
     }
 
     /**
@@ -49,7 +45,6 @@ export class EmailList extends Component {
      * @param {bool} isActive Indicates if the list is active or not.
      */
     handleListActivated(isActive) {
-        console.log('handle list activated');
         this.props.setListActive(isActive);
     }
 

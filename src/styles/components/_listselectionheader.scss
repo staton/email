@@ -1,0 +1,10 @@
+.ListSelectionHeader {
+    align-items: center;
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: row;
+    height: $var-header-height;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0 $var-header-padding;
+}

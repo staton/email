@@ -16,7 +16,7 @@ $local-invisible-border: 1px solid rgba(0, 0, 0, 0);
     &.DynamicCheckBox--active {
         /* background-color needs !important, since it is also set inline. */
         background-color: $color-dynamic-checkbox-unchecked-background !important;
-        border: 1px solid rgba(0, 0, 0, .2);
+        border: 1px solid rgba(0, 0, 0, .25);
         @include border-radius($local-checkbox-size);
         font-size: 24px;
     }
