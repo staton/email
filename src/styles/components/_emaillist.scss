@@ -10,4 +10,10 @@
     @include style-for($var-screen-size-small) {
         padding-bottom: 96px;
     }
+
+    & * {
+        @include style-for($var-screen-size-small) {
+            @include text-selection(none);
+        }
+    }
 }

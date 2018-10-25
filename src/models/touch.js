@@ -1,5 +1,16 @@
 export default class Touch {
 
+    get DidMove() {
+        return this._didMove;
+    }
+    set DidMove(didMove) {
+        this._didMove = didMove;
+    }
+
+    get Id() {
+        return this._id;
+    }
+
     get Time() {
         return this._time;
     }
@@ -10,18 +21,14 @@ export default class Touch {
     get X() {
         return this._x;
     }
-    set X(x) {
-        this._x = x;
-    }
 
     get Y() {
         return this._y;
     }
-    set Y(y) {
-        this._y = y;
-    }
 
-    constructor(time, x, y) {
+    constructor(id, time, x, y) {
+        this._didMove = false;
+        this._id = id;
         this._time = time;
         this._x = x;
         this._y = y;

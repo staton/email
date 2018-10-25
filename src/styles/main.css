@@ -203,6 +203,14 @@
   @media all and (max-width: 1023px) and (max-height: 1024px) {
     #root .EmailList {
       padding-bottom: 96px; } }
+  @media all and (max-width: 1023px) and (max-height: 1024px) {
+    #root .EmailList * {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; } }
 
 @media all and (max-width: 1023px) and (max-height: 1024px) {
   #root .EmailListItem {

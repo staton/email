@@ -32,8 +32,9 @@ export class EmailListItem extends Component {
         super();
 
         this.handleCheckBoxClicked = this.handleCheckBoxClicked.bind(this);
-        this.handleTouchStart = this.handleTouchStart.bind(this);
-        this.handleTouchEnd = this.handleTouchEnd.bind(this);
+        this.handleTouchEnded = this.handleTouchEnded.bind(this);
+        this.handleTouchMoved = this.handleTouchMoved.bind(this);
+        this.handleTouchStarted = this.handleTouchStarted.bind(this);
     }
 
 	render() {
@@ -42,8 +43,9 @@ export class EmailListItem extends Component {
 		return (
             <li 
                 className="EmailListItem"
-                onTouchStart={this.handleTouchStart}
-                onTouchEnd={this.handleTouchEnd}
+                onTouchEnd={this.handleTouchEnded}
+                onTouchMove={this.handleTouchMoved}
+                onTouchStart={this.handleTouchStarted}
             >
                 <div className={this.getEmailListItemClassNames()}>
                     <div className="EmailListItem__checkbox-container">
@@ -131,23 +133,39 @@ export class EmailListItem extends Component {
     }
 
     /**
-     * Called when a touch action begins.
-     * @param {object} e The event.
+     * Called when a long press occurs.
      */
-    handleTouchStart(e) {
-        GESTURE_MANAGER.handleTouchStart(e);
+    handleLongPressed() {
+        alert('long pressed!');
     }
 
     /**
      * Called when a touch action ends.
      * @param {object} e The event.
      */
-    handleTouchEnd(e) {
-        GESTURE_MANAGER.handleTouchEnd(e);
+    handleTouchEnded(e) {
+        GESTURE_MANAGER.handleTouchEnded(e);
         GESTURE_MANAGER.checkForSwipe(
             () => this.props.updateCurrentSwipedEmails(this.props.email, true),
             () => this.props.updateCurrentSwipedEmails(this.props.email, false)
         );
+    }
+
+    /**
+     * Called when a touch action begins.
+     * @param {object} e The event.
+     */
+    handleTouchMoved(e) {
+        GESTURE_MANAGER.handleTouchMoved(e);
+    }
+
+    /**
+     * Called when a touch action begins.
+     * @param {object} e The event.
+     */
+    handleTouchStarted(e) {
+        let id = GESTURE_MANAGER.handleTouchStarted(e);
+        GESTURE_MANAGER.startLongPressTimer(id, this.handleLongPressed);
     }
 
 }

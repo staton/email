@@ -62,6 +62,23 @@
     -o-text-overflow: $style;
 }
 
+/// Mixin for setting the text-selection.
+/// 
+/// @param {} $selection - The text selection style.
+///
+/// @example scss - Usage
+///     .my-class {
+///         @include text-selection(none);
+///     }
+@mixin text-selection($selection) {
+    -webkit-touch-callout: $selection;
+    -webkit-user-select: $selection;
+    -khtml-user-select: $selection;
+    -moz-user-select: $selection;
+    -ms-user-select: $selection;
+    user-select: $selection;
+}
+
 /// Mixin for creating a transition for an element's propert(ies).
 /// 
 /// @param {} $transition - The transition for the element.
