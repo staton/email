@@ -150,7 +150,8 @@ export class EmailListItem extends Component {
             this.props.updateCurrentSwipedEmails(this.props.currentSwipedEmails, false);
         }
         
-        this.props.setListActive(!this.props.isListActive);
+        this.props.setListActive(true);
+        this.props.selectEmail([this.props.email], true);
     }
 
     /**
@@ -201,6 +202,7 @@ function mapStateToProps(store, ownProps) {
         isSelected: ownProps.isSelected,
         isSmallScreen: store.app.isSmallScreen,
         isSwipedOpen: ownProps.isSwipedOpen,
+        selectEmail: store.email.selectEmail,
         setListActive: ownProps.setListActive
     };
 }

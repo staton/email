@@ -1,0 +1,38 @@
+$flipHorizAnimationName: flipHoriz;
+$flipInAnimationName: flipIn;
+$rotateInAnimationName: rotateIn;
+
+$flipHorizAnimation: $flipHorizAnimationName .5s ease-in 1;
+$flipInAnimation: $flipInAnimationName .5 ease-in 1;
+$rotateInAnimation: $rotateInAnimationName .1s ease-in 1;
+
+@include keyframes($flipHorizAnimationName) {
+    0% { width: 100%; }
+    50% { width: 5%; }
+    100% { width: 100%; }
+}
+
+@include keyframes($flipInAnimationName) {
+    0% { opacity: 0; }
+    50% { opacity: 0; }
+    100% {opacity: 1; }
+}
+
+@include keyframes($rotateInAnimationName) {
+    0% { -webkit-transform: rotate(90deg); }
+    100% { -webkit-transform: rotate(0deg); }
+}
+
+.animation__flip-horiz {
+    @include animation($flipHorizAnimation);
+}
+
+.animation__flip-in {
+    @include animation($flipInAnimation);
+}
+
+.animation__rotate-in {
+    @include animation($rotateInAnimation);
+}
+
+

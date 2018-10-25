@@ -1,3 +1,17 @@
+/// Mixin for animations.
+///
+/// @param {} $animation - The animation.
+/// 
+/// @example scss - Usage
+///     .my-class {
+///         @include animation(rotate-clockwise);
+///     }
+@mixin animation($animation) {
+    -webkit-animation: $animation;
+    -moz-animation: $animation;
+    animation: $animation;
+}
+
 /// Mixin for styling an element's border-radius.
 /// 
 /// @param {length} $radius - The radius of the border's corners.
@@ -29,6 +43,32 @@
     box-shadow: $shadow;
 }
 
+/// Mixin for key frames.
+///
+/// @param {string} $animation-name - The name of the animation.
+/// 
+/// @example scss - Usage
+///     .my-class {
+///         @include keyframes(rotate-clockwise);
+///     }
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
 /// Mixin for styling specific screen sizes.
 /// IMPORTANT: make sure the max-width value here matches with 'MAX_WIDTH_SMALL_SCREEN' in resources/constants.js.
 ///
@@ -45,6 +85,8 @@
         @media all and (max-width: 1023px) and (max-height: 1024px) { @content; }
     }
 }
+
+
 
 /// Mixin for creating a text-overflow style.
 /// 

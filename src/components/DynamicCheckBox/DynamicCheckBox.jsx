@@ -30,40 +30,39 @@ class DynamicCheckBox extends Component {
 	render() {
 		return (
             <div 
-                className={this.getClassName()}
+                className="DynamicCheckBox"
                 onClick={this.handleClicked}
-                style={{backgroundColor: this.props.backgroundColor}}
             >
-            {
-                (this.props.active) 
-                ?   <span className="DynamicCheckBox__check">
-                    {
-                        (this.props.isChecked)
-                        ?   <MdCheck />
-                        :   null
-                    }
+                <div 
+                    className={this.getContainerClassName()}
+                    style={{backgroundColor: this.props.backgroundColor}}
+                >
+                    <span className="DynamicCheckBox__check">
+                        {
+                            (this.props.isChecked)
+                            ?   <MdCheck />
+                            :   null
+                        }
                     </span>
-                :   <span className="DynamicCheckBox__letter">{this.props.content}</span>
-            }
+                    <span className="DynamicCheckBox__letter">{this.props.content}</span>
+                </div>
             </div>
 		);
     }
 
     /**
-     * Gets the class name(s) for this component.
+     * Gets the class name(s) for the inner container.
      * @returns {string} The class name(s).
      */
-    getClassName() {
-        let className = 'DynamicCheckBox';
+    getContainerClassName() {
+        let className = 'DynamicCheckBox__container';
 
-        if (this.props.isChecked) {
+        if (this.props.isChecked)
             className += ' DynamicCheckBox--checked';
-        }
 
-        if (this.props.active) {
+        if (this.props.active)
             className += ' DynamicCheckBox--active';
-        }
-        
+
         return className;
     }
 

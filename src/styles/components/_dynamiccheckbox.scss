@@ -1,29 +1,59 @@
 $local-checkbox-size: 34px;
 $local-invisible-border: 1px solid rgba(0, 0, 0, 0);
+$local-smooth-transition: all .25s ease-in;
 
 .DynamicCheckBox {
     align-items: center;
-    border: $local-invisible-border;
-    @include border-radius($local-checkbox-size);
     color: $color-dynamic-checkbox-foreground;
     display: flex;
     font-size: 18px;
     font-weight: normal;
-    height: $local-checkbox-size;
     justify-content: center;
-    width: $local-checkbox-size;
+    height: $local-checkbox-size + 8;
+    overflow: hidden;
+    /*@include transition($local-smooth-transition);*/
+    width: $local-checkbox-size + 8;
 
-    &.DynamicCheckBox--active {
-        /* background-color needs !important, since it is also set inline. */
-        background-color: $color-dynamic-checkbox-unchecked-background !important;
-        border: 1px solid rgba(0, 0, 0, .25);
-        @include border-radius($local-checkbox-size);
-        font-size: 24px;
-    }
-
-    &.DynamicCheckBox--checked {
-        /* background-color needs !important, since it is also set inline. */
-        background-color: $color-app-theme-background !important;
+    & .DynamicCheckBox__container {
+        align-items: center;
         border: $local-invisible-border;
+        @include border-radius($local-checkbox-size);
+        display: flex;
+        height: $local-checkbox-size;
+        justify-content: center;
+        transform-style: preserve-3d;
+        transform-origin: center;
+        @include transition(transform .5s);
+        width: $local-checkbox-size;
+
+        &.DynamicCheckBox--active {
+            /* background-color needs !important, since it is also set inline. */
+            background-color: $color-dynamic-checkbox-unchecked-background !important;
+            border: 1px solid rgba(0, 0, 0, .25);
+            @include border-radius($local-checkbox-size);
+            font-size: 24px;
+            transform:  rotateY(-180deg);
+            /*@include transition($local-smooth-transition);*/
+        }
+
+        &.DynamicCheckBox--checked {
+            /* background-color needs !important, since it is also set inline. */
+            background-color: $color-app-theme-background !important;
+            border: $local-invisible-border;
+            /*@include transition(none);*/
+        }
+
+        & .DynamicCheckbox__check, .DynamicCheckBox__letter {
+            backface-visibility: hidden;
+            position: absolute;
+        }
+
+        & .DynamicCheckBox__check {
+            transform: rotateY(180deg);
+        }
+
+        & .DynamicCheckBox__letter {
+
+        }
     }
 }

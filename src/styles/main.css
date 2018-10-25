@@ -171,31 +171,53 @@
 
 #root .DynamicCheckBox {
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0);
-  -webkit-border-radius: 34px;
-  -moz-border-radius: 34px;
-  -ms-border-radius: 34px;
-  border-radius: 34px;
   color: white;
   display: flex;
   font-size: 18px;
   font-weight: normal;
-  height: 34px;
   justify-content: center;
-  width: 34px; }
-  #root .DynamicCheckBox.DynamicCheckBox--active {
-    /* background-color needs !important, since it is also set inline. */
-    background-color: #f2f5f9 !important;
-    border: 1px solid rgba(0, 0, 0, 0.25);
+  height: 42px;
+  overflow: hidden;
+  /*@include transition($local-smooth-transition);*/
+  width: 42px; }
+  #root .DynamicCheckBox .DynamicCheckBox__container {
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0);
     -webkit-border-radius: 34px;
     -moz-border-radius: 34px;
     -ms-border-radius: 34px;
     border-radius: 34px;
-    font-size: 24px; }
-  #root .DynamicCheckBox.DynamicCheckBox--checked {
-    /* background-color needs !important, since it is also set inline. */
-    background-color: #00c957 !important;
-    border: 1px solid rgba(0, 0, 0, 0); }
+    display: flex;
+    height: 34px;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    -webkit-transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
+    -o-transition: transform 0.5s;
+    transition: transform 0.5s;
+    width: 34px; }
+    #root .DynamicCheckBox .DynamicCheckBox__container.DynamicCheckBox--active {
+      /* background-color needs !important, since it is also set inline. */
+      background-color: #f2f5f9 !important;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      -webkit-border-radius: 34px;
+      -moz-border-radius: 34px;
+      -ms-border-radius: 34px;
+      border-radius: 34px;
+      font-size: 24px;
+      transform: rotateY(-180deg);
+      /*@include transition($local-smooth-transition);*/ }
+    #root .DynamicCheckBox .DynamicCheckBox__container.DynamicCheckBox--checked {
+      /* background-color needs !important, since it is also set inline. */
+      background-color: #00c957 !important;
+      border: 1px solid rgba(0, 0, 0, 0);
+      /*@include transition(none);*/ }
+    #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckbox__check, #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckBox__letter {
+      backface-visibility: hidden;
+      position: absolute; }
+    #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckBox__check {
+      transform: rotateY(180deg); }
 
 #root .EmailList {
   list-style-type: none;
@@ -389,16 +411,11 @@
       background-color: #a8b8c7; }
 
 #root .Header {
-  align-items: center;
   background-color: white;
   -webkit-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
   -ms-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: row;
-  height: 64px;
-  justify-content: space-between;
   margin: 0;
   z-index: 96; }
   #root .Header .Header__left-element-group {
@@ -431,7 +448,6 @@
 #root .ListSelectionHeader {
   align-items: center;
   display: flex;
-  flex-basis: 100%;
   flex-direction: row;
   height: 64px;
   justify-content: space-between;
@@ -514,7 +530,6 @@
 #root .MainHeader {
   align-items: center;
   display: flex;
-  flex-basis: 100%;
   flex-direction: row;
   height: 64px;
   justify-content: space-between;
@@ -608,3 +623,128 @@
   height: 100%;
   outline: none;
   width: 100%; }
+
+@-webkit-keyframes flipHoriz {
+  0% {
+    width: 100%; }
+  50% {
+    width: 5%; }
+  100% {
+    width: 100%; } }
+
+@-moz-keyframes flipHoriz {
+  0% {
+    width: 100%; }
+  50% {
+    width: 5%; }
+  100% {
+    width: 100%; } }
+
+@-ms-keyframes flipHoriz {
+  #root 0% {
+    width: 100%; }
+  #root 50% {
+    width: 5%; }
+  #root 100% {
+    width: 100%; } }
+
+@-o-keyframes flipHoriz {
+  0% {
+    width: 100%; }
+  50% {
+    width: 5%; }
+  100% {
+    width: 100%; } }
+
+@keyframes flipHoriz {
+  0% {
+    width: 100%; }
+  50% {
+    width: 5%; }
+  100% {
+    width: 100%; } }
+
+@-webkit-keyframes flipIn {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-moz-keyframes flipIn {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-ms-keyframes flipIn {
+  #root 0% {
+    opacity: 0; }
+  #root 50% {
+    opacity: 0; }
+  #root 100% {
+    opacity: 1; } }
+
+@-o-keyframes flipIn {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes flipIn {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-webkit-keyframes rotateIn {
+  0% {
+    -webkit-transform: rotate(90deg); }
+  100% {
+    -webkit-transform: rotate(0deg); } }
+
+@-moz-keyframes rotateIn {
+  0% {
+    -webkit-transform: rotate(90deg); }
+  100% {
+    -webkit-transform: rotate(0deg); } }
+
+@-ms-keyframes rotateIn {
+  #root 0% {
+    -webkit-transform: rotate(90deg); }
+  #root 100% {
+    -webkit-transform: rotate(0deg); } }
+
+@-o-keyframes rotateIn {
+  0% {
+    -webkit-transform: rotate(90deg); }
+  100% {
+    -webkit-transform: rotate(0deg); } }
+
+@keyframes rotateIn {
+  0% {
+    -webkit-transform: rotate(90deg); }
+  100% {
+    -webkit-transform: rotate(0deg); } }
+
+#root .animation__flip-horiz {
+  -webkit-animation: flipHoriz 0.5s ease-in 1;
+  -moz-animation: flipHoriz 0.5s ease-in 1;
+  animation: flipHoriz 0.5s ease-in 1; }
+
+#root .animation__flip-in {
+  -webkit-animation: flipIn 0.5 ease-in 1;
+  -moz-animation: flipIn 0.5 ease-in 1;
+  animation: flipIn 0.5 ease-in 1; }
+
+#root .animation__rotate-in {
+  -webkit-animation: rotateIn 0.1s ease-in 1;
+  -moz-animation: rotateIn 0.1s ease-in 1;
+  animation: rotateIn 0.1s ease-in 1; }
