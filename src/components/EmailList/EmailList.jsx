@@ -2,16 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import EmailListItem from '../EmailListItem/EmailListItem';
 import _ from 'lodash';
+import EmailListItem from '../EmailListItem/EmailListItem';
+import EMAIL_MANAGER from '../../managers/emailManager';
 
 const propTypes = {
+    isListActive: PropTypes.bool.isRequired,
+    setListActive: PropTypes.func.isRequired
 };
 
 const defaultProps = {
 };
 
 export class EmailList extends Component {
+
+    constructor() {
+        super();
+
+        this.handleListActivated = this.handleListActivated.bind(this);
+    }
 
 	render() {
 		return (
@@ -25,12 +34,23 @@ export class EmailList extends Component {
     showEmails() {
         return this.props.emails.map((email) => 
             <EmailListItem 
-                email={email} 
+                email={email}
+                isListActive={this.props.isListActive}
                 isSelected={this.isEmailSelected(email)}
                 isSwipedOpen={this.isEmailSwipedOpen(email)}
                 key={email.Id}
+                setListActive={this.handleListActivated}
             />
         );
+    }
+
+    /**
+     * Sets the list's active state.
+     * @param {bool} isActive Indicates if the list is active or not.
+     */
+    handleListActivated(isActive) {
+        console.log('handle list activated');
+        this.props.setListActive(isActive);
     }
 
     /**
@@ -39,8 +59,7 @@ export class EmailList extends Component {
      * @returns {boolean} True if it is selected, false otherwise.
      */
     isEmailSelected(email) {
-        let isEmailSelected = _.head(_.filter(this.props.selectedEmails, (o) => o.Id === email.Id)) !== undefined;
-        return isEmailSelected;
+        return EMAIL_MANAGER.isEmailInArray(this.props.selectedEmails, email);
     }
 
     /**
@@ -49,17 +68,18 @@ export class EmailList extends Component {
      * @returns {boolean} True if it is swiped open, false otherwise.
      */
     isEmailSwipedOpen(email) {
-        let isEmailSwipedOpen = _.head(_.filter(this.props.currentSwipedEmails, (o) => o.Id === email.Id)) !== undefined;
-        return isEmailSwipedOpen;
+        return EMAIL_MANAGER.isEmailInArray(this.props.currentSwipedEmails, email);
     }
 
 }
 
 function mapStateToProps(store, ownProps) {
     return {
-        emails: store.email.emails,
         currentSwipedEmails: store.email.currentSwipedEmails,
-        selectedEmails: store.email.selectedEmails
+        emails: store.email.emails,
+        isListActive: ownProps.isListActive,
+        selectedEmails: store.email.selectedEmails,
+        setListActive: ownProps.setListActive
     };
 }
 

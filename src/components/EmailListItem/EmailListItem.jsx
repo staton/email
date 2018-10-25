@@ -17,8 +17,10 @@ import {
 
 const propTypes = {
     email: PropTypes.instanceOf(Email).isRequired,
+    isListActive: PropTypes.bool.isRequired,
     isSelected: PropTypes.bool,
-    isSwipedOpen: PropTypes.bool
+    isSwipedOpen: PropTypes.bool,
+    setListActive: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -32,6 +34,7 @@ export class EmailListItem extends Component {
         super();
 
         this.handleCheckBoxClicked = this.handleCheckBoxClicked.bind(this);
+        this.handleLongPressed = this.handleLongPressed.bind(this);
         this.handleTouchEnded = this.handleTouchEnded.bind(this);
         this.handleTouchMoved = this.handleTouchMoved.bind(this);
         this.handleTouchStarted = this.handleTouchStarted.bind(this);
@@ -52,6 +55,7 @@ export class EmailListItem extends Component {
                     {
                         (this.props.isSmallScreen)
                         ?   <DynamicCheckBox 
+                                active={this.props.isListActive}
                                 backgroundColor={this.props.email.Color}
                                 content={this.props.email.FirstLetter}
                                 isChecked={this.props.isSelected}
@@ -129,14 +133,19 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleCheckBoxClicked(e) {
-        this.props.selectEmail(this.props.email, !this.props.isSelected);
+        this.props.selectEmail([this.props.email], !this.props.isSelected);
     }
 
     /**
      * Called when a long press occurs.
      */
     handleLongPressed() {
-        alert('long pressed!');
+        if (this.props.currentSwipedEmails.length > 0) {
+            // automatically reset any currently swiped emails:
+            this.props.updateCurrentSwipedEmails(this.props.currentSwipedEmails, false);
+        }
+        console.log('handle long pressed');
+        this.props.setListActive(!this.props.isListActive);
     }
 
     /**
@@ -144,11 +153,13 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchEnded(e) {
-        GESTURE_MANAGER.handleTouchEnded(e);
-        GESTURE_MANAGER.checkForSwipe(
-            () => this.props.updateCurrentSwipedEmails(this.props.email, true),
-            () => this.props.updateCurrentSwipedEmails(this.props.email, false)
-        );
+        if (!this.props.isListActive) {
+            GESTURE_MANAGER.handleTouchEnded(e);
+            GESTURE_MANAGER.checkForSwipe(
+                () => this.props.updateCurrentSwipedEmails([this.props.email], true),
+                () => this.props.updateCurrentSwipedEmails([this.props.email], false)
+            );
+        }
     }
 
     /**
@@ -156,7 +167,9 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchMoved(e) {
-        GESTURE_MANAGER.handleTouchMoved(e);
+        if (!this.props.isListActive) {
+            GESTURE_MANAGER.handleTouchMoved(e);
+        }
     }
 
     /**
@@ -164,18 +177,23 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchStarted(e) {
-        let id = GESTURE_MANAGER.handleTouchStarted(e);
-        GESTURE_MANAGER.startLongPressTimer(id, this.handleLongPressed);
+        if (!this.props.isListActive) {
+            let id = GESTURE_MANAGER.handleTouchStarted(e);
+            GESTURE_MANAGER.startLongPressTimer(id, this.handleLongPressed);
+        }
     }
 
 }
 
 function mapStateToProps(store, ownProps) {
     return {
+        currentSwipedEmails: store.email.currentSwipedEmails,
         email: ownProps.email,
+        isListActive: ownProps.isListActive,
         isSelected: ownProps.isSelected,
         isSmallScreen: store.app.isSmallScreen,
-        isSwipedOpen: ownProps.isSwipedOpen
+        isSwipedOpen: ownProps.isSwipedOpen,
+        setListActive: ownProps.setListActive
     };
 }
 

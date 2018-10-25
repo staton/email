@@ -171,26 +171,31 @@
 
 #root .DynamicCheckBox {
   align-items: center;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 40px;
-  -ms-border-radius: 40px;
-  border-radius: 40px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  -webkit-border-radius: 34px;
+  -moz-border-radius: 34px;
+  -ms-border-radius: 34px;
+  border-radius: 34px;
   color: white;
   display: flex;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: normal;
-  height: 40px;
+  height: 34px;
   justify-content: center;
-  width: 40px; }
+  width: 34px; }
   #root .DynamicCheckBox.DynamicCheckBox--active {
-    background-color: white !important;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    -webkit-border-radius: 40px;
-    -moz-border-radius: 40px;
-    -ms-border-radius: 40px;
-    border-radius: 40px;
-    color: #00c957;
+    /* background-color needs !important, since it is also set inline. */
+    background-color: #f2f5f9 !important;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 34px;
+    -moz-border-radius: 34px;
+    -ms-border-radius: 34px;
+    border-radius: 34px;
     font-size: 24px; }
+  #root .DynamicCheckBox.DynamicCheckBox--checked {
+    /* background-color needs !important, since it is also set inline. */
+    background-color: #00c957 !important;
+    border: 1px solid rgba(0, 0, 0, 0); }
 
 #root .EmailList {
   list-style-type: none;

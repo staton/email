@@ -36,7 +36,13 @@ class DynamicCheckBox extends Component {
             >
             {
                 (this.props.active) 
-                ?   <span className="DynamicCheckBox__check"><MdCheck /></span>
+                ?   <span className="DynamicCheckBox__check">
+                    {
+                        (this.props.isChecked)
+                        ?   <MdCheck />
+                        :   null
+                    }
+                    </span>
                 :   <span className="DynamicCheckBox__letter">{this.props.content}</span>
             }
             </div>
@@ -57,7 +63,7 @@ class DynamicCheckBox extends Component {
         if (this.props.active) {
             className += ' DynamicCheckBox--active';
         }
-
+        
         return className;
     }
 

@@ -9,19 +9,22 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { MdEdit } from 'react-icons/md';
 import { setScreenSize } from '../../redux/actions/app-actions';
-import { loadEmails } from '../../redux/actions/email-actions';
+import { 
+    loadEmails,
+    setInboxListItemsActive 
+} from '../../redux/actions/email-actions';
 
 export class App extends Component {
 
     constructor() {
         super();
 
-        this.handleResize = this.handleResize.bind(this);
+        this.handleResized = this.handleResized.bind(this);
     }
 
     componentDidMount() {
         // listen for window resize events:
-        window.addEventListener('resize', this.handleResize);
+        window.addEventListener('resize', this.handleResized);
 
         // load the initial emails:
         this.props.loadEmails();
@@ -38,7 +41,10 @@ export class App extends Component {
                         ? null
                         : <LoadingOverlay loadingOverlayState={this.props.emailLoadingOverlayState} />
                     }
-                    <EmailList />
+                    <EmailList 
+                        isListActive={this.props.isInboxListActive}
+                        setListActive={this.props.setInboxListItemsActive}
+                    />
                 </div>
                 {
                     // For small screens, the New Email button will be a FAB.
@@ -50,12 +56,12 @@ export class App extends Component {
 			</div>
 		);
     }
-    
+
     /**
      * Called when the window resizes.
      * @param {object} e The event.
      */
-    handleResize(e) {
+    handleResized(e) {
         this.props.setScreenSize(window.innerWidth, window.innerHeight);
     }
 
@@ -64,6 +70,7 @@ export class App extends Component {
 function mapStateToProps(store, ownProps) {
     return {
         emailLoadingOverlayState: store.email.loadingOverlayState,
+        isInboxListActive: store.email.isInboxListActive,
         isSmallScreen: store.app.isSmallScreen
     };
 }
@@ -71,7 +78,8 @@ function mapStateToProps(store, ownProps) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         loadEmails: loadEmails,
-        setScreenSize: setScreenSize
+        setScreenSize: setScreenSize,
+        setInboxListItemsActive: setInboxListItemsActive
     },
     dispatch);
 }

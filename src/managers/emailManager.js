@@ -58,7 +58,9 @@ class EmailManager {
      * @returns {boolean} True if the email is in the array, false otherwise.
      */
     isEmailInArray(emails, email) {
-        return _.head(_.filter(emails, (o) => o.Id === email.Id));
+        return (emails && email && emails.length > 0)
+            ? (_.head(_.filter(emails, (o) => o.Id === email.Id)) !== undefined)
+            : false;
     }
 
     /**

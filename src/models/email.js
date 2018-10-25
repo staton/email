@@ -65,7 +65,7 @@ class Email {
         this._fromName = fromName;
         this._fromEmail = fromEmail;
         this._toEmails = toEmails;
-        this._ccEmails = ccEmails,
+        this._ccEmails = ccEmails;
         this._bccEmails = bccEmails;
         this._subject = subject;
         this._preview = preview;

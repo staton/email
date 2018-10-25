@@ -22,6 +22,14 @@ $color-drawer-menu-item-badge-background: rgba(0, 0, 0, .51);
 /// @type {color}
 $color-drawer-menu-item-badge-foreground: rgb(255, 255, 255);
 
+/// The foreground color of the dynamic checkboxes.
+/// @type {color}
+$color-dynamic-checkbox-foreground: rgb(255, 255, 255);
+
+/// The background color of the dynamic checkboxes, when unchecked.
+/// @type {color}
+$color-dynamic-checkbox-unchecked-background: rgb(242, 245, 249);
+
 /// The background color of the email list options more button.
 /// @type {color}
 $color-email-list-item-options-more-background: rgb(199, 209, 219);

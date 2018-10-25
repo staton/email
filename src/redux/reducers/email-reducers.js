@@ -3,12 +3,12 @@ import LoadingOverlayState from '../../enums/LoadingOverlay';
 import { 
     EMAIL_ADD,
     EMAIL_LIST_ITEM_SWIPED,
+    EMAIL_INBOX_ITEMS_ACTIVE,
     EMAIL_LOAD_ERROR,
     EMAIL_LOAD_SUCCESS,
     EMAIL_LOADING_OVERLAY_STATE,
     EMAIL_SELECT
 } from '../types';
-import Email from '../../models/email';
 import _ from 'lodash';
 
 export const INITIAL_STATE = {
@@ -16,6 +16,7 @@ export const INITIAL_STATE = {
     currentSwipedEmails: [],
     didErrorLoadingEmails: false,
     loadingOverlayState: LoadingOverlayState.None,
+    isInboxListActive: false,
     selectedEmails: []
 };
 
@@ -30,6 +31,10 @@ export default function(state = INITIAL_STATE, action) {
         case EMAIL_LIST_ITEM_SWIPED:
 
             return updateCurrentSwipedEmails(state, action.payload);
+
+        case EMAIL_INBOX_ITEMS_ACTIVE:
+
+            return setInboxListItemsActive(state, action.payload);
 
         case EMAIL_LOAD_ERROR:
 
@@ -95,12 +100,16 @@ const loadEmails = (state, payload) => {
  */
 const selectEmail = (state, payload) => {
     let selectedEmails = state.selectedEmails.slice();
-    let isAlreadySelected = EMAIL_MANAGER.isEmailInArray(selectedEmails, payload.email);
 
-    if (isAlreadySelected && !payload.isSelected) {
-        selectedEmails = EMAIL_MANAGER.removeEmailFromArray(selectedEmails, payload.email);
-    } else if (!isAlreadySelected && payload.isSelected) {
-        selectedEmails.push(payload.email);
+    for (let i = 0; i < payload.emails.length; i++) {
+        let email = payload.emails[i];
+        let isAlreadySelected = EMAIL_MANAGER.isEmailInArray(selectedEmails, email);
+       
+        if (isAlreadySelected && !payload.isSelected) {
+            selectedEmails = EMAIL_MANAGER.removeEmailFromArray(selectedEmails, email);
+        } else if (!isAlreadySelected && payload.isSelected) {
+            selectedEmails.push(email);
+        }
     }
 
     return {
@@ -120,6 +129,18 @@ const setDidErrorLoadingEmails = (state, payload) => {
         ...state,
         didErrorLoadingEmails: true
     }
+};
+
+/**
+ * Sets the 'isListActive' state.
+ * @param {object} state The current state.
+ * @param {object} payload The payload.
+ */
+const setInboxListItemsActive = (state, payload) => {
+    return {
+        ...state,
+        isInboxListActive: payload.isActive
+    };
 };
 
 /**
@@ -143,14 +164,17 @@ const setEmailLoadingOverlayState = (state, payload) => {
 const updateCurrentSwipedEmails = (state, payload) => {
     let currentSwipedEmails = state.currentSwipedEmails.slice();
     if (payload.isSwipedOpen) {
-        // swiped left, so add the email to the list (if not already added):
-        if (!_.head(_.filter(currentSwipedEmails, (o) => o.Id === payload.email.Id))) {
-            currentSwipedEmails.push(payload.email);
+        // swiped left, so add the emails to the list (if not already added):
+        for (let i = 0; i < payload.emails.length; i++) {
+            if (!_.head(_.filter(currentSwipedEmails, (o) => o.Id === payload.emails[i].Id))) {
+                currentSwipedEmails.push(payload.emails[i]);
+            }
         }
     } else {
         // swiped right, so try to remove the email from the list:
-        currentSwipedEmails = EMAIL_MANAGER.removeEmailFromArray(currentSwipedEmails, payload.email); 
-        //_.reject(currentSwipedEmails, (o) => o.Id === payload.email.Id);
+        for (let i = 0; i < payload.emails.length; i++) {
+            currentSwipedEmails = EMAIL_MANAGER.removeEmailFromArray(currentSwipedEmails, payload.emails[i]); 
+        }
     }
 
     return {
