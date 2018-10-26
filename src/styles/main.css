@@ -128,42 +128,45 @@
     list-style-type: none;
     margin: 0;
     padding: 0; }
-  #root .DrawerMenuListItem {
+    #root .DrawerMenuList a, #root .DrawerMenuList a:visited, #root .DrawerMenuList a:hover {
+      text-decoration: none;
+      color: inherit; }
+  #root .DrawerMenuListItem .DrawerMenuListItem__container {
     align-items: center;
     background-color: white;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 0.75rem; }
-    #root .DrawerMenuListItem:hover {
+    #root .DrawerMenuListItem .DrawerMenuListItem__container:hover {
       background-color: #f2f2f2;
       cursor: pointer; }
     @media all and (max-width: 1023px) and (max-height: 1024px) {
-      #root .DrawerMenuListItem {
+      #root .DrawerMenuListItem .DrawerMenuListItem__container {
         padding: 1rem; } }
-    #root .DrawerMenuListItem .DrawerMenuListItem__left-container {
+    #root .DrawerMenuListItem .DrawerMenuListItem__container .DrawerMenuListItem__left-container {
       align-items: center;
       display: flex;
       flex-direction: row;
       justify-content: flex-start; }
-      #root .DrawerMenuListItem .DrawerMenuListItem__left-container > * {
+      #root .DrawerMenuListItem .DrawerMenuListItem__container .DrawerMenuListItem__left-container > * {
         padding-right: 0.75rem; }
         @media all and (max-width: 1023px) and (max-height: 1024px) {
-          #root .DrawerMenuListItem .DrawerMenuListItem__left-container > * {
+          #root .DrawerMenuListItem .DrawerMenuListItem__container .DrawerMenuListItem__left-container > * {
             padding-right: 1rem; } }
-      #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__icon {
+      #root .DrawerMenuListItem .DrawerMenuListItem__container .DrawerMenuListItem__left-container .DrawerMenuListItem__icon {
         align-items: center;
         color: #2b2d31;
         display: flex;
         font-size: 24px;
         justify-content: center;
         width: 24px; }
-      #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__primary-content {
+      #root .DrawerMenuListItem .DrawerMenuListItem__container .DrawerMenuListItem__left-container .DrawerMenuListItem__primary-content {
         font-size: 16px; }
-      #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__secondary-content {
+      #root .DrawerMenuListItem .DrawerMenuListItem__container .DrawerMenuListItem__left-container .DrawerMenuListItem__secondary-content {
         color: #73767a;
         font-size: 12px; }
-    #root .DrawerMenuListItem .DrawerMenuListItem__badge {
+    #root .DrawerMenuListItem .DrawerMenuListItem__container .DrawerMenuListItem__badge {
       align-items: center;
       background-color: rgba(0, 0, 0, 0.51);
       -webkit-border-radius: 14px;

@@ -5,10 +5,12 @@ import EmailList from '../EmailList/EmailList';
 import Header from '../Header/Header';
 import LoadingOverlay from '../LoadingOverlay/LoadingOverlay';
 import LoadingOverlayState from '../../enums/LoadingOverlay';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { MdEdit } from 'react-icons/md';
-import { setScreenSize } from '../../redux/actions/app-actions';
+import {Route, Switch} from 'react-router-dom';
+import {withRouter} from 'react-router';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {MdEdit} from 'react-icons/md';
+import {setScreenSize} from '../../redux/actions/app-actions';
 import { 
     loadEmails,
     setInboxListItemsActive 
@@ -41,10 +43,11 @@ export class App extends Component {
                         ? null
                         : <LoadingOverlay loadingOverlayState={this.props.emailLoadingOverlayState} />
                     }
-                    <EmailList 
-                        isListActive={this.props.isInboxListActive}
-                        setListActive={this.props.setInboxListItemsActive}
-                    />
+                    <Switch>
+                        {this.getRoute('/', this.props.isInboxListActive, this.props.setInboxListItemsActive, true)}
+                        {this.getRoute('/inbox', this.props.isInboxListActive, this.props.setInboxListItemsActive)}
+                        <Route render={() => <div>not found...</div>} />
+                    </Switch>
                 </div>
                 {
                     // For small screens, the New Email button will be a FAB.
@@ -55,6 +58,38 @@ export class App extends Component {
                 }
 			</div>
 		);
+    }
+
+    /**
+     * Gets a route path.
+     * @param {string} path The route path.
+     * @param {boolean} isListActive Indicates if the list items are active.
+     * @param {func} setListActive Sets the active state of the list items.
+     * @param {boolean} exact Indicates if this is for the exact path.
+     * @returns {Element} The Route component.
+     */
+    getRoute(path, isListActive, setListActive, exact = false) {
+
+        return (exact)
+            ?   <Route 
+                    exact path={path}
+                    render={(props) => 
+                        <EmailList 
+                            {...props} 
+                            isListActive={isListActive} 
+                            setListActive={setListActive} />
+                    } 
+                />
+            :   <Route 
+                    path={path}
+                    render={(props) => 
+                        <EmailList 
+                            {...props} 
+                            isListActive={isListActive} 
+                            setListActive={setListActive} />
+                    } 
+                />
+        
     }
 
     /**
@@ -84,4 +119,4 @@ function mapDispatchToProps(dispatch) {
     dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

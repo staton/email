@@ -19,20 +19,25 @@ export class DrawerMenuList extends Component {
             <ul className="DrawerMenuList">
                 <DrawerMenuListItem 
                     badge={205}
+                    linkTo="/inbox"
                     icon={<MdInbox />}
                     primaryContent={STRINGS.InboxMenu}
                     secondaryContent="test"
                 />
                 <DrawerMenuListItem 
+                    linkTo="/drafts"
                     primaryContent={STRINGS.DraftsMenu}
                 />
                 <DrawerMenuListItem 
+                    linkTo="/sent"
                     primaryContent={STRINGS.SentMenu}
                 />
                 <DrawerMenuListItem 
+                    linkTo="/spam"
                     primaryContent={STRINGS.SpamMenu}
                 />
                 <DrawerMenuListItem 
+                    linkTo="/trash"
                     primaryContent={STRINGS.DeletedMenu}
                 />
             </ul>
