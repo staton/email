@@ -33,21 +33,32 @@ class DynamicCheckBox extends Component {
                 className="DynamicCheckBox"
                 onClick={this.handleClicked}
             >
-                <div 
-                    className={this.getContainerClassName()}
-                    style={{backgroundColor: this.props.backgroundColor}}
-                >
-                    <span className="DynamicCheckBox__check">
+                <div className={this.getContainerClassName()}>
+                    <div 
+                        className="DynamicCheckBox__letter card__front"
+                        style={{backgroundColor: this.props.backgroundColor}}
+                    >
+                        {this.props.content}
+                    </div>
+                    <div className={this.getCheckBoxClassName()}>
                         {
                             (this.props.isChecked)
                             ?   <MdCheck />
                             :   null
                         }
-                    </span>
-                    <span className="DynamicCheckBox__letter">{this.props.content}</span>
+                    </div>
                 </div>
             </div>
 		);
+    }
+
+    getCheckBoxClassName() {
+        let className = 'DynamicCheckBox__check card__back';
+
+        if (this.props.isChecked) 
+            className += ' DynamicCheckBox__check--checked'
+
+        return className;
     }
 
     /**
@@ -55,13 +66,11 @@ class DynamicCheckBox extends Component {
      * @returns {string} The class name(s).
      */
     getContainerClassName() {
-        let className = 'DynamicCheckBox__container';
-
-        if (this.props.isChecked)
-            className += ' DynamicCheckBox--checked';
+        let className = 'DynamicCheckBox__container card';
 
         if (this.props.active)
-            className += ' DynamicCheckBox--active';
+            className += ' card--is-flipped';
+
 
         return className;
     }

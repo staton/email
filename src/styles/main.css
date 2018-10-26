@@ -1,504 +1,480 @@
-#root .App {
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
-  height: 100%; }
-  #root .App button {
+#root {
+  /*
+ * Card flip help: https://davidwalsh.name/css-flip
+ *
+ * Copyright 2007-2018 David Walsh
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
+ * files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, 
+ * modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */ }
+  #root .App {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%; }
+    #root .App button {
+      align-items: center;
+      display: flex;
+      justify-content: center; }
+      @media all and (max-width: 1023px) and (max-height: 1024px) {
+        #root .App button {
+          outline: none !important; } }
+    #root .App .App__content {
+      display: flex;
+      flex: 1;
+      justify-content: stretch; }
+  #root .CheckBox {
     align-items: center;
     display: flex;
     justify-content: center; }
+    #root .CheckBox.CheckBox--checked {
+      color: #00c957; }
+  #root .ComposeEmailButton {
+    padding: 1rem; }
     @media all and (max-width: 1023px) and (max-height: 1024px) {
-      #root .App button {
-        outline: none !important; } }
-  #root .App .App__content {
+      #root .ComposeEmailButton {
+        bottom: 0;
+        margin: 1rem;
+        padding: 0;
+        position: fixed;
+        right: 0;
+        z-index: 72; } }
+    #root .ComposeEmailButton .ComposeEmailButton__button {
+      background-color: #00c957;
+      border: none;
+      -webkit-border-radius: 24px;
+      -moz-border-radius: 24px;
+      -ms-border-radius: 24px;
+      border-radius: 24px;
+      -webkit-box-shadow: 0 0.125rem 0.2rem 0 rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 0.125rem 0.2rem 0 rgba(0, 0, 0, 0.2);
+      -ms-box-shadow: 0 0.125rem 0.2rem 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0.125rem 0.2rem 0 rgba(0, 0, 0, 0.2);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      height: 48px;
+      overflow: hidden;
+      -webkit-transition: box-shadow 0.1s ease-in;
+      -moz-transition: box-shadow 0.1s ease-in;
+      -o-transition: box-shadow 0.1s ease-in;
+      transition: box-shadow 0.1s ease-in;
+      white-space: nowrap;
+      width: 100%; }
+      @media all and (max-width: 1023px) and (max-height: 1024px) {
+        #root .ComposeEmailButton .ComposeEmailButton__button {
+          -webkit-border-radius: 32px;
+          -moz-border-radius: 32px;
+          -ms-border-radius: 32px;
+          border-radius: 32px;
+          -webkit-box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
+          -moz-box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
+          -ms-box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
+          height: 64px;
+          width: 64px; } }
+      #root .ComposeEmailButton .ComposeEmailButton__button:active {
+        background-color: #00b04c; }
+      #root .ComposeEmailButton .ComposeEmailButton__button:hover {
+        -webkit-box-shadow: 0 0.125rem 0.3rem 0 rgba(0, 0, 0, 0.35);
+        -moz-box-shadow: 0 0.125rem 0.3rem 0 rgba(0, 0, 0, 0.35);
+        -ms-box-shadow: 0 0.125rem 0.3rem 0 rgba(0, 0, 0, 0.35);
+        box-shadow: 0 0.125rem 0.3rem 0 rgba(0, 0, 0, 0.35);
+        cursor: pointer; }
+      #root .ComposeEmailButton .ComposeEmailButton__button .ComposeEmailButton__icon {
+        font-size: 24px;
+        height: 24px;
+        padding: 0 0.25rem; }
+        @media all and (max-width: 1023px) and (max-height: 1024px) {
+          #root .ComposeEmailButton .ComposeEmailButton__button .ComposeEmailButton__icon {
+            padding: 1rem; } }
+      #root .ComposeEmailButton .ComposeEmailButton__button .ComposeEmailButton__content {
+        padding: 0 0.25rem; }
+  #root .Drawer {
+    z-index: 84; }
+    #root .Drawer .Drawer__content {
+      background-color: white;
+      -webkit-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+      -ms-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+      height: 100%;
+      overflow: hidden;
+      /* prevent inner content from being shown when width is 0 */
+      -webkit-transition: width 0.25s ease;
+      -moz-transition: width 0.25s ease;
+      -o-transition: width 0.25s ease;
+      transition: width 0.25s ease;
+      width: 270px; }
+      @media all and (max-width: 1023px) and (max-height: 1024px) {
+        #root .Drawer .Drawer__content {
+          bottom: 0;
+          left: 0;
+          position: fixed;
+          top: 0;
+          /*$var-header-height;*/
+          width: 248px;
+          z-index: 128; } }
+      #root .Drawer .Drawer__content.Drawer__content--hidden {
+        width: 0; }
+    @media all and (max-width: 1023px) and (max-height: 1024px) {
+      #root .Drawer {
+        z-index: 128; } }
+  #root .DrawerMenuList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+  #root .DrawerMenuListItem {
+    align-items: center;
+    background-color: white;
     display: flex;
-    flex: 1;
-    justify-content: stretch; }
-
-#root .CheckBox {
-  align-items: center;
-  display: flex;
-  justify-content: center; }
-  #root .CheckBox.CheckBox--checked {
-    color: #00c957; }
-
-#root .ComposeEmailButton {
-  padding: 1rem; }
-  @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .ComposeEmailButton {
-      bottom: 0;
-      margin: 1rem;
-      padding: 0;
-      position: fixed;
-      right: 0;
-      z-index: 72; } }
-  #root .ComposeEmailButton .ComposeEmailButton__button {
-    background-color: #00c957;
-    border: none;
-    -webkit-border-radius: 24px;
-    -moz-border-radius: 24px;
-    -ms-border-radius: 24px;
-    border-radius: 24px;
-    -webkit-box-shadow: 0 0.125rem 0.2rem 0 rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 0.125rem 0.2rem 0 rgba(0, 0, 0, 0.2);
-    -ms-box-shadow: 0 0.125rem 0.2rem 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0.125rem 0.2rem 0 rgba(0, 0, 0, 0.2);
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.75rem; }
+    #root .DrawerMenuListItem:hover {
+      background-color: #f2f2f2;
+      cursor: pointer; }
+    @media all and (max-width: 1023px) and (max-height: 1024px) {
+      #root .DrawerMenuListItem {
+        padding: 1rem; } }
+    #root .DrawerMenuListItem .DrawerMenuListItem__left-container {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start; }
+      #root .DrawerMenuListItem .DrawerMenuListItem__left-container > * {
+        padding-right: 0.75rem; }
+        @media all and (max-width: 1023px) and (max-height: 1024px) {
+          #root .DrawerMenuListItem .DrawerMenuListItem__left-container > * {
+            padding-right: 1rem; } }
+      #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__icon {
+        align-items: center;
+        color: #2b2d31;
+        display: flex;
+        font-size: 24px;
+        justify-content: center;
+        width: 24px; }
+      #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__primary-content {
+        font-size: 16px; }
+      #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__secondary-content {
+        color: #73767a;
+        font-size: 12px; }
+    #root .DrawerMenuListItem .DrawerMenuListItem__badge {
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.51);
+      -webkit-border-radius: 14px;
+      -moz-border-radius: 14px;
+      -ms-border-radius: 14px;
+      border-radius: 14px;
+      color: white;
+      display: flex;
+      font-size: 12px;
+      height: 28px;
+      justify-content: center;
+      min-width: 28px; }
+  #root .DynamicCheckBox {
+    align-items: center;
     color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    height: 48px;
-    overflow: hidden;
-    -webkit-transition: box-shadow 0.1s ease-in;
-    -moz-transition: box-shadow 0.1s ease-in;
-    -o-transition: box-shadow 0.1s ease-in;
-    transition: box-shadow 0.1s ease-in;
-    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: normal; }
+    #root .DynamicCheckBox .DynamicCheckBox__container {
+      height: 34px;
+      width: 34px; }
+      #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckBox__check {
+        background-color: #f2f5f9;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        font-size: 24px; }
+        #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckBox__check.DynamicCheckBox__check--checked {
+          background-color: #00c957;
+          border: 1px solid rgba(0, 0, 0, 0); }
+      #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckBox__letter {
+        border: 1px solid rgba(0, 0, 0, 0); }
+      #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckBox__check, #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckBox__letter {
+        align-items: center;
+        -webkit-border-radius: 34px;
+        -moz-border-radius: 34px;
+        -ms-border-radius: 34px;
+        border-radius: 34px;
+        display: flex;
+        justify-content: center; }
+  #root .EmailList {
+    list-style-type: none;
+    margin: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: overlay;
+    padding: 0;
     width: 100%; }
     @media all and (max-width: 1023px) and (max-height: 1024px) {
-      #root .ComposeEmailButton .ComposeEmailButton__button {
-        -webkit-border-radius: 32px;
-        -moz-border-radius: 32px;
-        -ms-border-radius: 32px;
-        border-radius: 32px;
-        -webkit-box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
-        -ms-box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
-        box-shadow: 0 0.125rem 0.35rem 0 rgba(0, 0, 0, 0.4);
-        height: 64px;
-        width: 64px; } }
-    #root .ComposeEmailButton .ComposeEmailButton__button:active {
-      background-color: #00b04c; }
-    #root .ComposeEmailButton .ComposeEmailButton__button:hover {
-      -webkit-box-shadow: 0 0.125rem 0.3rem 0 rgba(0, 0, 0, 0.35);
-      -moz-box-shadow: 0 0.125rem 0.3rem 0 rgba(0, 0, 0, 0.35);
-      -ms-box-shadow: 0 0.125rem 0.3rem 0 rgba(0, 0, 0, 0.35);
-      box-shadow: 0 0.125rem 0.3rem 0 rgba(0, 0, 0, 0.35);
+      #root .EmailList {
+        padding-bottom: 96px; } }
+    @media all and (max-width: 1023px) and (max-height: 1024px) {
+      #root .EmailList * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; } }
+  @media all and (max-width: 1023px) and (max-height: 1024px) {
+    #root .EmailListItem {
+      align-items: stretch;
+      display: flex;
+      line-height: 1.15rem; } }
+  #root .EmailListItem .EmailListItem__container {
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: row;
+    height: 56px;
+    padding: 0 1rem 0 0;
+    z-index: 2;
+    /* This style will target email list items that have already been read. */
+    /* On Mobile, when the user swipes an email, offset it from the right side */
+    /* This style is for the container of the Sender, Date, Subject, and Preview sections. */ }
+    @media all and (max-width: 1023px) and (max-height: 1024px) {
+      #root .EmailListItem .EmailListItem__container {
+        flex-grow: 1;
+        overflow: hidden;
+        height: 72px;
+        padding: 0 .5rem 0 0;
+        /* allow the email list item to be swiped */
+        position: relative;
+        right: 0;
+        /* animation for the swipe. */
+        -webkit-transition: right 0.2s ease-in;
+        -moz-transition: right 0.2s ease-in;
+        -o-transition: right 0.2s ease-in;
+        transition: right 0.2s ease-in; } }
+    #root .EmailListItem .EmailListItem__container:hover {
+      background-color: #f2f2f2;
       cursor: pointer; }
-    #root .ComposeEmailButton .ComposeEmailButton__button .ComposeEmailButton__icon {
-      font-size: 24px;
-      height: 24px;
-      padding: 0 0.25rem; }
+    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read {
+      background-color: #eaedf2;
+      /* Change the text color and font weight for the read emails */ }
+      #root .EmailListItem .EmailListItem__container.EmailListItem__container--read:hover {
+        background-color: #dae0e8;
+        cursor: pointer; }
+      #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__sender-name,
+      #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__subject,
+      #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__preview,
+      #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__send-date {
+        color: #555555;
+        font-weight: normal !important; }
+    #root .EmailListItem .EmailListItem__container.EmailListItem__container--swiped-open {
+      right: 192px; }
+    #root .EmailListItem .EmailListItem__container .EmailListItem__checkbox-container {
+      align-items: center;
+      display: flex;
+      font-size: 20px;
+      justify-content: center;
+      padding: 0 1rem 0 1rem; }
       @media all and (max-width: 1023px) and (max-height: 1024px) {
-        #root .ComposeEmailButton .ComposeEmailButton__button .ComposeEmailButton__icon {
-          padding: 1rem; } }
-    #root .ComposeEmailButton .ComposeEmailButton__button .ComposeEmailButton__content {
-      padding: 0 0.25rem; }
-
-#root .Drawer {
-  z-index: 84; }
-  #root .Drawer .Drawer__content {
+        #root .EmailListItem .EmailListItem__container .EmailListItem__checkbox-container {
+          max-height: 72px;
+          min-height: 72px;
+          max-width: 72px;
+          min-width: 72px;
+          padding: 0; } }
+    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      overflow: hidden;
+      width: 100%; }
+      @media all and (max-width: 1023px) and (max-height: 1024px) {
+        #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container {
+          flex-wrap: wrap; } }
+      #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sender-name {
+        font-weight: 700;
+        order: 10;
+        width: 15%; }
+        @media all and (max-width: 1023px) and (max-height: 1024px) {
+          #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sender-name {
+            flex-basis: auto;
+            line-height: 1.5rem;
+            width: auto; } }
+      #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__subject {
+        font-weight: 700;
+        order: 20;
+        max-width: 20%;
+        padding-right: .75rem; }
+        @media all and (max-width: 1023px) and (max-height: 1024px) {
+          #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__subject {
+            flex-basis: 100%;
+            font-size: 0.85rem;
+            max-width: none;
+            padding-right: 0; } }
+      #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__preview {
+        font-size: 0.8rem;
+        max-width: 50%;
+        order: 30; }
+        @media all and (max-width: 1023px) and (max-height: 1024px) {
+          #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__preview {
+            flex-basis: 100%;
+            font-size: 0.85rem;
+            max-width: none; } }
+      #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sent-date {
+        font-size: 0.8rem;
+        margin-left: auto;
+        order: 40; }
+        @media all and (max-width: 1023px) and (max-height: 1024px) {
+          #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sent-date {
+            /* 
+                    * for mobile, we want the date to be on the top-row. 
+                    * changing the order will prevent it from being the last element.
+                    */
+            font-size: .7rem;
+            order: 15; } }
+      #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sender-name, #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__subject, #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__preview {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        white-space: nowrap; }
+  #root .EmailListItemIcon {
+    min-width: 20px;
+    padding: 0 1rem 0 0; }
+    @media all and (max-width: 1023px) and (max-height: 1024px) {
+      #root .EmailListItemIcon {
+        min-width: auto;
+        order: 5;
+        padding: 0;
+        width: auto; } }
+    #root .EmailListItemIcon.EmailListItemIcon--visible {
+      align-items: center;
+      color: #f52830;
+      display: flex;
+      font-size: 20px;
+      justify-content: center; }
+      @media all and (max-width: 1023px) and (max-height: 1024px) {
+        #root .EmailListItemIcon.EmailListItemIcon--visible {
+          font-size: 1rem;
+          padding: 0 0.5rem 0 0; } }
+  #root .EmailListItemOptions {
+    display: flex;
+    height: 72px;
+    position: absolute;
+    right: 0;
+    width: 192px;
+    z-index: 1; }
+  #root .EmailListItemOptionsButton {
+    border: none;
+    color: white;
+    font-size: 28px;
+    height: 100%;
+    outline: none;
+    width: 100%; }
+    #root .EmailListItemOptionsButton:first-child {
+      -webkit-box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
+      -ms-box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2); }
+    #root .EmailListItemOptionsButton.EmailListItemOptionsButton__delete {
+      background-color: #f52830; }
+      #root .EmailListItemOptionsButton.EmailListItemOptionsButton__delete:hover {
+        background-color: #e00a13; }
+    #root .EmailListItemOptionsButton.EmailListItemOptionsButton__flag {
+      background-color: #eeb53a; }
+      #root .EmailListItemOptionsButton.EmailListItemOptionsButton__flag:hover {
+        background-color: #e2a013; }
+    #root .EmailListItemOptionsButton.EmailListItemOptionsButton__more {
+      background-color: #c7d1db; }
+      #root .EmailListItemOptionsButton.EmailListItemOptionsButton__more:hover {
+        background-color: #a8b8c7; }
+  #root .Header {
     background-color: white;
     -webkit-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
     -ms-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-    height: 100%;
-    overflow: hidden;
-    /* prevent inner content from being shown when width is 0 */
-    -webkit-transition: width 0.25s ease;
-    -moz-transition: width 0.25s ease;
-    -o-transition: width 0.25s ease;
-    transition: width 0.25s ease;
-    width: 270px; }
-    @media all and (max-width: 1023px) and (max-height: 1024px) {
-      #root .Drawer .Drawer__content {
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        top: 0;
-        /*$var-header-height;*/
-        width: 248px;
-        z-index: 128; } }
-    #root .Drawer .Drawer__content.Drawer__content--hidden {
-      width: 0; }
-  @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .Drawer {
-      z-index: 128; } }
-
-#root .DrawerMenuList {
-  list-style-type: none;
-  margin: 0;
-  padding: 0; }
-
-#root .DrawerMenuListItem {
-  align-items: center;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0.75rem; }
-  #root .DrawerMenuListItem:hover {
-    background-color: #f2f2f2;
-    cursor: pointer; }
-  @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .DrawerMenuListItem {
-      padding: 1rem; } }
-  #root .DrawerMenuListItem .DrawerMenuListItem__left-container {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start; }
-    #root .DrawerMenuListItem .DrawerMenuListItem__left-container > * {
-      padding-right: 0.75rem; }
-      @media all and (max-width: 1023px) and (max-height: 1024px) {
-        #root .DrawerMenuListItem .DrawerMenuListItem__left-container > * {
-          padding-right: 1rem; } }
-    #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__icon {
-      align-items: center;
-      color: #2b2d31;
+    margin: 0;
+    z-index: 96; }
+    #root .Header .Header__left-element-group {
       display: flex;
-      font-size: 24px;
-      justify-content: center;
-      width: 24px; }
-    #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__primary-content {
-      font-size: 16px; }
-    #root .DrawerMenuListItem .DrawerMenuListItem__left-container .DrawerMenuListItem__secondary-content {
-      color: #73767a;
-      font-size: 12px; }
-  #root .DrawerMenuListItem .DrawerMenuListItem__badge {
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.51);
-    -webkit-border-radius: 14px;
-    -moz-border-radius: 14px;
-    -ms-border-radius: 14px;
-    border-radius: 14px;
-    color: white;
-    display: flex;
-    font-size: 12px;
-    height: 28px;
-    justify-content: center;
-    min-width: 28px; }
-
-#root .DynamicCheckBox {
-  align-items: center;
-  color: white;
-  display: flex;
-  font-size: 18px;
-  font-weight: normal;
-  justify-content: center;
-  height: 42px;
-  overflow: hidden;
-  /*@include transition($local-smooth-transition);*/
-  width: 42px; }
-  #root .DynamicCheckBox .DynamicCheckBox__container {
-    align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0);
-    -webkit-border-radius: 34px;
-    -moz-border-radius: 34px;
-    -ms-border-radius: 34px;
-    border-radius: 34px;
-    display: flex;
-    height: 34px;
-    justify-content: center;
-    transform-style: preserve-3d;
-    transform-origin: center;
-    -webkit-transition: transform 0.5s;
-    -moz-transition: transform 0.5s;
-    -o-transition: transform 0.5s;
-    transition: transform 0.5s;
-    width: 34px; }
-    #root .DynamicCheckBox .DynamicCheckBox__container.DynamicCheckBox--active {
-      /* background-color needs !important, since it is also set inline. */
-      background-color: #f2f5f9 !important;
-      border: 1px solid rgba(0, 0, 0, 0.25);
-      -webkit-border-radius: 34px;
-      -moz-border-radius: 34px;
-      -ms-border-radius: 34px;
-      border-radius: 34px;
-      font-size: 24px;
-      transform: rotateY(-180deg);
-      /*@include transition($local-smooth-transition);*/ }
-    #root .DynamicCheckBox .DynamicCheckBox__container.DynamicCheckBox--checked {
-      /* background-color needs !important, since it is also set inline. */
-      background-color: #00c957 !important;
-      border: 1px solid rgba(0, 0, 0, 0);
-      /*@include transition(none);*/ }
-    #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckbox__check, #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckBox__letter {
-      backface-visibility: hidden;
-      position: absolute; }
-    #root .DynamicCheckBox .DynamicCheckBox__container .DynamicCheckBox__check {
-      transform: rotateY(180deg); }
-
-#root .EmailList {
-  list-style-type: none;
-  margin: 0;
-  max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: overlay;
-  padding: 0;
-  width: 100%; }
-  @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .EmailList {
-      padding-bottom: 96px; } }
-  @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .EmailList * {
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none; } }
-
-@media all and (max-width: 1023px) and (max-height: 1024px) {
-  #root .EmailListItem {
-    align-items: stretch;
-    display: flex;
-    line-height: 1.15rem; } }
-
-#root .EmailListItem .EmailListItem__container {
-  align-items: center;
-  background-color: white;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  display: flex;
-  flex-direction: row;
-  height: 56px;
-  padding: 0 1rem 0 0;
-  z-index: 2;
-  /* This style will target email list items that have already been read. */
-  /* On Mobile, when the user swipes an email, offset it from the right side */
-  /* This style is for the container of the Sender, Date, Subject, and Preview sections. */ }
-  @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .EmailListItem .EmailListItem__container {
-      flex-grow: 1;
-      overflow: hidden;
-      height: 72px;
-      padding: 0 .5rem 0 0;
-      /* allow the email list item to be swiped */
-      position: relative;
-      right: 0;
-      /* animation for the swipe. */
-      -webkit-transition: right 0.2s ease-in;
-      -moz-transition: right 0.2s ease-in;
-      -o-transition: right 0.2s ease-in;
-      transition: right 0.2s ease-in; } }
-  #root .EmailListItem .EmailListItem__container:hover {
-    background-color: #f2f2f2;
-    cursor: pointer; }
-  #root .EmailListItem .EmailListItem__container.EmailListItem__container--read {
-    background-color: #eaedf2;
-    /* Change the text color and font weight for the read emails */ }
-    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read:hover {
-      background-color: #dae0e8;
+      flex: 1;
+      flex-direction: row; }
+    #root .Header .Header__right-element-group {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end; }
+    #root .Header .Header__element {
+      align-items: center;
+      display: flex;
+      padding: 8px; }
+  #root .HeaderButton {
+    background: none;
+    border: none;
+    color: #5f6368;
+    font-size: 24px;
+    height: 36px;
+    min-height: 36px;
+    min-width: 36px;
+    /*outline: none;*/
+    padding: 0;
+    width: 36px; }
+    #root .HeaderButton:hover {
       cursor: pointer; }
-    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__sender-name,
-    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__subject,
-    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__preview,
-    #root .EmailListItem .EmailListItem__container.EmailListItem__container--read .EmailListItem__send-date {
-      color: #555555;
-      font-weight: normal !important; }
-  #root .EmailListItem .EmailListItem__container.EmailListItem__container--swiped-open {
-    right: 192px; }
-  #root .EmailListItem .EmailListItem__container .EmailListItem__checkbox-container {
-    align-items: center;
-    display: flex;
-    font-size: 20px;
-    justify-content: center;
-    padding: 0 1rem 0 1rem; }
-    @media all and (max-width: 1023px) and (max-height: 1024px) {
-      #root .EmailListItem .EmailListItem__container .EmailListItem__checkbox-container {
-        max-width: 72px;
-        min-width: 72px;
-        padding: 0; } }
-  #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container {
+  #root .ListSelectionHeader {
     align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    overflow: hidden;
-    width: 100%; }
-    @media all and (max-width: 1023px) and (max-height: 1024px) {
-      #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container {
-        flex-wrap: wrap; } }
-    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sender-name {
-      font-weight: 700;
-      order: 10;
-      width: 15%; }
-      @media all and (max-width: 1023px) and (max-height: 1024px) {
-        #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sender-name {
-          flex-basis: auto;
-          line-height: 1.5rem;
-          width: auto; } }
-    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__subject {
-      font-weight: 700;
-      order: 20;
-      max-width: 20%;
-      padding-right: .75rem; }
-      @media all and (max-width: 1023px) and (max-height: 1024px) {
-        #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__subject {
-          flex-basis: 100%;
-          font-size: 0.85rem;
-          max-width: none;
-          padding-right: 0; } }
-    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__preview {
-      font-size: 0.8rem;
-      max-width: 50%;
-      order: 30; }
-      @media all and (max-width: 1023px) and (max-height: 1024px) {
-        #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__preview {
-          flex-basis: 100%;
-          font-size: 0.85rem;
-          max-width: none; } }
-    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sent-date {
-      font-size: 0.8rem;
-      margin-left: auto;
-      order: 40; }
-      @media all and (max-width: 1023px) and (max-height: 1024px) {
-        #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sent-date {
-          /* 
-                    * for mobile, we want the date to be on the top-row. 
-                    * changing the order will prevent it from being the last element.
-                    */
-          font-size: .7rem;
-          order: 15; } }
-    #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__sender-name, #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__subject, #root .EmailListItem .EmailListItem__container .EmailListItem__email-info-container .EmailListItem__preview {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      -ms-text-overflow: ellipsis;
-      -o-text-overflow: ellipsis;
-      white-space: nowrap; }
-
-#root .EmailListItemIcon {
-  min-width: 20px;
-  padding: 0 1rem 0 0; }
-  @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .EmailListItemIcon {
-      min-width: auto;
-      order: 5;
-      padding: 0;
-      width: auto; } }
-  #root .EmailListItemIcon.EmailListItemIcon--visible {
-    align-items: center;
-    color: #f52830;
-    display: flex;
-    font-size: 20px;
-    justify-content: center; }
-    @media all and (max-width: 1023px) and (max-height: 1024px) {
-      #root .EmailListItemIcon.EmailListItemIcon--visible {
-        font-size: 1rem;
-        padding: 0 0.5rem 0 0; } }
-
-#root .EmailListItemOptions {
-  display: flex;
-  height: 72px;
-  position: absolute;
-  right: 0;
-  width: 192px;
-  z-index: 1; }
-
-#root .EmailListItemOptionsButton {
-  border: none;
-  color: white;
-  font-size: 28px;
-  height: 100%;
-  outline: none;
-  width: 100%; }
-  #root .EmailListItemOptionsButton:first-child {
-    -webkit-box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
-    -ms-box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0.625rem 0 0.5rem -0.5rem rgba(0, 0, 0, 0.2); }
-  #root .EmailListItemOptionsButton.EmailListItemOptionsButton__delete {
-    background-color: #f52830; }
-    #root .EmailListItemOptionsButton.EmailListItemOptionsButton__delete:hover {
-      background-color: #e00a13; }
-  #root .EmailListItemOptionsButton.EmailListItemOptionsButton__flag {
-    background-color: #eeb53a; }
-    #root .EmailListItemOptionsButton.EmailListItemOptionsButton__flag:hover {
-      background-color: #e2a013; }
-  #root .EmailListItemOptionsButton.EmailListItemOptionsButton__more {
-    background-color: #c7d1db; }
-    #root .EmailListItemOptionsButton.EmailListItemOptionsButton__more:hover {
-      background-color: #a8b8c7; }
-
-#root .Header {
-  background-color: white;
-  -webkit-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-  -ms-box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
-  margin: 0;
-  z-index: 96; }
-  #root .Header .Header__left-element-group {
-    display: flex;
-    flex: 1;
-    flex-direction: row; }
-  #root .Header .Header__right-element-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end; }
-  #root .Header .Header__element {
-    align-items: center;
-    display: flex;
-    padding: 8px; }
-
-#root .HeaderButton {
-  background: none;
-  border: none;
-  color: #5f6368;
-  font-size: 24px;
-  height: 36px;
-  min-height: 36px;
-  min-width: 36px;
-  /*outline: none;*/
-  padding: 0;
-  width: 36px; }
-  #root .HeaderButton:hover {
-    cursor: pointer; }
-
-#root .ListSelectionHeader {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  height: 64px;
-  justify-content: space-between;
-  margin: 0;
-  padding: 0 8px; }
-
-#root .LoadingOverlay {
-  align-items: flex-start;
-  background-color: white;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  opacity: 1.0;
-  padding-top: 128px;
-  pointer-events: none;
-  position: fixed;
-  right: 0;
-  top: 0;
-  -webkit-transition: opacity 2s ease;
-  -moz-transition: opacity 2s ease;
-  -o-transition: opacity 2s ease;
-  transition: opacity 2s ease;
-  z-index: 56; }
-  #root .LoadingOverlay.LoadingOverlay--fade {
-    opacity: 0; }
-
-#root .LoadingSpinner {
-  position: relative;
-  margin: 0 auto;
-  width: 75px; }
-  #root .LoadingSpinner:before {
-    content: '';
-    display: block;
-    padding-top: 100%; }
-  #root .LoadingSpinner .LoadingSpinner__circular {
-    animation: rotate 2s linear infinite;
-    height: 100%;
-    transform-origin: center center;
-    width: 100%;
-    position: absolute;
-    top: 0;
+    height: 64px;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0 8px; }
+  #root .LoadingOverlay {
+    align-items: flex-start;
+    background-color: white;
     bottom: 0;
+    display: flex;
+    justify-content: center;
     left: 0;
+    opacity: 1.0;
+    padding-top: 128px;
+    pointer-events: none;
+    position: fixed;
     right: 0;
-    margin: auto; }
-  #root .LoadingSpinner .LoadingSpinner__path {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-    animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
-    stroke-linecap: round; }
+    top: 0;
+    -webkit-transition: opacity 2s ease;
+    -moz-transition: opacity 2s ease;
+    -o-transition: opacity 2s ease;
+    transition: opacity 2s ease;
+    z-index: 56; }
+    #root .LoadingOverlay.LoadingOverlay--fade {
+      opacity: 0; }
+  #root .LoadingSpinner {
+    position: relative;
+    margin: 0 auto;
+    width: 75px; }
+    #root .LoadingSpinner:before {
+      content: '';
+      display: block;
+      padding-top: 100%; }
+    #root .LoadingSpinner .LoadingSpinner__circular {
+      animation: rotate 2s linear infinite;
+      height: 100%;
+      transform-origin: center center;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto; }
+    #root .LoadingSpinner .LoadingSpinner__path {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+      stroke-linecap: round; }
 
 @keyframes rotate {
   100% {
@@ -526,103 +502,98 @@
   80%,
   90% {
     stroke: #003015; } }
-
-#root .MainHeader {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  height: 64px;
-  justify-content: space-between;
-  margin: 0;
-  padding: 0 8px; }
-  #root .MainHeader .MainHeader__logo {
-    width: 192px; }
-    @media all and (max-width: 1023px) and (max-height: 1024px) {
-      #root .MainHeader .MainHeader__logo {
-        width: 180px; } }
-
-#root .ScreenOverlay {
-  background-color: rgba(0, 0, 0, 0.2);
-  bottom: 0;
-  left: 0;
-  opacity: 1.0;
-  pointer-events: all;
-  position: fixed;
-  right: 0;
-  -webkit-transition: opacity 0.25s ease;
-  -moz-transition: opacity 0.25s ease;
-  -o-transition: opacity 0.25s ease;
-  transition: opacity 0.25s ease;
-  top: 0; }
-  #root .ScreenOverlay.ScreenOverlay--hidden {
-    opacity: 0;
-    pointer-events: none; }
-
-#root .SearchBar {
-  background-color: #f1f3f4;
-  -webkit-border-radius: 18px;
-  -moz-border-radius: 18px;
-  -ms-border-radius: 18px;
-  border-radius: 18px;
-  max-width: 520px;
-  min-width: 180px;
-  padding: 0;
-  -webkit-transition: background-color 0.2s ease-in;
-  -moz-transition: background-color 0.2s ease-in;
-  -o-transition: background-color 0.2s ease-in;
-  transition: background-color 0.2s ease-in;
-  width: 520px; }
-  @media all and (max-width: 1023px) and (max-height: 1024px) {
-    #root .SearchBar {
-      width: auto; } }
-  #root .SearchBar:hover {
-    background-color: #e8eaed; }
-  #root .SearchBar.SearchBar--disabled {
-    pointer-events: none;
-    opacity: 0.7; }
-  #root .SearchBar .SearchBar__inner-div {
+  #root .MainHeader {
     align-items: center;
-    background: none;
+    display: flex;
+    flex-direction: row;
+    height: 64px;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0 8px; }
+    #root .MainHeader .MainHeader__logo {
+      width: 192px; }
+      @media all and (max-width: 1023px) and (max-height: 1024px) {
+        #root .MainHeader .MainHeader__logo {
+          width: 180px; } }
+  #root .ScreenOverlay {
+    background-color: rgba(0, 0, 0, 0.2);
+    bottom: 0;
+    left: 0;
+    opacity: 1.0;
+    pointer-events: all;
+    position: fixed;
+    right: 0;
+    -webkit-transition: opacity 0.25s ease;
+    -moz-transition: opacity 0.25s ease;
+    -o-transition: opacity 0.25s ease;
+    transition: opacity 0.25s ease;
+    top: 0; }
+    #root .ScreenOverlay.ScreenOverlay--hidden {
+      opacity: 0;
+      pointer-events: none; }
+  #root .SearchBar {
+    background-color: #f1f3f4;
     -webkit-border-radius: 18px;
     -moz-border-radius: 18px;
     -ms-border-radius: 18px;
     border-radius: 18px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    -ms-box-shadow: none;
-    box-shadow: none;
-    display: flex;
-    flex-direction: row;
-    height: 36px; }
-    #root .SearchBar .SearchBar__inner-div.SearchBar__inner-div--focused {
-      background-color: white !important;
-      -webkit-box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important;
-      -moz-box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important;
-      -ms-box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important;
-      box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important; }
-
-#root .SearchBarButton {
-  background: none;
-  border: none;
-  color: #5f6368;
-  font-size: 24px;
-  height: 100%;
-  margin: 0 8px 0 8px;
-  min-height: 100%;
-  min-width: 36px;
-  /*outline: none;*/
-  padding: 0;
-  width: 36px; }
-  #root .SearchBarButton:hover {
-    cursor: pointer; }
-
-#root .SearchBarInput {
-  background: none;
-  border: none;
-  font-size: 16px;
-  height: 100%;
-  outline: none;
-  width: 100%; }
+    max-width: 520px;
+    min-width: 180px;
+    padding: 0;
+    -webkit-transition: background-color 0.2s ease-in;
+    -moz-transition: background-color 0.2s ease-in;
+    -o-transition: background-color 0.2s ease-in;
+    transition: background-color 0.2s ease-in;
+    width: 520px; }
+    @media all and (max-width: 1023px) and (max-height: 1024px) {
+      #root .SearchBar {
+        width: auto; } }
+    #root .SearchBar:hover {
+      background-color: #e8eaed; }
+    #root .SearchBar.SearchBar--disabled {
+      pointer-events: none;
+      opacity: 0.7; }
+    #root .SearchBar .SearchBar__inner-div {
+      align-items: center;
+      background: none;
+      -webkit-border-radius: 18px;
+      -moz-border-radius: 18px;
+      -ms-border-radius: 18px;
+      border-radius: 18px;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      -ms-box-shadow: none;
+      box-shadow: none;
+      display: flex;
+      flex-direction: row;
+      height: 36px; }
+      #root .SearchBar .SearchBar__inner-div.SearchBar__inner-div--focused {
+        background-color: white !important;
+        -webkit-box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important;
+        -moz-box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important;
+        -ms-box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important;
+        box-shadow: 0 0 0.1rem 0.05rem #cfd4da !important; }
+  #root .SearchBarButton {
+    background: none;
+    border: none;
+    color: #5f6368;
+    font-size: 24px;
+    height: 100%;
+    margin: 0 8px 0 8px;
+    min-height: 100%;
+    min-width: 36px;
+    /*outline: none;*/
+    padding: 0;
+    width: 36px; }
+    #root .SearchBarButton:hover {
+      cursor: pointer; }
+  #root .SearchBarInput {
+    background: none;
+    border: none;
+    font-size: 16px;
+    height: 100%;
+    outline: none;
+    width: 100%; }
 
 @-webkit-keyframes flipHoriz {
   0% {
@@ -733,18 +704,37 @@
     -webkit-transform: rotate(90deg); }
   100% {
     -webkit-transform: rotate(0deg); } }
-
-#root .animation__flip-horiz {
-  -webkit-animation: flipHoriz 0.5s ease-in 1;
-  -moz-animation: flipHoriz 0.5s ease-in 1;
-  animation: flipHoriz 0.5s ease-in 1; }
-
-#root .animation__flip-in {
-  -webkit-animation: flipIn 0.5 ease-in 1;
-  -moz-animation: flipIn 0.5 ease-in 1;
-  animation: flipIn 0.5 ease-in 1; }
-
-#root .animation__rotate-in {
-  -webkit-animation: rotateIn 0.1s ease-in 1;
-  -moz-animation: rotateIn 0.1s ease-in 1;
-  animation: rotateIn 0.1s ease-in 1; }
+  #root .animation__flip-horiz {
+    -webkit-animation: flipHoriz 0.5s ease-in 1;
+    -moz-animation: flipHoriz 0.5s ease-in 1;
+    animation: flipHoriz 0.5s ease-in 1; }
+  #root .animation__flip-in {
+    -webkit-animation: flipIn 0.5 ease-in 1;
+    -moz-animation: flipIn 0.5 ease-in 1;
+    animation: flipIn 0.5 ease-in 1; }
+  #root .animation__rotate-in {
+    -webkit-animation: rotateIn 0.1s ease-in 1;
+    -moz-animation: rotateIn 0.1s ease-in 1;
+    animation: rotateIn 0.1s ease-in 1; }
+  #root .card {
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    -webkit-transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
+    -o-transition: transform 0.5s;
+    transition: transform 0.5s; }
+    #root .card.card--is-flipped {
+      transform: rotateY(180deg); }
+    #root .card .card__front, #root .card .card__back {
+      backface-visibility: hidden;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%; }
+    #root .card .card__front {
+      z-index: 2;
+      transform: rotateY(0deg); }
+    #root .card .card__back {
+      transform: rotateY(180deg); }

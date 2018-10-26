@@ -69,6 +69,8 @@ $local-font-size-smaller: .8rem;
             padding: 0 $var-email-list-item-icon-padding 0 $var-email-list-item-icon-padding;
 
             @include style-for($var-screen-size-small) {
+                max-height: $var-email-list-item-height-small;
+                min-height: $var-email-list-item-height-small;
                 max-width: $var-email-list-item-height-small;
                 min-width: $var-email-list-item-height-small;
                 padding: 0;

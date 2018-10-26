@@ -1,0 +1,42 @@
+/*
+ * Card flip help: https://davidwalsh.name/css-flip
+ *
+ * Copyright 2007-2018 David Walsh
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
+ * files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, 
+ * modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
+
+.card {
+    position: relative;
+	transform-style: preserve-3d;
+    transform-origin: center;
+    @include transition(transform .5s);
+
+    &.card--is-flipped {
+        transform: rotateY(180deg);
+    }
+
+    & .card__front, .card__back {
+        backface-visibility: hidden;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    & .card__front {
+        z-index: 2;
+        transform: rotateY(0deg);
+    }
+
+    & .card__back {
+        transform: rotateY(180deg);
+    }
+}
+ 

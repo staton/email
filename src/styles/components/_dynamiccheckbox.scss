@@ -1,59 +1,38 @@
 $local-checkbox-size: 34px;
 $local-invisible-border: 1px solid rgba(0, 0, 0, 0);
-$local-smooth-transition: all .25s ease-in;
 
 .DynamicCheckBox {
     align-items: center;
     color: $color-dynamic-checkbox-foreground;
     display: flex;
+    justify-content: center;
     font-size: 18px;
     font-weight: normal;
-    justify-content: center;
-    height: $local-checkbox-size + 8;
-    overflow: hidden;
-    /*@include transition($local-smooth-transition);*/
-    width: $local-checkbox-size + 8;
 
     & .DynamicCheckBox__container {
-        align-items: center;
-        border: $local-invisible-border;
-        @include border-radius($local-checkbox-size);
-        display: flex;
         height: $local-checkbox-size;
-        justify-content: center;
-        transform-style: preserve-3d;
-        transform-origin: center;
-        @include transition(transform .5s);
         width: $local-checkbox-size;
 
-        &.DynamicCheckBox--active {
-            /* background-color needs !important, since it is also set inline. */
-            background-color: $color-dynamic-checkbox-unchecked-background !important;
-            border: 1px solid rgba(0, 0, 0, .25);
-            @include border-radius($local-checkbox-size);
-            font-size: 24px;
-            transform:  rotateY(-180deg);
-            /*@include transition($local-smooth-transition);*/
-        }
-
-        &.DynamicCheckBox--checked {
-            /* background-color needs !important, since it is also set inline. */
-            background-color: $color-app-theme-background !important;
-            border: $local-invisible-border;
-            /*@include transition(none);*/
-        }
-
-        & .DynamicCheckbox__check, .DynamicCheckBox__letter {
-            backface-visibility: hidden;
-            position: absolute;
-        }
-
         & .DynamicCheckBox__check {
-            transform: rotateY(180deg);
+            background-color: $color-dynamic-checkbox-unchecked-background;
+            border: 1px solid rgba(0, 0, 0, .25);
+            font-size: 24px;
+
+            &.DynamicCheckBox__check--checked {
+                background-color: $color-app-theme-background;
+                border: $local-invisible-border;
+            }
         }
 
         & .DynamicCheckBox__letter {
+            border: $local-invisible-border;
+        }
 
+        & .DynamicCheckBox__check, .DynamicCheckBox__letter {
+            align-items: center;
+            @include border-radius($local-checkbox-size);
+            display: flex;
+            justify-content: center;
         }
     }
 }
