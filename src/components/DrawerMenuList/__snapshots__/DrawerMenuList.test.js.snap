@@ -7,19 +7,24 @@ exports[`<DrawerMenuList /> renders correctly 1`] = `
   <Connect(DrawerMenuListItem)
     badge={205}
     icon={<Unknown />}
+    linkTo="/inbox"
     primaryContent="Inbox"
     secondaryContent="test"
   />
   <Connect(DrawerMenuListItem)
+    linkTo="/drafts"
     primaryContent="Drafts"
   />
   <Connect(DrawerMenuListItem)
+    linkTo="/sent"
     primaryContent="Sent"
   />
   <Connect(DrawerMenuListItem)
+    linkTo="/spam"
     primaryContent="Spam"
   />
   <Connect(DrawerMenuListItem)
+    linkTo="/trash"
     primaryContent="Deleted"
   />
 </ul>

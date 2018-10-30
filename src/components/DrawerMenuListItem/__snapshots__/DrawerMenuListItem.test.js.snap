@@ -3,23 +3,33 @@
 exports[`<DrawerMenuListItem /> renders correctly 1`] = `
 <li
   className="DrawerMenuListItem"
+  onClick={[Function]}
   title=""
 >
-  <div
-    className="DrawerMenuListItem__left-container"
+  <Link
+    replace={false}
+    to="/"
   >
     <div
-      className="DrawerMenuListItem__icon"
-    />
-    <div
-      className="DrawerMenuListItem__content"
+      className="DrawerMenuListItem__container"
     >
       <div
-        className="DrawerMenuListItem__primary-content"
+        className="DrawerMenuListItem__left-container"
       >
-        Text
+        <div
+          className="DrawerMenuListItem__icon"
+        />
+        <div
+          className="DrawerMenuListItem__content"
+        >
+          <div
+            className="DrawerMenuListItem__primary-content"
+          >
+            Text
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </Link>
 </li>
 `;

@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MainHeader /> renders correctly for large screens 1`] = `
+<header
+  className="MainHeader"
+>
+  <div>
+    <div>
+      <HeaderButton
+        content={<Unknown />}
+        id="MainHeader__menu-button"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="undefined MainHeader__logo"
+    >
+      logo
+    </div>
+    <div>
+      <Connect(SearchBar) />
+    </div>
+  </div>
+  <div>
+    <div>
+      <HeaderButton
+        content={<Unknown />}
+        id="MainHeader__settings-button"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</header>
+`;
+
+exports[`<MainHeader /> renders correctly for small screens 1`] = `
+<header
+  className="MainHeader"
+>
+  <div>
+    <div>
+      <HeaderButton
+        content={<Unknown />}
+        id="MainHeader__menu-button"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="undefined MainHeader__logo"
+    >
+      logo
+    </div>
+  </div>
+  <div>
+    <div>
+      <HeaderButton
+        content={<Unknown />}
+        id="MainHeader__search-button"
+        onClick={[Function]}
+      />
+    </div>
+    <div>
+      <HeaderButton
+        content={<Unknown />}
+        id="MainHeader__settings-button"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</header>
+`;

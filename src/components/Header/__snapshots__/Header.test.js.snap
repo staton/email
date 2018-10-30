@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders correctly for large screens 1`] = `
+<header
+  className="Header"
+>
+  <Connect(MainHeader)
+    elementClassName="Header__element"
+    leftElementGroupClassName="Header__left-element-group"
+    rightElementGroupClassName="Header__right-element-group"
+  />
+</header>
+`;
+
+exports[`<Header /> renders correctly for small screens 1`] = `
+<header
+  className="Header"
+>
+  <Connect(MainHeader)
+    elementClassName="Header__element"
+    leftElementGroupClassName="Header__left-element-group"
+    rightElementGroupClassName="Header__right-element-group"
+  />
+</header>
+`;

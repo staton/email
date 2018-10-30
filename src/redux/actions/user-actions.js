@@ -35,7 +35,7 @@ export const userLogin = (email, password) => {
  * Sets the logging in state.
  * @param {boolean} isLoggingIn The logging in state.
  */
-const setIsLoggingIn = (isLoggingIn) => {
+export const setIsLoggingIn = (isLoggingIn) => {
     return {
         type: USER_SET_LOGGING_IN,
         payload: {
@@ -48,7 +48,7 @@ const setIsLoggingIn = (isLoggingIn) => {
  * Called when the user successfully logs in.
  * @param {string} response The JSON response.
  */
-const userLoginSuccess = (response) => {
+export const userLoginSuccess = (response) => {
     return {
         type: USER_LOGIN_SUCCESS,
         payload: {
@@ -61,7 +61,7 @@ const userLoginSuccess = (response) => {
  * Called if an error occurs when logging in.
  * @param {string} err The JSON response.
  */
-const userLoginFailure = (err) => {
+export const userLoginFailure = (err) => {
     return {
         type: USER_LOGIN_FAILURE,
         payload: {

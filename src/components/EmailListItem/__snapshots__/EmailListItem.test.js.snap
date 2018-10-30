@@ -3,7 +3,49 @@
 exports[`<EmailListItem /> renders correctly 1`] = `
 <li
   className="EmailListItem"
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
 >
-  hello
+  <div
+    className="EmailListItem__container EmailListItem__container--read"
+  >
+    <div
+      className="EmailListItem__checkbox-container"
+    >
+      <CheckBox
+        isChecked={false}
+        onClick={[Function]}
+      />
+    </div>
+    <EmailListItemIcon
+      content={<Unknown />}
+      isVisible={false}
+    />
+    <div
+      className="EmailListItem__email-info-container"
+    >
+      <div
+        className="EmailListItem__sender-name"
+      >
+        bob
+      </div>
+      <div
+        className="EmailListItem__subject"
+      >
+        hello
+      </div>
+      <div
+        className="EmailListItem__preview"
+      >
+        preview
+      </div>
+      <div
+        className="EmailListItem__sent-date"
+      >
+        2018-5-5
+      </div>
+    </div>
+  </div>
 </li>
 `;

@@ -8,7 +8,7 @@ exports[`<DrawerMenu /> renders correctly 1`] = `
     content="New Email"
     icon={<Unknown />}
     onClick={[Function]}
-    title=""
+    title="New Email"
   />
   <Connect(DrawerMenuList) />
 </div>
