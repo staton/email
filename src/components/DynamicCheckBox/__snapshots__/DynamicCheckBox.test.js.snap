@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DynamicCheckBox /> renders correctly when active and checked 1`] = `
+<div
+  className="DynamicCheckBox"
+  onClick={[Function]}
+>
+  <div
+    className="DynamicCheckBox__container card card--is-flipped"
+  >
+    <div
+      className="DynamicCheckBox__letter card__front"
+      style={
+        Object {
+          "backgroundColor": "rgb(189, 189, 189)",
+        }
+      }
+    />
+    <div
+      className="DynamicCheckBox__check card__back DynamicCheckBox__check--checked"
+    >
+      <Component />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<DynamicCheckBox /> renders correctly when active and unchecked 1`] = `
+<div
+  className="DynamicCheckBox"
+  onClick={[Function]}
+>
+  <div
+    className="DynamicCheckBox__container card card--is-flipped"
+  >
+    <div
+      className="DynamicCheckBox__letter card__front"
+      style={
+        Object {
+          "backgroundColor": "rgb(189, 189, 189)",
+        }
+      }
+    />
+    <div
+      className="DynamicCheckBox__check card__back"
+    />
+  </div>
+</div>
+`;
+
+exports[`<DynamicCheckBox /> renders correctly when not active and unchecked 1`] = `
+<div
+  className="DynamicCheckBox"
+  onClick={[Function]}
+>
+  <div
+    className="DynamicCheckBox__container card"
+  >
+    <div
+      className="DynamicCheckBox__letter card__front"
+      style={
+        Object {
+          "backgroundColor": "rgb(189, 189, 189)",
+        }
+      }
+    />
+    <div
+      className="DynamicCheckBox__check card__back"
+    />
+  </div>
+</div>
+`;

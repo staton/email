@@ -3,6 +3,7 @@
 exports[`<HeaderButton /> renders correctly 1`] = `
 <button
   className="HeaderButton"
+  disabled={false}
   id="my-button"
   onClick={[Function]}
 >

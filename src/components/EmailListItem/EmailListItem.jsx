@@ -34,6 +34,7 @@ export class EmailListItem extends Component {
         super();
 
         this.handleCheckBoxClicked = this.handleCheckBoxClicked.bind(this);
+        this.handleClicked = this.handleClicked.bind(this);
         this.handleLongPressed = this.handleLongPressed.bind(this);
         this.handleTouchEnded = this.handleTouchEnded.bind(this);
         this.handleTouchMoved = this.handleTouchMoved.bind(this);
@@ -46,6 +47,7 @@ export class EmailListItem extends Component {
 		return (
             <li 
                 className="EmailListItem"
+                onClick={this.handleClicked}
                 onTouchEnd={this.handleTouchEnded}
                 onTouchMove={this.handleTouchMoved}
                 onTouchStart={this.handleTouchStarted}
@@ -76,7 +78,7 @@ export class EmailListItem extends Component {
         return (
             (this.props.isSmallScreen)
             ?   <DynamicCheckBox 
-                    active={this.props.isListActive}
+                    isActive={this.props.isListActive}
                     backgroundColor={this.props.email.Color}
                     content={this.props.email.FirstLetter}
                     isChecked={this.props.isSelected}
@@ -142,9 +144,20 @@ export class EmailListItem extends Component {
     }
 
     /**
+     * Called when the user clicks the list item.
+     * @param {object} e The event.
+     */
+    handleClicked(e) {
+        console.log('clicked EmailListItem!');
+    }
+
+    /**
      * Called when a long press occurs.
      */
     handleLongPressed() {
+        if (!this.props.isSmallScreen)
+            return;
+            
         if (this.props.currentSwipedEmails.length > 0) {
             // automatically reset any currently swiped emails:
             this.props.updateCurrentSwipedEmails(this.props.currentSwipedEmails, false);
@@ -159,7 +172,7 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchEnded(e) {
-        if (this.props.isListActive)
+        if (!this.props.isSmallScreen || this.props.isListActive)
             return;
             
         GESTURE_MANAGER.handleTouchEnded(e);
@@ -174,7 +187,7 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchMoved(e) {
-        if (this.props.isListActive)
+        if (!this.props.isSmallScreen || this.props.isListActive)
             return;
 
         GESTURE_MANAGER.handleTouchMoved(e);
@@ -185,7 +198,7 @@ export class EmailListItem extends Component {
      * @param {object} e The event.
      */
     handleTouchStarted(e) {
-        if (this.props.isListActive)
+        if (!this.props.isSmallScreen || this.props.isListActive)
             return;
 
         let id = GESTURE_MANAGER.handleTouchStarted(e);

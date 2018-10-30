@@ -6,7 +6,12 @@ import { EmailList } from './EmailList';
 describe('<EmailList />', () => {
 
     it('renders correctly', () => {
-        const wrapper = shallow(<EmailList emails={[]} />);
+        const wrapper = shallow(
+            <EmailList 
+                emails={[]} 
+                isListActive={false}
+                setListActive={jest.fn}
+            />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 

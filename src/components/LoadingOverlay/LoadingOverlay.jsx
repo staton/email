@@ -17,22 +17,23 @@ export class LoadingOverlay extends Component {
         return (this.props.loadingOverlayState === LoadingOverlayState.None)
             ? null
             : (
-                <div className={this.getClassNames()}>
+                <div className={this.getClassName()}>
                     <LoadingSpinner />
                 </div>
             );
     }
 
-    getClassNames() {
-        const loadingOverlayClassName = 'LoadingOverlay';
-        const loadingOverlayFadeClassNames = loadingOverlayClassName + ' LoadingOverlay--fade';
+    /**
+     * Gets the class name(s) for this component.
+     * @returns {string} The class name(s).
+     */
+    getClassName() {
+        let className = 'LoadingOverlay';
 
-        switch (this.props.loadingOverlayState) {
-            case LoadingOverlayState.Fading:
-                return loadingOverlayFadeClassNames;
-            default:
-                return loadingOverlayClassName;
-        }
+        if (this.props.loadingOverlayState === LoadingOverlayState.Fading)
+            className += ' LoadingOverlay--fade';
+        
+        return className;
     }
 
 }

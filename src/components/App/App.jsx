@@ -123,13 +123,6 @@ export class App extends Component {
         
     }
 
-    checkIfNeedLoadEmails() {
-        if (!this.props.didLoadEmails && this.props.isLoggedIn) {
-            console.log('load emails!')
-            this.props.loadEmails();
-        }
-    }
-
     /**
      * Called when the window resizes.
      * @param {object} e The event.
@@ -142,7 +135,6 @@ export class App extends Component {
 
 function mapStateToProps(store, ownProps) {
     return {
-        didLoadEmails: store.email.didLoadEmails,
         emailLoadingOverlayState: store.email.loadingOverlayState,
         emails: store.email.emails,
         isInboxListActive: store.email.isInboxListActive,
@@ -153,7 +145,6 @@ function mapStateToProps(store, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        loadEmails: loadEmails,
         setScreenSize: setScreenSize,
         setInboxListItemsActive: setInboxListItemsActive,
         userLogin: userLogin

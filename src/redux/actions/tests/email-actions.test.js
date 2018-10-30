@@ -1,7 +1,7 @@
 import * as actions from '../email-actions';
 import Email from '../../../models/email';
-import LoadingOverlayState from '../../enums/LoadingOverlay';
-import { EMAIL_OVERLAY_FADE_SPEED } from '../../resources/constants';
+import EmailFlags from '../../../models/emailFlags';
+import LoadingOverlayState from '../../../enums/LoadingOverlay';
 import {
     EMAIL_ADD, 
     EMAIL_LIST_ITEM_SWIPED,
@@ -22,10 +22,7 @@ describe('email-actions action creators', () => {
     ];
 
     it('creates an action to add emails', () => {
-        const emails = [
-            new Email(),
-            new Email()
-        ];
+        const emails = Object.assign({}, ...testEmails);
         const expectedAction = {
             type: EMAIL_ADD,
             payload: {
@@ -89,7 +86,7 @@ describe('email-actions action creators', () => {
     it('creates an action to set the "emails loading" indicator', () => {
         const overlayState = LoadingOverlayState.Fading;
         const expectedAction = {
-            type: EMAIL_LOAD_IS_BUSY,
+            type: EMAIL_LOADING_OVERLAY_STATE,
             payload: {
                 loadingOverlayState: overlayState
             }

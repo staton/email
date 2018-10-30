@@ -7,43 +7,35 @@ import { MainHeader } from './MainHeader';
 describe('<MainHeader />', () => {
 
     it('renders correctly for small screens', () => {
-        const wrapper = shallow(<MainHeader isSmallScreen={true} />);
+        const wrapper = shallow(
+            <MainHeader 
+                leftElementGroupClassName="Header__left-element-group"
+                rightElementGroupClassName="Header__right-element-group"
+                elementClassName="Header__element"
+                isSmallScreen={true}
+            />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
     it('renders correctly for large screens', () => {
-        const wrapper = shallow(<MainHeader isSmallScreen={false} />);
+        const wrapper = shallow(
+            <MainHeader 
+                leftElementGroupClassName="Header__left-element-group"
+                rightElementGroupClassName="Header__right-element-group"
+                elementClassName="Header__element"
+                isSmallScreen={false} 
+            />);
         expect(toJson(wrapper)).toMatchSnapshot();
-    });
-
-    it('renders menu btn, search btn, settings btn, logo, and no search bar for small screens when search bar is hidden', () => {
-        const wrapper = shallow(
-            <MainHeader 
-                isSearchBarVisible={false}
-                isSmallScreen={true} 
-            />);
-        expect(wrapper.find('#MainHeader__menu-button').length).toEqual(1);
-        expect(wrapper.find('#MainHeader__search-button').length).toEqual(1);
-        expect(wrapper.find('#MainHeader__settings-button').length).toEqual(1);
-        expect(wrapper.find('.MainHeader__logo').length).toEqual(1);
-        expect(wrapper.find(SearchBar).length).toEqual(0);
-    });
-
-    it('renders menu btn, search btn, settings btn, no logo, and search bar for small screens when search bar is visible', () => {
-        const wrapper = shallow(
-            <MainHeader 
-                isSearchBarVisible={true}
-                isSmallScreen={true} 
-            />);
-        expect(wrapper.find('#MainHeader__menu-button').length).toEqual(1);
-        expect(wrapper.find('#MainHeader__search-button').length).toEqual(1);
-        expect(wrapper.find('#MainHeader__settings-button').length).toEqual(1);
-        expect(wrapper.find('.MainHeader__logo').length).toEqual(0);
-        expect(wrapper.find(SearchBar).length).toEqual(1);
     });
     
     it('renders menu btn, search btn, settings btn, logo, and search bar for large screens', () => {
-        const wrapper = shallow(<Header isSmallScreen={false} />);
+        const wrapper = shallow(
+            <MainHeader 
+                leftElementGroupClassName="Header__left-element-group"
+                rightElementGroupClassName="Header__right-element-group"
+                elementClassName="Header__element"
+                isSmallScreen={false} 
+            />);
         expect(wrapper.find('#MainHeader__menu-button').length).toEqual(1);
         expect(wrapper.find('#MainHeader__search-button').length).toEqual(0);
         expect(wrapper.find('#MainHeader__settings-button').length).toEqual(1);
@@ -56,6 +48,9 @@ describe('<MainHeader />', () => {
         const setDrawerVisibility = jest.fn();
         const wrapper = shallow(
             <MainHeader 
+                leftElementGroupClassName="Header__left-element-group"
+                rightElementGroupClassName="Header__right-element-group"
+                elementClassName="Header__element"
                 isDrawerVisible={isDrawerVisible}
                 isSmallScreen={true}
                 setDrawerVisibility={setDrawerVisibility} 
@@ -70,6 +65,9 @@ describe('<MainHeader />', () => {
         const setDrawerVisibility = jest.fn();
         const wrapper = shallow(
             <MainHeader 
+                leftElementGroupClassName="Header__left-element-group"
+                rightElementGroupClassName="Header__right-element-group"
+                elementClassName="Header__element"
                 isDrawerVisible={isDrawerVisible}
                 isSmallScreen={false}
                 setDrawerVisibility={setDrawerVisibility} 
@@ -84,6 +82,9 @@ describe('<MainHeader />', () => {
         const setDrawerVisibility = jest.fn();
         const wrapper = shallow(
             <MainHeader 
+                leftElementGroupClassName="Header__left-element-group"
+                rightElementGroupClassName="Header__right-element-group"
+                elementClassName="Header__element"
                 isDrawerVisible={isDrawerVisible}
                 isSmallScreen={false}
                 setDrawerVisibility={setDrawerVisibility} 
@@ -98,6 +99,9 @@ describe('<MainHeader />', () => {
         const setSearchBarVisibility = jest.fn();
         const wrapper = shallow(
             <MainHeader 
+                leftElementGroupClassName="Header__left-element-group"
+                rightElementGroupClassName="Header__right-element-group"
+                elementClassName="Header__element"
                 isSearchBarVisible={isSearchBarVisible}
                 isSmallScreen={true}
                 setSearchBarVisibility={setSearchBarVisibility} 
@@ -112,6 +116,9 @@ describe('<MainHeader />', () => {
         const setSearchBarVisibility = jest.fn();
         const wrapper = shallow(
             <MainHeader 
+                leftElementGroupClassName="Header__left-element-group"
+                rightElementGroupClassName="Header__right-element-group"
+                elementClassName="Header__element"
                 isSearchBarVisible={isSearchBarVisible}
                 isSmallScreen={true}
                 setSearchBarVisibility={setSearchBarVisibility} 

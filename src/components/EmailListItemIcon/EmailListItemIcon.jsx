@@ -3,19 +3,31 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
     content: PropTypes.any,
-    isVisible: PropTypes.bool.isRequired
+    isVisible: PropTypes.bool,
+    onClick: PropTypes.func
 };
 
 const defaultProps = {
-    content: null
+    content: null,
+    isVisible: true,
+    onClick: () => {}
 };
 
 class EmailListItemIcon extends Component {
 
+    constructor() {
+        super();
+
+        this.handleClicked = this.handleClicked.bind(this);
+    }
+
 	render() {
 		return (
-            <div className={this.getClassName()}>
-            {(this.props.isVisible) ? this.props.content : null}
+            <div 
+                className={this.getClassName()}
+                onClick={this.handleClicked}
+            >
+                {(this.props.isVisible) ? this.props.content : null}
             </div>
 		);
     }
@@ -32,6 +44,16 @@ class EmailListItemIcon extends Component {
         }
 
         return className;
+    }
+
+    /**
+     * Called when the user clicks the email list item icon.
+     * @param {object} e The event.
+     */
+    handleClicked(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.props.onClick();
     }
 
 }

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EmailListItemOptions /> renders correctly 1`] = `
+<div
+  className="EmailListItemOptions"
+>
+  <EmailListItemOptionsButton
+    className="EmailListItemOptionsButton__more"
+    content={<Unknown />}
+    onClick={[Function]}
+  />
+  <EmailListItemOptionsButton
+    className="EmailListItemOptionsButton__flag"
+    content={<Unknown />}
+    onClick={[Function]}
+  />
+  <EmailListItemOptionsButton
+    className="EmailListItemOptionsButton__delete"
+    content={<Unknown />}
+    onClick={[Function]}
+  />
+</div>
+`;

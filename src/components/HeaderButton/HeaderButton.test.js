@@ -27,5 +27,25 @@ describe('<HeaderButton />', () => {
         button.simulate('click');
         expect(onClick).toHaveBeenCalledTimes(1);
     });
+
+    it('is disabled when enabled = false', () => {
+        const wrapper = shallow(
+            <HeaderButton 
+                content="X" 
+                enabled={false}
+                id="my-button"
+            />);
+        expect(wrapper.find('button').prop('disabled')).toBe(true);
+    });
+
+    it('is not disabled when enabled = true', () => {
+        const wrapper = shallow(
+            <HeaderButton 
+                content="X" 
+                enabled={true}
+                id="my-button"
+            />);
+        expect(wrapper.find('button').prop('disabled')).toBe(false);
+    });
     
 });

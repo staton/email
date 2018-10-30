@@ -4,27 +4,39 @@ exports[`<MainHeader /> renders correctly for large screens 1`] = `
 <header
   className="MainHeader"
 >
-  <div>
-    <div>
+  <div
+    className="Header__left-element-group"
+  >
+    <div
+      className="Header__element"
+    >
       <HeaderButton
         content={<Unknown />}
+        enabled={true}
         id="MainHeader__menu-button"
         onClick={[Function]}
       />
     </div>
     <div
-      className="undefined MainHeader__logo"
+      className="Header__element MainHeader__logo"
     >
       logo
     </div>
-    <div>
+    <div
+      className="Header__element"
+    >
       <Connect(SearchBar) />
     </div>
   </div>
-  <div>
-    <div>
+  <div
+    className="Header__right-element-group"
+  >
+    <div
+      className="Header__element"
+    >
       <HeaderButton
         content={<Unknown />}
+        enabled={true}
         id="MainHeader__settings-button"
         onClick={[Function]}
       />
@@ -37,31 +49,44 @@ exports[`<MainHeader /> renders correctly for small screens 1`] = `
 <header
   className="MainHeader"
 >
-  <div>
-    <div>
+  <div
+    className="Header__left-element-group"
+  >
+    <div
+      className="Header__element"
+    >
       <HeaderButton
         content={<Unknown />}
+        enabled={true}
         id="MainHeader__menu-button"
         onClick={[Function]}
       />
     </div>
     <div
-      className="undefined MainHeader__logo"
+      className="Header__element MainHeader__logo"
     >
       logo
     </div>
   </div>
-  <div>
-    <div>
+  <div
+    className="Header__right-element-group"
+  >
+    <div
+      className="Header__element"
+    >
       <HeaderButton
         content={<Unknown />}
+        enabled={true}
         id="MainHeader__search-button"
         onClick={[Function]}
       />
     </div>
-    <div>
+    <div
+      className="Header__element"
+    >
       <HeaderButton
         content={<Unknown />}
+        enabled={true}
         id="MainHeader__settings-button"
         onClick={[Function]}
       />

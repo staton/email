@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EmailListItemIcon /> renders correctly 1`] = `
+<div
+  className="EmailListItemIcon EmailListItemIcon--visible"
+  onClick={[Function]}
+>
+  X
+</div>
+`;

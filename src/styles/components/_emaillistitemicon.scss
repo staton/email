@@ -9,6 +9,10 @@
         width: auto;
     }
 
+    &:hover {
+        cursor: pointer;
+    }
+
     &.EmailListItemIcon--visible {
         align-items: center;
         color: $color-alert;

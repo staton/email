@@ -49,6 +49,7 @@ export class ListSelectionHeader extends Component {
                     <div className={this.props.elementClassName}>
                         <HeaderButton
                             content={<MdDelete />}
+                            enabled={this.props.selectedEmails.length > 0}
                             id={deleteButtonId}
                             onClick={this.handleDeleteButtonClicked} 
                         />
@@ -82,6 +83,7 @@ ListSelectionHeader.defaultProps = defaultProps;
 
 function mapStateToProps(store, ownProps) {
     return {
+        selectedEmails: store.email.selectedEmails
     };
 }
 

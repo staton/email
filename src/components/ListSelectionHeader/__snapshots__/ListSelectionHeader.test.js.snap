@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListSelectionHeader /> renders correctly 1`] = `
+<header
+  className="ListSelectionHeader"
+>
+  <div
+    className="Header__left-element-group"
+  >
+    <div
+      className="Header__element"
+    >
+      <HeaderButton
+        content={<Unknown />}
+        enabled={true}
+        id="ListSelectionHeader__back-button"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+  <div
+    className="Header__right-element-group"
+  >
+    <div
+      className="Header__element"
+    >
+      <HeaderButton
+        content={<Unknown />}
+        enabled={false}
+        id="ListSelectionHeader__delete-button"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</header>
+`;

@@ -4,17 +4,17 @@ import {MdCheck} from 'react-icons/md';
 import BackgroundColor from '../../enums/backgroundColor';
 
 const propTypes = {
-    active: PropTypes.bool,
     backgroundColor: PropTypes.string,
-    content: PropTypes.string.isRequired,
+    content: PropTypes.string,
+    isActive: PropTypes.bool,
     isChecked: PropTypes.bool,
     onClick: PropTypes.func
 };
 
 const defaultProps = {
-    active: false,
     backgroundColor: BackgroundColor.Gray,
-    content: null,
+    content: '',
+    isActive: false,
     isChecked: false,
     onClick: () => {}
 };
@@ -68,7 +68,7 @@ class DynamicCheckBox extends Component {
     getContainerClassName() {
         let className = 'DynamicCheckBox__container card';
 
-        if (this.props.active)
+        if (this.props.isActive)
             className += ' card--is-flipped';
 
 
@@ -80,7 +80,7 @@ class DynamicCheckBox extends Component {
      * @param {object} e The event.
      */
     handleClicked(e) {
-        if (this.props.active) {
+        if (this.props.isActive) {
             e.preventDefault();
             e.stopPropagation();
             this.props.onClick();

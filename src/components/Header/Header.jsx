@@ -23,19 +23,14 @@ export class Header extends Component {
         const rightGroupClassName = 'Header__right-element-group';
         const elementClassName = 'Header__element';
 
-        // large screen devices always show the main header only:
-        if (!this.props.isSmallScreen)
-            return this.getMainHeader(leftGroupClassName, rightGroupClassName, elementClassName);
-        
-        // The list is in the active state, show the selection header:
-        if (this.props.isInboxListActive)
-            return this.getListSelectionHeader(leftGroupClassName, rightGroupClassName, elementClassName);
+        if (this.props.isSmallScreen) {
+            if (this.props.isInboxListActive)   // The list is in the active state, show the selection header:
+                return this.getListSelectionHeader(leftGroupClassName, rightGroupClassName, elementClassName);
+            else if (this.props.isSearching)    // The user is searching, show the search header (TODO):
+                return this.getMainHeader(leftGroupClassName, rightGroupClassName, elementClassName);
+        }
 
-        // The user is searching, show the search header:
-        if (this.props.isSearching)
-            return this.getMainHeader(leftGroupClassName, rightGroupClassName, elementClassName);
-
-        // Normal state, show the main header:
+        // Normal state, show the main header (note: large screen devices will always show the main header):
         return this.getMainHeader(leftGroupClassName, rightGroupClassName, elementClassName);
     }
 

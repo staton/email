@@ -3,6 +3,7 @@
 exports[`<EmailListItem /> renders correctly 1`] = `
 <li
   className="EmailListItem"
+  onClick={[Function]}
   onTouchEnd={[Function]}
   onTouchMove={[Function]}
   onTouchStart={[Function]}
@@ -21,6 +22,7 @@ exports[`<EmailListItem /> renders correctly 1`] = `
     <EmailListItemIcon
       content={<Unknown />}
       isVisible={false}
+      onClick={[Function]}
     />
     <div
       className="EmailListItem__email-info-container"
