@@ -11,16 +11,21 @@ $local-invisible-border: 1px solid rgba(0, 0, 0, 0);
 
     & .DynamicCheckBox__container {
         height: $local-checkbox-size;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: $local-checkbox-size;
 
         & .DynamicCheckBox__check {
             background-color: $color-dynamic-checkbox-unchecked-background;
             border: 1px solid rgba(0, 0, 0, .25);
             font-size: 24px;
+            @include transition(background-color .1s ease-in);
 
             &.DynamicCheckBox__check--checked {
                 background-color: $color-app-theme-background;
                 border: $local-invisible-border;
+                @include transition(background-color .05s ease-in, );
             }
         }
 

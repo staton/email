@@ -3,15 +3,18 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import Email from '../../models/email';
 import EmailListItem from '../EmailListItem/EmailListItem';
 import EMAIL_MANAGER from '../../managers/emailManager';
 
 const propTypes = {
+    emails: PropTypes.arrayOf(PropTypes.instanceOf(Email)),
     isListActive: PropTypes.bool.isRequired,
     setListActive: PropTypes.func.isRequired
 };
 
 const defaultProps = {
+    emails: []
 };
 
 export class EmailList extends Component {
@@ -71,7 +74,7 @@ export class EmailList extends Component {
 function mapStateToProps(store, ownProps) {
     return {
         currentSwipedEmails: store.email.currentSwipedEmails,
-        emails: store.email.emails,
+        emails: ownProps.emails,
         isListActive: ownProps.isListActive,
         selectedEmails: store.email.selectedEmails,
         setListActive: ownProps.setListActive

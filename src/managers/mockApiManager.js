@@ -1,3 +1,6 @@
+const LOAD_EMAILS_DELAY = 2000;
+const LOGIN_DELAY = 2000;
+
 class MockApiManager {
 
     loadEmails(success, failure) {
@@ -10,7 +13,26 @@ class MockApiManager {
             } catch (err) {
                 failure(err);
             }
-        }, 3000);
+        }, LOAD_EMAILS_DELAY);
+    }
+
+    login(email, password, success, failure) {
+        let response = `{
+            "response_code": 1,
+            "user": {
+                "email": "s@gmail.com",
+                "name": "Staton",
+                "signature": "<div>-S</div>"
+            }
+        }`;
+
+        setTimeout(() => {
+            try {
+                success(response);
+            } catch (err) {
+                failure(err);
+            }
+        }, LOGIN_DELAY);
     }
 
     getMockEmailJson() {
@@ -24,9 +46,9 @@ class MockApiManager {
                 "bccEmails": [],
                 "subject": "hello from bob",
                 "preview": "long time no see",
-                "body": "",
+                "body": null,
                 "emailSentDateTime": "2018-03-26T12:05:00Z",
-                "deletionDateTime": "",
+                "deletionDateTime": null,
                 "flags": {
                     "didReply": false,
                     "isImportant": false,
@@ -43,9 +65,9 @@ class MockApiManager {
                 "bccEmails": [],
                 "subject": "hey its joe",
                 "preview": "havent seen you in a long time",
-                "body": "",
+                "body": null,
                 "emailSentDateTime": "2018-04-18T18:22:00Z",
-                "deletionDateTime": "",
+                "deletionDateTime": null,
                 "flags": {
                     "didReply": false,
                     "isImportant": false,
@@ -62,9 +84,9 @@ class MockApiManager {
                 "bccEmails": [],
                 "subject": "hello from bob again",
                 "preview": "here is a really long email preview to test to abc dfef gh s make sure that it gets cut off ok its not long enough yeah now it should be long enough",
-                "body": "",
+                "body": null,
                 "emailSentDateTime": "2018-08-29T11:58:00Z",
-                "deletionDateTime": "",
+                "deletionDateTime": null,
                 "flags": {
                     "didReply": false,
                     "isImportant": true,

@@ -73,6 +73,45 @@ class EmailManager {
         return _.reject(emails, (o) => o.Id === email.Id);
     }
 
+    /**
+     * Returns the emails that belong in the Inbox.
+     * @param {Email[]} emails The list of emails to filter.
+     * @returns {Email[]} The emails that belong in the inbox.
+     */
+    getInboxEmails(emails) {
+        return _.filter(emails, (o) => !o.Flags.IsSpam && !o.deletionDateTime);
+    }
+
+    /**
+     * Returns the emails that belong in the Sent folder.
+     * @param {Email[]} emails The list of emails to filter.
+     * @param {string} userEmail The user's email address.
+     * @returns {Email[]} The emails that belong in the sent folder.
+     */
+    getSentEmails(emails, userEmail) {
+        return _.filter(emails, (o) => 
+            o.FromEmail.toLowerCase() !== userEmail.toLowerCase() 
+            && !o.deletionDateTime);
+    }
+
+    /**
+     * Returns the emails that belong in the Spam folder.
+     * @param {Email[]} emails The list of emails to filter.
+     * @returns {Email[]} The emails that belong in the spam folder.
+     */
+    getSpamEmails(emails) {
+        return _.filter(emails, (o) => o.Flags.IsSpam && !o.deletionDateTime);
+    }
+
+    /**
+     * Returns the emails that belong in the Trash folder.
+     * @param {Email[]} emails The list of emails to filter.
+     * @returns {Email[]} The emails that belong in the trash folder.
+     */
+    getDeletedEmails(emails) {
+        return _.filter(emails, (o) => o.deletionDateTime);
+    }
+
 }
 
 const EMAIL_MANAGER = new EmailManager();

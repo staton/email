@@ -15,6 +15,7 @@ export const INITIAL_STATE = {
     emails: [],
     currentSwipedEmails: [],
     didErrorLoadingEmails: false,
+    didLoadEmails: false,
     loadingOverlayState: LoadingOverlayState.None,
     isInboxListActive: false,
     selectedEmails: []
@@ -89,6 +90,7 @@ const loadEmails = (state, payload) => {
     return {
         ...state,
         didErrorLoadingEmails: false,
+        didLoadEmails: true,
         emails: EMAIL_MANAGER.sortEmailsByDate(emails, false)
     };
 };
