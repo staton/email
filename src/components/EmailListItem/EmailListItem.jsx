@@ -8,7 +8,9 @@ import DynamicCheckBox from '../DynamicCheckBox/DynamicCheckBox';
 import Email from '../../models/email';
 import EmailListItemIcon from '../EmailListItemIcon/EmailListItemIcon';
 import EmailListItemOptions from '../EmailListItemOptions/EmailListItemOptions';
+import EMAIL_MANAGER from '../../managers/emailManager';
 import GESTURE_MANAGER from '../../managers/gestureManager';
+import STRINGS from '../../resources/strings';
 import {
     selectEmail,
     updateCurrentSwipedEmails
@@ -43,6 +45,7 @@ export class EmailListItem extends Component {
 
 	render() {
         const emailSentDate = this.props.email.EmailSentDateTime.toLocaleDateString();
+        const senderName = this.getFromName();
 
 		return (
             <li 
@@ -54,14 +57,14 @@ export class EmailListItem extends Component {
             >
                 <div className={this.getEmailListItemClassNames()}>
                     <div className="EmailListItem__checkbox-container">
-                    {this.getCheckBox()}
+                    {this.getCheckBox(senderName)}
                     </div>
                     {(!this.props.isSmallScreen) ? this.getFlagIcon() : null}
                     <div className="EmailListItem__email-info-container">
                         {(this.props.isSmallScreen) ? this.getFlagIcon() : null}
-                        <div className="EmailListItem__sender-name">{this.props.email.FromName}</div>
-                        <div className="EmailListItem__subject">{this.props.email.Subject}</div>
-                        <div className="EmailListItem__preview">{this.props.email.Preview}</div>
+                        <div className="EmailListItem__sender-name">{senderName}</div>
+                        <div className="EmailListItem__subject">{this.getSubject()}</div>
+                        <div className="EmailListItem__preview">{this.getPreview()}</div>
                         <div className="EmailListItem__sent-date">{emailSentDate}</div>
                     </div>
                 </div>
@@ -72,15 +75,16 @@ export class EmailListItem extends Component {
 
     /**
      * Gets the checkbox for this list item.
+     * @param {string} senderName The sender name of the email.
      * @returns {Element} The checkbox.
      */
-    getCheckBox() {
+    getCheckBox(senderName) {
         return (
             (this.props.isSmallScreen)
             ?   <DynamicCheckBox 
                     isActive={this.props.isListActive}
                     backgroundColor={this.props.email.Color}
-                    content={this.props.email.FirstLetter}
+                    content={EMAIL_MANAGER.getDynamicCheckBoxLetter(senderName)}
                     isChecked={this.props.isSelected}
                     onClick={this.handleCheckBoxClicked}
                 />
@@ -88,19 +92,6 @@ export class EmailListItem extends Component {
                     isChecked={this.props.isSelected}
                     onClick={this.handleCheckBoxClicked}
                 />
-        );
-    }
-
-    /**
-     * Gets the flag icon for this list item.
-     * @returns {Element} The flag icon.
-     */
-    getFlagIcon() {
-        return (
-            <EmailListItemIcon 
-                content={<MdFlag />} 
-                isVisible={this.props.email.Flags.IsImportant}
-            />
         );
     }
 
@@ -133,6 +124,53 @@ export class EmailListItem extends Component {
                 isVisible={this.props.email.Flags.IsImportant}
             />
         );
+    }
+
+    /**
+     * Gets the flag icon for this list item.
+     * @returns {Element} The flag icon.
+     */
+    getFlagIcon() {
+        return (
+            <EmailListItemIcon 
+                content={<MdFlag />} 
+                isVisible={this.props.email.Flags.IsImportant}
+            />
+        );
+    }
+
+    /**
+     * Gets email sender's name.
+     * @returns {string} The email sender's name.
+     */
+    getFromName() {
+        if (this.props.email.ToEmails[0]) {
+            if (this.props.email.ToEmails[0].toLowerCase() === this.props.user.Email.toLowerCase()) {
+                // received email
+                return this.props.email.FromName ? this.props.email.FromName : this.props.email.FromEmail;
+            } else  {
+                // sent email
+                return this.props.email.ToNames[0] ? this.props.email.ToNames[0]: this.props.email.ToEmails[0];
+            }
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * Gets the email preview. If empty, will return 'preview not available'.
+     * @returns {string} The preview of the email.
+     */
+    getPreview() {
+        return this.props.email.Preview ? this.props.email.Preview : STRINGS.PreviewNotAvailable;
+    }
+
+    /**
+     * Gets the email subject. If empty, will return 'untitled'.
+     * @returns {string} The subject of the email.
+     */
+    getSubject() {
+        return this.props.email.Subject ? this.props.email.Subject : STRINGS.Untitled;
     }
 
     /**
@@ -216,7 +254,8 @@ function mapStateToProps(store, ownProps) {
         isSmallScreen: store.app.isSmallScreen,
         isSwipedOpen: ownProps.isSwipedOpen,
         selectEmail: store.email.selectEmail,
-        setListActive: ownProps.setListActive
+        setListActive: ownProps.setListActive,
+        user: store.user.user
     };
 }
 

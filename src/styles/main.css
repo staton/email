@@ -363,6 +363,8 @@
         order: 5;
         padding: 0;
         width: auto; } }
+    #root .EmailListItemIcon:hover {
+      cursor: pointer; }
     #root .EmailListItemIcon.EmailListItemIcon--visible {
       align-items: center;
       color: #f52830;

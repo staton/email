@@ -50,8 +50,8 @@ class Email {
         return this._toEmails;
     }
 
-    get FirstLetter() {
-        return this._firstLetter;
+    get ToNames() {
+        return this._toNames;
     }
 
     get Color() {
@@ -59,11 +59,12 @@ class Email {
     }
 
     constructor(id, fromName, fromEmail, toEmails, ccEmails, bccEmails,
-        subject, preview, emailSentDateTime, deletionDateTime, flags) {
+        subject, preview, emailSentDateTime, deletionDateTime, flags, toNames = []) {
 
         this._id = id;
         this._fromName = fromName;
         this._fromEmail = fromEmail;
+        this._toNames = toNames;
         this._toEmails = toEmails;
         this._ccEmails = ccEmails;
         this._bccEmails = bccEmails;
@@ -73,9 +74,6 @@ class Email {
         this._emailSentDateTime = emailSentDateTime;
         this._deletionDateTime = deletionDateTime;
         this._flags = flags;
-        this._firstLetter = (this._fromName.trim() === '')
-            ? '?'
-            : this._fromName.charAt(0).toUpperCase();
         this._color = BackgroundColor.getRandomEmailColor();
 
     }

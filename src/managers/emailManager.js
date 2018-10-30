@@ -30,7 +30,8 @@ class EmailManager {
                     json.flags.isImportant,
                     json.flags.isSpam,
                     json.flags.isUnread
-                )
+                ),
+                json.toNames
             );
         } catch (exception) {
             console.warn(exception.toString());
@@ -110,6 +111,14 @@ class EmailManager {
      */
     getDeletedEmails(emails) {
         return _.filter(emails, (o) => o.deletionDateTime);
+    }
+
+    /**
+     * Gets the first letter of the name, to display in dynamic checkboxes.
+     * @param {string} name The name of which the first letter will be used for dynamic checkboxes.
+     */
+    getDynamicCheckBoxLetter(name) {
+        return (name.trim() === '') ? '?' : name.charAt(0).toUpperCase();
     }
 
 }
