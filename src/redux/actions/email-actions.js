@@ -4,7 +4,11 @@ import { EMAIL_OVERLAY_FADE_SPEED } from '../../resources/constants';
 import { 
     EMAIL_ADD, 
     EMAIL_LIST_ITEM_SWIPED,
+    EMAIL_DRAFT_ITEMS_ACTIVE,
     EMAIL_INBOX_ITEMS_ACTIVE,
+    EMAIL_SENT_ITEMS_ACTIVE,
+    EMAIL_SPAM_ITEMS_ACTIVE,
+    EMAIL_TRASH_ITEMS_ACTIVE,
     EMAIL_LOAD_ERROR,
     EMAIL_LOAD_SUCCESS,
     EMAIL_LOADING_OVERLAY_STATE,
@@ -96,6 +100,20 @@ export const selectEmail = (emails, isSelected) => {
 };
 
 /**
+ * Sets the draft list items to an active state, allowing the dynamic checkboxes
+ * to be selected (small screen devices only).
+ * @param {boolean} isActive Indicates if the email list items are active or not.
+ */
+export const setDraftListItemsActive = (isActive) => {
+    return {
+        type: EMAIL_DRAFT_ITEMS_ACTIVE,
+        payload: {
+            isActive: isActive
+        }
+    };
+};
+
+/**
  * Sets the inbox list items to an active state, allowing the dynamic checkboxes
  * to be selected (small screen devices only).
  * @param {boolean} isActive Indicates if the email list items are active or not.
@@ -103,6 +121,48 @@ export const selectEmail = (emails, isSelected) => {
 export const setInboxListItemsActive = (isActive) => {
     return {
         type: EMAIL_INBOX_ITEMS_ACTIVE,
+        payload: {
+            isActive: isActive
+        }
+    };
+};
+
+/**
+ * Sets the sent list items to an active state, allowing the dynamic checkboxes
+ * to be selected (small screen devices only).
+ * @param {boolean} isActive Indicates if the email list items are active or not.
+ */
+export const setSentListItemsActive = (isActive) => {
+    return {
+        type: EMAIL_SENT_ITEMS_ACTIVE,
+        payload: {
+            isActive: isActive
+        }
+    };
+};
+
+/**
+ * Sets the spam list items to an active state, allowing the dynamic checkboxes
+ * to be selected (small screen devices only).
+ * @param {boolean} isActive Indicates if the email list items are active or not.
+ */
+export const setSpamListItemsActive = (isActive) => {
+    return {
+        type: EMAIL_SPAM_ITEMS_ACTIVE,
+        payload: {
+            isActive: isActive
+        }
+    };
+};
+
+/**
+ * Sets the trash list items to an active state, allowing the dynamic checkboxes
+ * to be selected (small screen devices only).
+ * @param {boolean} isActive Indicates if the email list items are active or not.
+ */
+export const setTrashListItemsActive = (isActive) => {
+    return {
+        type: EMAIL_TRASH_ITEMS_ACTIVE,
         payload: {
             isActive: isActive
         }

@@ -75,12 +75,22 @@ class EmailManager {
     }
 
     /**
+     * Returns the emails that belong in the Trash folder.
+     * @param {Email[]} emails The list of emails to filter.
+     * @param {Email} userEmail The user's email address.
+     * @returns {Email[]} The emails that belong in the trash folder.
+     */
+    getDraftEmails(emails, userEmail) {
+        return _.filter(emails, (o) => o.FromEmail.toLowerCase() === userEmail.toLowerCase() && !o.EmailSentDateTime);
+    }
+
+    /**
      * Returns the emails that belong in the Inbox.
      * @param {Email[]} emails The list of emails to filter.
      * @returns {Email[]} The emails that belong in the inbox.
      */
     getInboxEmails(emails) {
-        return _.filter(emails, (o) => !o.Flags.IsSpam && !o.deletionDateTime);
+        return _.filter(emails, (o) => !o.Flags.IsSpam && !o.DeletionDateTime);
     }
 
     /**
@@ -90,9 +100,7 @@ class EmailManager {
      * @returns {Email[]} The emails that belong in the sent folder.
      */
     getSentEmails(emails, userEmail) {
-        return _.filter(emails, (o) => 
-            o.FromEmail.toLowerCase() !== userEmail.toLowerCase() 
-            && !o.deletionDateTime);
+        return _.filter(emails, (o) => o.FromEmail.toLowerCase() === userEmail.toLowerCase() && !o.DeletionDateTime);
     }
 
     /**
@@ -101,7 +109,7 @@ class EmailManager {
      * @returns {Email[]} The emails that belong in the spam folder.
      */
     getSpamEmails(emails) {
-        return _.filter(emails, (o) => o.Flags.IsSpam && !o.deletionDateTime);
+        return _.filter(emails, (o) => o.Flags.IsSpam && !o.DeletionDateTime);
     }
 
     /**
@@ -109,8 +117,8 @@ class EmailManager {
      * @param {Email[]} emails The list of emails to filter.
      * @returns {Email[]} The emails that belong in the trash folder.
      */
-    getDeletedEmails(emails) {
-        return _.filter(emails, (o) => o.deletionDateTime);
+    getTrashEmails(emails) {
+        return _.filter(emails, (o) => o.DeletionDateTime);
     }
 
     /**

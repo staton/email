@@ -5,7 +5,11 @@ import LoadingOverlayState from '../../../enums/LoadingOverlay';
 import {
     EMAIL_ADD, 
     EMAIL_LIST_ITEM_SWIPED,
+    EMAIL_DRAFT_ITEMS_ACTIVE,
     EMAIL_INBOX_ITEMS_ACTIVE,
+    EMAIL_SENT_ITEMS_ACTIVE,
+    EMAIL_SPAM_ITEMS_ACTIVE,
+    EMAIL_TRASH_ITEMS_ACTIVE,
     EMAIL_LOAD_ERROR,
     EMAIL_LOAD_SUCCESS,
     EMAIL_LOADING_OVERLAY_STATE,
@@ -71,6 +75,18 @@ describe('email-actions action creators', () => {
         expect(actions.selectEmail(emailsToSelect, isSelected)).toEqual(expectedAction);
     });
 
+    it('creates an action to set the draft list active', () => {
+        const isActive = true;
+        const expectedAction = {
+            type: EMAIL_DRAFT_ITEMS_ACTIVE,
+            payload: {
+                isActive: isActive
+            }
+        };
+
+        expect(actions.setDraftListItemsActive(isActive)).toEqual(expectedAction);
+    });
+
     it('creates an action to set the inbox list active', () => {
         const isActive = true;
         const expectedAction = {
@@ -81,6 +97,42 @@ describe('email-actions action creators', () => {
         };
 
         expect(actions.setInboxListItemsActive(isActive)).toEqual(expectedAction);
+    });
+
+    it('creates an action to set the sent list active', () => {
+        const isActive = true;
+        const expectedAction = {
+            type: EMAIL_SENT_ITEMS_ACTIVE,
+            payload: {
+                isActive: isActive
+            }
+        };
+
+        expect(actions.setSentListItemsActive(isActive)).toEqual(expectedAction);
+    });
+
+    it('creates an action to set the spam list active', () => {
+        const isActive = true;
+        const expectedAction = {
+            type: EMAIL_SPAM_ITEMS_ACTIVE,
+            payload: {
+                isActive: isActive
+            }
+        };
+
+        expect(actions.setSpamListItemsActive(isActive)).toEqual(expectedAction);
+    });
+
+    it('creates an action to set the trash list active', () => {
+        const isActive = true;
+        const expectedAction = {
+            type: EMAIL_TRASH_ITEMS_ACTIVE,
+            payload: {
+                isActive: isActive
+            }
+        };
+
+        expect(actions.setTrashListItemsActive(isActive)).toEqual(expectedAction);
     });
 
     it('creates an action to set the "emails loading" indicator', () => {

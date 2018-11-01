@@ -162,4 +162,65 @@ describe('email-reducers', () => {
 
         expect(emailReducer(state, action)).toEqual(expectedState);
     });
+
+    it('sets the draft list active', () => {
+        const state = { ...INITIAL_STATE };
+        const isActive = true;
+        const expectedState = {
+            ...state,
+            isDraftListActive: isActive
+        };
+        const action = actions.setDraftListItemsActive(isActive);
+
+        expect(emailReducer(state, action)).toEqual(expectedState);
+    });
+
+    it('sets the inbox list active', () => {
+        const state = { ...INITIAL_STATE };
+        const isActive = true;
+        const expectedState = {
+            ...state,
+            isInboxListActive: isActive
+        };
+        const action = actions.setInboxListItemsActive(isActive);
+
+        expect(emailReducer(state, action)).toEqual(expectedState);
+    });
+
+    it('sets the sent list active', () => {
+        const state = { ...INITIAL_STATE };
+        const isActive = true;
+        const expectedState = {
+            ...state,
+            isSentListActive: isActive
+        };
+        const action = actions.setSentListItemsActive(isActive);
+
+        expect(emailReducer(state, action)).toEqual(expectedState);
+    });
+
+    it('sets the spam list active', () => {
+        const state = { ...INITIAL_STATE };
+        const isActive = true;
+        const expectedState = {
+            ...state,
+            isSpamListActive: isActive
+        };
+        const action = actions.setSpamListItemsActive(isActive);
+
+        expect(emailReducer(state, action)).toEqual(expectedState);
+    });
+
+    it('sets the trash list active', () => {
+        const state = { ...INITIAL_STATE };
+        const isActive = true;
+        const expectedState = {
+            ...state,
+            isTrashListActive: isActive
+        };
+        const action = actions.setTrashListItemsActive(isActive);
+
+        expect(emailReducer(state, action)).toEqual(expectedState);
+    });
+
 });

@@ -3,7 +3,11 @@ import LoadingOverlayState from '../../enums/LoadingOverlay';
 import { 
     EMAIL_ADD,
     EMAIL_LIST_ITEM_SWIPED,
+    EMAIL_DRAFT_ITEMS_ACTIVE,
     EMAIL_INBOX_ITEMS_ACTIVE,
+    EMAIL_SENT_ITEMS_ACTIVE,
+    EMAIL_SPAM_ITEMS_ACTIVE,
+    EMAIL_TRASH_ITEMS_ACTIVE,
     EMAIL_LOAD_ERROR,
     EMAIL_LOAD_SUCCESS,
     EMAIL_LOADING_OVERLAY_STATE,
@@ -17,7 +21,11 @@ export const INITIAL_STATE = {
     didErrorLoadingEmails: false,
     didLoadEmails: false,
     loadingOverlayState: LoadingOverlayState.None,
+    isDraftListActive: false,
     isInboxListActive: false,
+    isSentListActive: false,
+    isSpamListActive: false,
+    isTrashListActive: false,
     selectedEmails: []
 };
 
@@ -33,9 +41,25 @@ export default function(state = INITIAL_STATE, action) {
 
             return updateCurrentSwipedEmails(state, action.payload);
 
+        case EMAIL_DRAFT_ITEMS_ACTIVE:
+
+            return setDraftListItemsActive(state, action.payload);
+
         case EMAIL_INBOX_ITEMS_ACTIVE:
 
             return setInboxListItemsActive(state, action.payload);
+
+        case EMAIL_SENT_ITEMS_ACTIVE:
+
+            return setSentListItemsActive(state, action.payload);
+
+        case EMAIL_SPAM_ITEMS_ACTIVE:
+
+            return setSpamListItemsActive(state, action.payload);
+
+        case EMAIL_TRASH_ITEMS_ACTIVE:
+
+            return setTrashListItemsActive(state, action.payload);
 
         case EMAIL_LOAD_ERROR:
 
@@ -140,7 +164,19 @@ const setDidErrorLoadingEmails = (state, payload) => {
 };
 
 /**
- * Sets the 'isListActive' state.
+ * Sets the 'isDraftListActive' state.
+ * @param {object} state The current state.
+ * @param {object} payload The payload.
+ */
+const setDraftListItemsActive = (state, payload) => {
+    return {
+        ...state,
+        isDraftListActive: payload.isActive
+    };
+};
+
+/**
+ * Sets the 'isInboxListActive' state.
  * @param {object} state The current state.
  * @param {object} payload The payload.
  */
@@ -148,6 +184,42 @@ const setInboxListItemsActive = (state, payload) => {
     return {
         ...state,
         isInboxListActive: payload.isActive
+    };
+};
+
+/**
+ * Sets the 'isSentListActive' state.
+ * @param {object} state The current state.
+ * @param {object} payload The payload.
+ */
+const setSentListItemsActive = (state, payload) => {
+    return {
+        ...state,
+        isSentListActive: payload.isActive
+    };
+};
+
+/**
+ * Sets the 'isSpamListActive' state.
+ * @param {object} state The current state.
+ * @param {object} payload The payload.
+ */
+const setSpamListItemsActive = (state, payload) => {
+    return {
+        ...state,
+        isSpamListActive: payload.isActive
+    };
+};
+
+/**
+ * Sets the 'isTrashListActive' state.
+ * @param {object} state The current state.
+ * @param {object} payload The payload.
+ */
+const setTrashListItemsActive = (state, payload) => {
+    return {
+        ...state,
+        isTrashListActive: payload.isActive
     };
 };
 

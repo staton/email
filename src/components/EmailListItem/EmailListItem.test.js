@@ -4,6 +4,7 @@ import { shallow, mount } from 'enzyme';
 import { EmailListItem } from './EmailListItem';
 import Email from '../../models/email';
 import EmailFlags from '../../models/emailFlags';
+import USER from '../../models/user';
 import CheckBox from '../CheckBox/CheckBox';
 import DynamicCheckBox from '../DynamicCheckBox/DynamicCheckBox';
 import EmailListItemOptions from '../EmailListItemOptions/EmailListItemOptions';
@@ -13,6 +14,13 @@ describe('<EmailListItem />', () => {
     const GET_EMAIL = () => new Email(
         0, 'bob', 'bob@example.com', ['s@gmail.com'], [], [], 'hello', 'preview', 
         new Date('2018-05-05T12:05:00Z'), null, new EmailFlags(false, false, false, false));
+    const GET_USER = () => { 
+        let user = Object.assign({}, USER);
+        user.Name = 'staton';
+        user.Email = 's@gmail.com';
+        user.Signature = '<p>s</p>';
+        return user;
+    }
 
     it('renders correctly', () => {
         const wrapper = shallow(
@@ -20,6 +28,7 @@ describe('<EmailListItem />', () => {
                 email={GET_EMAIL()}
                 isListActive={false}
                 setListActive={jest.fn}
+                user={GET_USER()}
             />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
@@ -31,6 +40,7 @@ describe('<EmailListItem />', () => {
                 isListActive={false}
                 isSmallScreen={false}
                 setListActive={jest.fn}
+                user={GET_USER()}
             />);
         expect(wrapper.find(CheckBox).length).toEqual(1);
         expect(wrapper.find(DynamicCheckBox).length).toEqual(0);
@@ -43,6 +53,7 @@ describe('<EmailListItem />', () => {
                 isListActive={false}
                 isSmallScreen={true}
                 setListActive={jest.fn}
+                user={GET_USER()}
             />);
         expect(wrapper.find(DynamicCheckBox).length).toEqual(1);
         expect(wrapper.find(CheckBox).length).toEqual(0);
@@ -59,11 +70,12 @@ describe('<EmailListItem />', () => {
                 email={GET_EMAIL()}
                 isListActive={false}
                 isSmallScreen={true}
-                setListActive={jest.fn}
                 onClick={onClick}
                 onTouchEnd={onTouchEnd}
                 onTouchMove={onTouchMove}
                 onTouchStart={onTouchStart}
+                setListActive={jest.fn}
+                user={GET_USER()}
             />);
 
         wrapper.simulate('click');
@@ -84,6 +96,7 @@ describe('<EmailListItem />', () => {
                 email={email}
                 isListActive={false}
                 setListActive={jest.fn}
+                user={GET_USER()}
             />);
         expect(wrapper.find('.EmailListItem__container--read').length).toEqual(1);
     });
@@ -96,6 +109,7 @@ describe('<EmailListItem />', () => {
                 email={email}
                 isListActive={false}
                 setListActive={jest.fn}
+                user={GET_USER()}
             />);
         expect(wrapper.find('.EmailListItem__container--read').length).toEqual(0);
     });
@@ -107,6 +121,7 @@ describe('<EmailListItem />', () => {
                 isListActive={false}
                 isSwipedOpen={true}
                 setListActive={jest.fn}
+                user={GET_USER()}
             />);
         expect(wrapper.find('.EmailListItem__container--swiped-open').length).toEqual(1);
     });
@@ -118,6 +133,7 @@ describe('<EmailListItem />', () => {
                 isListActive={false}
                 isSwipedOpen={false}
                 setListActive={jest.fn}
+                user={GET_USER()}
             />);
         expect(wrapper.find('.EmailListItem__container--swiped-open').length).toEqual(0);
     });
@@ -129,6 +145,7 @@ describe('<EmailListItem />', () => {
                 isListActive={false}
                 isSmallScreen={true}
                 setListActive={jest.fn}
+                user={GET_USER()}
             />);
         expect(wrapper.find(EmailListItemOptions).length).toEqual(1);
     });
@@ -140,6 +157,7 @@ describe('<EmailListItem />', () => {
                 isListActive={false}
                 isSmallScreen={false}
                 setListActive={jest.fn}
+                user={GET_USER()}
             />);
         expect(wrapper.find(EmailListItemOptions).length).toEqual(0);
     });

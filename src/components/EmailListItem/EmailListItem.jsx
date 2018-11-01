@@ -44,9 +44,14 @@ export class EmailListItem extends Component {
     }
 
 	render() {
+        const isValid =  this.props.email && this.props.user;
+
+        if (!isValid) 
+            return (<li className="EmailListItem"></li>);
+
         const emailSentDate = this.props.email.EmailSentDateTime.toLocaleDateString();
         const senderName = this.getFromName();
-
+        
 		return (
             <li 
                 className="EmailListItem"
@@ -144,16 +149,12 @@ export class EmailListItem extends Component {
      * @returns {string} The email sender's name.
      */
     getFromName() {
-        if (this.props.email.ToEmails[0]) {
-            if (this.props.email.ToEmails[0].toLowerCase() === this.props.user.Email.toLowerCase()) {
-                // received email
-                return this.props.email.FromName ? this.props.email.FromName : this.props.email.FromEmail;
-            } else  {
-                // sent email
-                return this.props.email.ToNames[0] ? this.props.email.ToNames[0]: this.props.email.ToEmails[0];
-            }
-        } else {
-            return '';
+        if (this.props.email.ToEmails[0].toLowerCase() === this.props.user.Email.toLowerCase()) {
+            // received email
+            return this.props.email.FromName ? this.props.email.FromName : this.props.email.FromEmail;
+        } else  {
+            // sent email
+            return this.props.email.ToNames[0] ? this.props.email.ToNames[0]: this.props.email.ToEmails[0];
         }
     }
 

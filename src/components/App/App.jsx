@@ -13,8 +13,11 @@ import {connect} from 'react-redux';
 import {MdEdit} from 'react-icons/md';
 import {setScreenSize} from '../../redux/actions/app-actions';
 import { 
-    loadEmails,
-    setInboxListItemsActive 
+    setDraftListItemsActive,
+    setInboxListItemsActive,
+    setSentListItemsActive,
+    setSpamListItemsActive,
+    setTrashListItemsActive
 } from '../../redux/actions/email-actions';
 import {
     userLogin
@@ -61,13 +64,57 @@ export class App extends Component {
                                 } 
                             />
                             <Route 
-                                exact path="/inbox"
+                                path="/drafts"
+                                render={(props) => 
+                                    <EmailList 
+                                        {...props} 
+                                        isListActive={this.props.isDraftListActive} 
+                                        emails={EMAIL_MANAGER.getDraftEmails(this.props.emails, this.props.user.Email)}
+                                        setListActive={this.props.setDraftListItemsActive} 
+                                    />
+                                } 
+                            />
+                            <Route 
+                                path="/inbox"
                                 render={(props) => 
                                     <EmailList 
                                         {...props} 
                                         isListActive={this.props.isInboxListActive} 
                                         emails={EMAIL_MANAGER.getInboxEmails(this.props.emails)}
                                         setListActive={this.props.setInboxListItemsActive} 
+                                    />
+                                } 
+                            />
+                            <Route 
+                                path="/sent"
+                                render={(props) => 
+                                    <EmailList 
+                                        {...props} 
+                                        isListActive={this.props.isSentListActive} 
+                                        emails={EMAIL_MANAGER.getSentEmails(this.props.emails, this.props.user.Email)}
+                                        setListActive={this.props.setSentListItemsActive} 
+                                    />
+                                } 
+                            />
+                            <Route 
+                                path="/spam"
+                                render={(props) => 
+                                    <EmailList 
+                                        {...props} 
+                                        isListActive={this.props.isSpamListActive} 
+                                        emails={EMAIL_MANAGER.getSpamEmails(this.props.emails)}
+                                        setListActive={this.props.setSpamListItemsActive} 
+                                    />
+                                } 
+                            />
+                            <Route 
+                                path="/trash"
+                                render={(props) => 
+                                    <EmailList 
+                                        {...props} 
+                                        isListActive={this.props.isTrashListActive} 
+                                        emails={EMAIL_MANAGER.getTrashEmails(this.props.emails)}
+                                        setListActive={this.props.setTrashListItemsActive} 
                                     />
                                 } 
                             />
@@ -85,44 +132,7 @@ export class App extends Component {
             :   <div className="App">Logging in, please wait...</div>
 		);
     }
-
-    /**
-     * Gets a route path.
-     * @param {string} path The route path.
-     * @param {boolean} isListActive Indicates if the list items are active.
-     * @param {func} setListActive Sets the active state of the list items.
-     * @param {Email[]} emails The list of emails to show.
-     * @param {boolean} exact Indicates if this is for the exact path.
-     * @returns {Element} The Route component.
-     */
-    renderRoute(path, isListActive, emails, setListActive, exact = false) {
-
-        return (exact)
-            ?   <Route 
-                    exact path={path}
-                    render={(props) => 
-                        <EmailList 
-                            {...props} 
-                            isListActive={isListActive} 
-                            emails={emails}
-                            setListActive={setListActive} 
-                        />
-                    } 
-                />
-            :   <Route 
-                    path={path}
-                    render={(props) => 
-                        <EmailList 
-                            {...props} 
-                            isListActive={isListActive} 
-                            emails={emails}
-                            setListActive={setListActive} 
-                        />
-                    } 
-                />
-        
-    }
-
+    
     /**
      * Called when the window resizes.
      * @param {object} e The event.
@@ -137,16 +147,25 @@ function mapStateToProps(store, ownProps) {
     return {
         emailLoadingOverlayState: store.email.loadingOverlayState,
         emails: store.email.emails,
+        isDraftListActive: store.email.isDraftListActive,
         isInboxListActive: store.email.isInboxListActive,
+        isSentListActive: store.email.isSentListActive,
+        isSpamListActive: store.email.isSpamListActive,
+        isTrashListActive: store.email.isTrashListActive,
         isLoggedIn: store.user.isLoggedIn,
-        isSmallScreen: store.app.isSmallScreen
+        isSmallScreen: store.app.isSmallScreen,
+        user: store.user.user
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         setScreenSize: setScreenSize,
+        setDraftListItemsActive: setDraftListItemsActive,
         setInboxListItemsActive: setInboxListItemsActive,
+        setSentListItemsActive: setSentListItemsActive,
+        setSpamListItemsActive: setSpamListItemsActive,
+        setTrashListItemsActive: setTrashListItemsActive,
         userLogin: userLogin
     },
     dispatch);

@@ -16,8 +16,23 @@ exports[`<App /> renders correctly when logged in 1`] = `
         render={[Function]}
       />
       <Route
-        exact={true}
+        path="/drafts"
+        render={[Function]}
+      />
+      <Route
         path="/inbox"
+        render={[Function]}
+      />
+      <Route
+        path="/sent"
+        render={[Function]}
+      />
+      <Route
+        path="/spam"
+        render={[Function]}
+      />
+      <Route
+        path="/trash"
         render={[Function]}
       />
       <Route
@@ -48,8 +63,23 @@ exports[`<App /> renders correctly when logged in and loading emails 1`] = `
         render={[Function]}
       />
       <Route
-        exact={true}
+        path="/drafts"
+        render={[Function]}
+      />
+      <Route
         path="/inbox"
+        render={[Function]}
+      />
+      <Route
+        path="/sent"
+        render={[Function]}
+      />
+      <Route
+        path="/spam"
+        render={[Function]}
+      />
+      <Route
+        path="/trash"
         render={[Function]}
       />
       <Route

@@ -1,7 +1,9 @@
 .EmailListItemOptions {
     display: flex;
+    float: right;
+    clear: both;
     height: $var-email-list-item-height-small;
-    position: absolute;
+    /*position: absolute;*/
     right: 0;
     width: $var-email-list-item-options-menu-width;
     z-index: 1;

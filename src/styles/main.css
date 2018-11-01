@@ -377,8 +377,10 @@
           padding: 0 0.5rem 0 0; } }
   #root .EmailListItemOptions {
     display: flex;
+    float: right;
+    clear: both;
     height: 72px;
-    position: absolute;
+    /*position: absolute;*/
     right: 0;
     width: 192px;
     z-index: 1; }
