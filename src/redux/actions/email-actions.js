@@ -1,6 +1,5 @@
 import API_MANAGER from '../../managers/mockApiManager';
 import LoadingOverlayState from '../../enums/LoadingOverlay';
-import { EMAIL_OVERLAY_FADE_SPEED } from '../../resources/constants';
 import { 
     EMAIL_ADD, 
     EMAIL_LIST_ITEM_SWIPED,
@@ -31,9 +30,10 @@ export const addEmails = (emails) => {
 
 /**
  * Initially loads the emails from the API.
+ * @param {number} loadingOverlayFadeOutSpeed The number of ms it takes to fade out the loading overlay.
  * @returns {object}
  */
-export const loadEmails = () => {
+export const loadEmails = (loadingOverlayFadeOutSpeed) => {
 
     return (dispatch) => {
         dispatch(setEmailLoadingOverlayState(LoadingOverlayState.Visible));
@@ -44,7 +44,7 @@ export const loadEmails = () => {
                 dispatch(setEmailLoadingOverlayState(LoadingOverlayState.Fading));
                 setTimeout(() => {
                     dispatch(setEmailLoadingOverlayState(LoadingOverlayState.None));
-                }, EMAIL_OVERLAY_FADE_SPEED + 50);
+                }, loadingOverlayFadeOutSpeed + 10);
             },
             (err) => { 
                 dispatch(loadEmailsError(err));

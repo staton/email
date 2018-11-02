@@ -48,8 +48,8 @@ exports[`<App /> renders correctly when logged in and loading emails 1`] = `
   className="App"
 >
   <LoadingOverlay
+    fadeOutSpeed={1000}
     loadingOverlayState="VISIBLE"
-    onClick={[Function]}
   />
   <Connect(Header) />
   <div

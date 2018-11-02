@@ -3,6 +3,7 @@ $local-font-size-small: .85rem;
 $local-font-size-smaller: .8rem;
 
 .EmailListItem {
+    position: relative;
     
     @include style-for($var-screen-size-small) {
         align-items: stretch;

@@ -10,8 +10,9 @@ import {loadEmails} from '../actions/email-actions';
  * Logs the user into the app.
  * @param {string} email The user's email address.
  * @param {string} password The user's password.
+ * @param {number} loadingOverlayFadeOutSpeed The number of ms needed to fade out the loading overlay.
  */
-export const userLogin = (email, password) => {
+export const userLogin = (email, password, loadingOverlayFadeOutSpeed) => {
     console.log('userLogin called');
     return (dispatch) => {
         dispatch(setIsLoggingIn(true));
@@ -22,7 +23,7 @@ export const userLogin = (email, password) => {
             (response) => {
                 dispatch(userLoginSuccess(response));
                 dispatch(setIsLoggingIn(false));
-                dispatch(loadEmails());
+                dispatch(loadEmails(loadingOverlayFadeOutSpeed));
             },
             (err) => {
                 dispatch(userLoginFailure(err));

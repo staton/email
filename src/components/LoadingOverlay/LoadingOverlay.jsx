@@ -4,11 +4,12 @@ import LoadingOverlayState from '../../enums/LoadingOverlay';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const propTypes = {
+    fadeOutSpeed: PropTypes.number,
     loadingOverlayState: PropTypes.string.isRequired
 };
 
 const defaultProps = {
-    onClick: () => {}
+    fadeOutSpeed: 1000
 };
 
 export class LoadingOverlay extends Component {
@@ -17,7 +18,10 @@ export class LoadingOverlay extends Component {
         return (this.props.loadingOverlayState === LoadingOverlayState.None)
             ? null
             : (
-                <div className={this.getClassName()}>
+                <div 
+                    className={this.getClassName()}
+                    style={this.getStyle()}
+                >
                     <LoadingSpinner />
                 </div>
             );
@@ -34,6 +38,33 @@ export class LoadingOverlay extends Component {
             className += ' LoadingOverlay--fade';
         
         return className;
+    }
+
+    /**
+     * Gets the inline style for this component.
+     * @returns {object} The style object.
+     */
+    getStyle() {
+        let transition = 'all ' + this.props.fadeOutSpeed + 'ms ease-in';
+
+        return {
+            msTransition: transition,
+            WebkitTransition: transition,
+            transition: transition
+        };
+
+        /*return (this.props.loadingOverlayState === LoadingOverlayState.Fading)
+            ? {
+                msTransition: transition,
+                WebkitTransition: transition,
+                transition: transition,
+                opacity: '0.0'
+            }
+            : {
+                msTransition: transition,
+                WebkitTransition: transition,
+                transition: transition
+            };*/
     }
 
 }

@@ -11,6 +11,7 @@ import {withRouter} from 'react-router';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {MdEdit} from 'react-icons/md';
+import { EMAIL_LOADING_OVERLAY_FADE_SPEED } from '../../resources/constants';
 import {setScreenSize} from '../../redux/actions/app-actions';
 import { 
     setDraftListItemsActive,
@@ -36,7 +37,7 @@ export class App extends Component {
         window.addEventListener('resize', this.handleResized);
 
         // load the initial emails:
-        this.props.userLogin('s@gmail.com', 'p@$$w0rd');
+        this.props.userLogin('s@gmail.com', 'p@$$w0rd', EMAIL_LOADING_OVERLAY_FADE_SPEED);
     }
 
 	render() {
@@ -46,7 +47,10 @@ export class App extends Component {
                     {
                         (this.props.emailLoadingOverlayState === LoadingOverlayState.None)
                         ? null
-                        : <LoadingOverlay loadingOverlayState={this.props.emailLoadingOverlayState} />
+                        : <LoadingOverlay 
+                            fadeOutSpeed={EMAIL_LOADING_OVERLAY_FADE_SPEED}
+                            loadingOverlayState={this.props.emailLoadingOverlayState}
+                         />
                     }
                     <Header />
                     <div className="App__content">

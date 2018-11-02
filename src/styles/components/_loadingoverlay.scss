@@ -11,7 +11,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    @include transition(opacity 2s ease);
+    /*@include transition(opacity 1s ease);*/
     z-index: 999;
 
     &.LoadingOverlay--fade {
