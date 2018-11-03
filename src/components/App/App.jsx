@@ -6,12 +6,13 @@ import EMAIL_MANAGER from '../../managers/emailManager';
 import Header from '../Header/Header';
 import LoadingOverlay from '../LoadingOverlay/LoadingOverlay';
 import LoadingOverlayState from '../../enums/LoadingOverlay';
+import STRINGS from '../../resources/strings';
 import {Route, Switch} from 'react-router-dom';
 import {withRouter} from 'react-router';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {MdEdit} from 'react-icons/md';
-import { EMAIL_LOADING_OVERLAY_FADE_SPEED } from '../../resources/constants';
+import {EMAIL_LOADING_OVERLAY_FADE_SPEED} from '../../resources/constants';
 import {setScreenSize} from '../../redux/actions/app-actions';
 import { 
     setDraftListItemsActive,
@@ -41,6 +42,7 @@ export class App extends Component {
     }
 
 	render() {
+        let emailListId = 0;
 		return (
             (this.props.isLoggedIn)
             ?   <div className="App">
@@ -61,20 +63,10 @@ export class App extends Component {
                                 render={(props) => 
                                     <EmailList 
                                         {...props} 
-                                        isListActive={this.props.isInboxListActive} 
                                         emails={EMAIL_MANAGER.getInboxEmails(this.props.emails)}
+                                        isListActive={this.props.isInboxListActive} 
                                         setListActive={this.props.setInboxListItemsActive} 
-                                    />
-                                } 
-                            />
-                            <Route 
-                                path="/drafts"
-                                render={(props) => 
-                                    <EmailList 
-                                        {...props} 
-                                        isListActive={this.props.isDraftListActive} 
-                                        emails={EMAIL_MANAGER.getDraftEmails(this.props.emails, this.props.user.Email)}
-                                        setListActive={this.props.setDraftListItemsActive} 
+                                        title={STRINGS.InboxMenu}
                                     />
                                 } 
                             />
@@ -83,9 +75,22 @@ export class App extends Component {
                                 render={(props) => 
                                     <EmailList 
                                         {...props} 
-                                        isListActive={this.props.isInboxListActive} 
                                         emails={EMAIL_MANAGER.getInboxEmails(this.props.emails)}
+                                        isListActive={this.props.isInboxListActive} 
                                         setListActive={this.props.setInboxListItemsActive} 
+                                        title={STRINGS.InboxMenu}
+                                    />
+                                } 
+                            />
+                            <Route 
+                                path="/drafts"
+                                render={(props) => 
+                                    <EmailList 
+                                        {...props} 
+                                        emails={EMAIL_MANAGER.getDraftEmails(this.props.emails, this.props.user.Email)}
+                                        isListActive={this.props.isDraftListActive} 
+                                        setListActive={this.props.setDraftListItemsActive} 
+                                        title={STRINGS.DraftsMenu}
                                     />
                                 } 
                             />
@@ -94,9 +99,10 @@ export class App extends Component {
                                 render={(props) => 
                                     <EmailList 
                                         {...props} 
-                                        isListActive={this.props.isSentListActive} 
                                         emails={EMAIL_MANAGER.getSentEmails(this.props.emails, this.props.user.Email)}
+                                        isListActive={this.props.isSentListActive} 
                                         setListActive={this.props.setSentListItemsActive} 
+                                        title={STRINGS.SentMenu}
                                     />
                                 } 
                             />
@@ -105,9 +111,10 @@ export class App extends Component {
                                 render={(props) => 
                                     <EmailList 
                                         {...props} 
-                                        isListActive={this.props.isSpamListActive} 
                                         emails={EMAIL_MANAGER.getSpamEmails(this.props.emails)}
+                                        isListActive={this.props.isSpamListActive} 
                                         setListActive={this.props.setSpamListItemsActive} 
+                                        title={STRINGS.SpamMenu}
                                     />
                                 } 
                             />
@@ -116,9 +123,10 @@ export class App extends Component {
                                 render={(props) => 
                                     <EmailList 
                                         {...props} 
-                                        isListActive={this.props.isTrashListActive} 
                                         emails={EMAIL_MANAGER.getTrashEmails(this.props.emails)}
+                                        isListActive={this.props.isTrashListActive} 
                                         setListActive={this.props.setTrashListItemsActive} 
+                                        title={STRINGS.DeletedMenu}
                                     />
                                 } 
                             />

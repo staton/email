@@ -10,18 +10,20 @@ import EMAIL_MANAGER from '../../managers/emailManager';
 const propTypes = {
     emails: PropTypes.arrayOf(PropTypes.instanceOf(Email)),
     isListActive: PropTypes.bool.isRequired,
-    setListActive: PropTypes.func.isRequired
+    setListActive: PropTypes.func.isRequired,
+    title: PropTypes.string
 };
 
 const defaultProps = {
-    emails: []
+    emails: [],
+    title: ''
 };
 
 export class EmailList extends Component {
 
     constructor() {
         super();
-
+        
         this.handleListActivated = this.handleListActivated.bind(this);
     }
 
@@ -77,7 +79,8 @@ function mapStateToProps(store, ownProps) {
         emails: ownProps.emails,
         isListActive: ownProps.isListActive,
         selectedEmails: store.email.selectedEmails,
-        setListActive: ownProps.setListActive
+        setListActive: ownProps.setListActive,
+        title: ownProps.title
     };
 }
 
